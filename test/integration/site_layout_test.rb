@@ -13,4 +13,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'home/index'
   end
+
+  test 'showpage' do
+    get show_path
+    assert_template 'home/show'
+  end
 end
