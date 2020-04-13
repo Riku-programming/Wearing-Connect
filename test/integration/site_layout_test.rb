@@ -18,4 +18,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get show_path
     assert_template 'home/show'
   end
+
+  test 'logout' do
+    get destroy_user_session_path
+    assert_template 'users/sign_out'
+  end
 end
