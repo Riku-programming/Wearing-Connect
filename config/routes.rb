@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'articles/index'
-  root 'home#index'
+  root 'home#show'
   get 'show', to: 'home#show'
 
   resources :articles
