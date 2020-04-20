@@ -2,14 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="text-center mb-4">
-          <!--    ロゴ画像をsrcに入れる-->
-          <img class="mb-4" src="#" alt width="72" height="72">
-          <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
-          <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element.
-            <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a>
-          </p>
-        </div>
+        <%= render "layouts/labels" %>
         <div class="form-group row">
           <%= f.label :email, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
