@@ -5,7 +5,19 @@
     <div class="col-8 mt-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
-          by <%= @article.user.email if @article.user %>
+          by <%= @article.user.name  %>
+<!--          gravatarは後ほど追加-->
+          <%#= link_to gravatar_for(@article.user), user_path(@article.user) %>
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@article.content) %></div>
+          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
+          <%= link_to "Delete", articles_path(@article), class: "btn btn-outline-danger", method: :delete, date: {confirm: "Are you sure?"} %>
+        </div>
+
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@article.created_at) %> ago,
+          edited <%= time_ago_in_words(@article.updated_at) %>ago</small>
         </div>
       </div>
     </div>
