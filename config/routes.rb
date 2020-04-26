@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'articles/index'
   root 'home#show'
   get 'show', to: 'home#show'
+  get 'my_friends', to: 'users#my_friends'
 
 
 
