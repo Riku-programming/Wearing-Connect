@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#show'
   get 'show', to: 'home#show'
   get 'my_friends', to: 'users#my_friends'
+  get 'search_friend', to: 'users#search'
 
 
 
