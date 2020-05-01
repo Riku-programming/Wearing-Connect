@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def my_friends
-    @friends = currrent_user.friends
+    @friends = current_user.friends
   end
 
   def search
