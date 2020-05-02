@@ -2,9 +2,11 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    # @article = Article.find(params[:id])
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
+
 
   def my_friends
     @friends = current_user.friends
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
     if params[:friend].present?
       @friends = User.search(params[:friend])
       @friends = current_user.except_current_user(@friends)
+      # fixme Couldn't find userが表示されない
       if @friends
         respond_to do |format|
           format.js {render partial: 'users/friend_result'}

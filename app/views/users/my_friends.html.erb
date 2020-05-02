@@ -9,8 +9,7 @@
       </div>
       <div class="col-sm-3 no-left-padding">
         <%= button_tag type: :submit, class: "btn btn-success" do %>
-<!--          fa_iconは後で追加-->
-          <%#= fa_icon 'search 2x' %>
+          <%= fa_icon 'search 2x' %>
         <% end %>
       </div>
     </div>
@@ -19,9 +18,10 @@
 
 <div id="friend-results">
 
-  
+
 </div>
 
-<% if !@friends.empty? %>
+<%# if !@friends.empty? %>
+<% if @friends.present? %>
   <%= render 'friends/list' %>
 <% end %>
