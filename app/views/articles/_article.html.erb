@@ -5,7 +5,6 @@
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
             <% if article.user %>
-<!--FIXME  user_pathを押した時にユーザー別のshowページに行かない-->
               by <%= link_to article.user.name , user_path(article.user) %>
             <% end %>
           </div>

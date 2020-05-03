@@ -16,8 +16,7 @@ class UsersController < ApplicationController
     if params[:friend].present?
       @friends = User.search(params[:friend])
       @friends = current_user.except_current_user(@friends)
-      # fixme Couldn't find userが表示されない
-      if @friends
+      if !@friends.empty?
         respond_to do |format|
           format.js {render partial: 'users/friend_result'}
         end
