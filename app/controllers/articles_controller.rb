@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  # fixme flashメッセージがアプリケーションを通して表示されない
   def destroy
     @article.destroy
     flash[:danger] = "Article was successfully deleted"

@@ -26,6 +26,7 @@ gem 'bootstrap-will_paginate', '1.00'
 gem 'devise'
 gem 'rails-controller-testing'
 gem 'font-awesome-rails'
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
