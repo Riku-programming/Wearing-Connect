@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GoodsController, type: :controller do
+RSpec.describe ItemsController, type: :controller do
 
   describe "GET #search" do
     it "returns http success" do

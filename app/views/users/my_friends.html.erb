@@ -17,11 +17,9 @@
 </div>
 
 <div id="friend-results">
-
-
+<%# if !@friends.empty? %>
+  <% if @friends.present? %>
+    <%= render 'friends/list' %>
+  <% end %>
 </div>
 
-<%# if !@friends.empty? %>
-<% if @friends.present? %>
-  <%= render 'friends/list' %>
-<% end %>
