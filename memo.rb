@@ -1,6 +1,6 @@
 # 今からやること
-# todo Book or Fashion controllerを作成
-# todo api取得
+# todo 検索結果を綺麗なリストにする
+
 
 
 

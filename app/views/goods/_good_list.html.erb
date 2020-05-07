@@ -1,0 +1,10 @@
+<% if @items.present? %>
+  <% @items.first(10).each do |item| %>
+    <div class="list">
+      <%=  "#{item['itemName']},#{item.price} yen" %>
+        <%#= item.itemName %>
+        <%#= link_to (image_tag(item.medium_image_urls)), item.medium_image_urls %>
+      <%#= item.title %>
+    </div>
+  <% end %>
+<% end %>
