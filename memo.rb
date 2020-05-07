@@ -1,5 +1,6 @@
 # 今からやること
-# todo 検索結果を綺麗なリストにする
+# todo paginationつける
+# todo 検索結果をajax化する
 
 
 
