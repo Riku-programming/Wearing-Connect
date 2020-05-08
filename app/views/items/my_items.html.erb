@@ -1,7 +1,8 @@
 <h1>Search</h1>
+
 <div class='search-area'>
   <h4>Search items</h4>
-  <%= form_with url: search_item_path, remote: true, method: :get  do |f| %>
+  <%= form_with url: search_item_path, remote: true, method: :get do |f| %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
         <%= f.text_field :keyword, placeholder: "Enter item name", autofocus: true, class: "form-control form-control-lg" %>
@@ -12,14 +13,16 @@
         <% end %>
       </div>
     </div>
-
-    <!--    todo 後ほどpagination機能つける-->
-    <div id='item-results'>
-      <% if @items.present? %>
-        <%= render 'item_list' %>
-      <% end %>
-    </div>
   <% end %>
-
 </div>
+
+<!--    todo 後ほどpagination機能つける-->
+<div id='item-results'>
+  <% if @items.present? %>
+    <%= render 'item_list' %>
+  <% end %>
+</div>
+
+
+
 
