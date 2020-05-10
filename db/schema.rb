@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_060010) do
+ActiveRecord::Schema.define(version: 2020_05_10_102526) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2020_05_10_060010) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "item_name"
+    t.string "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -48,6 +56,14 @@ ActiveRecord::Schema.define(version: 2020_05_10_060010) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wants", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "item_id"], name: "index_wants_on_user_id_and_item_id", unique: true
   end
 
   add_foreign_key "friendships", "users"
