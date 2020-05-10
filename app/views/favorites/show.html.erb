@@ -1,0 +1,5 @@
+
+<% @favorite_articles.each do |article| %>
+  <hr>
+  <p><span>ファボツイート内容: </span><%=link_to article.title, article_path(article.id) %></p>
+<% end %>

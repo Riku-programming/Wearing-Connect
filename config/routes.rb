@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   get 'search_item', to: 'items#search'
   get 'my_items', to: 'items#my_items'
   devise_for :users
@@ -16,5 +18,7 @@ Rails.application.routes.draw do
   get 'search_friend', to: 'users#search'
   resources :friendships
   resources :users, only: [:show]
-  resources :articles
+  resources :articles do
+    resource :favorites, only: [:create, :destroy, :show, :index]
+  end
 end
