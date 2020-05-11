@@ -7,7 +7,7 @@
 </div>
 
 <h3 class="text-left mt-4">Articles</h3>
-<h3 class="text-right mt-4"><%= link_to 'Favorite Article', article_favorite_path(current_user) %></h3>
+<h3 class="text-right mt-4"><%= link_to 'Favorite Article', article_favorites_path(current_user) %></h3>
 
 <div class="flickr_pagination">
   <%= will_paginate @articles, :container => false %>

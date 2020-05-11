@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:edit,  :update, :show, :destroy]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
 
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @item.user = current_user
     if @item.save
       flash[:success] = "item was successfully created"
-      redirect_to @item
+      redirect_to items_path
     else
       render 'new'
     end
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end
 
@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :content)
+    params.require(:item).permit(:item_name, :price, :url)
   end
 
   def require_same_user

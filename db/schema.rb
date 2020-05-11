@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(version: 2020_05_10_102526) do
   create_table "items", force: :cascade do |t|
     t.integer "user_id"
     t.string "item_name"
-    t.string "detail"
+    t.integer "price"
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

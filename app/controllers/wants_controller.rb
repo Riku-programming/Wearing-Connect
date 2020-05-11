@@ -13,7 +13,7 @@ class WantsController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @items = @user.items
+    # @items = @user.items
     @want_items = @user.want_items
   end
 

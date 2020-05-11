@@ -1,16 +1,23 @@
-<h1>items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
-<% @items.each do |item| %>
-  <hr>
-  <p><span>email: </span><%=link_to item.user.email, user_path(item.user.id) %></p>
-  <p><span>ツイート内容: </span><%=link_to item.body, item_path(item.id) %></p>
-  <% if user_signed_in? %>
-    <% if item.wanted_by?(current_user) %> <!-- ログインしているユーザーがwantしたかどうかで分岐 -->
-      <p><span>欲しい解除: </span><%=link_to item.favorites.count, item_wants_path(item.id), method: :delete %></p>
-    <% else %>
-      <p><span>欲しい登録: </span><%=link_to item.favorites.count, item_wants_path(item.id), method: :post %></p>
-    <% end %>
-  <% else %>
-    <p><span>欲しい数: </span><%= item.favorites.count %></p>
-  <% end %>
-<% end %>
+<h1 class="text-center mt-4">Listing all items</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @items, :container => false %>
+</div>
+
+<%= render 'item' %>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @items, :container => false %>
+</div>
+<%# @items.each do |item| %>
+<!--  <hr>-->
+<!--  <p><span>email: </span><%#=link_to item.user.email, user_path(item.user.id) %></p>-->
+<!--  <p><span>ツイート内容: </span><%#=link_to item.body, item_path(item.id) %></p>-->
+  <%# if user_signed_in? %>
+    <%# if item.wanted_by?(current_user) %>
+<!--      <p><span>欲しい解除: </span><%#=link_to item.favorites.count, item_wants_path(item.id), method: :delete %></p>-->
+    <%# else %>
+<!--      <p><span>欲しい登録: </span><%#=link_to item.favorites.count, item_wants_path(item.id), method: :post %></p>-->
+    <%# end %>
+  <%# else %>
+<!--    <p><span>欲しい数: </span><%#= item.favorites.count %></p>-->
+  <%# end %>
+<%# end %>
