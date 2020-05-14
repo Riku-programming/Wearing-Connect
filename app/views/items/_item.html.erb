@@ -5,14 +5,14 @@
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
             <% if item.user %>
-              by <%= link_to item.user.name, user_path(item.user) %>
+              by <%= link_to item.user.name, item_path(item.user_id) %>
             <% end %>
           </div>
 
           <div class="card-body">
             <h5 class="card-title"><%= link_to item.item_name, item_path(item), class: "text-success" %></h5>
-            <p class="card-text"><%= truncate(item.price, length: 10) %></p>
-            <%= link_to "View", edit_item_path(item), class: "btn btn-outline-info" %>
+            <p class="card-text"><%= item.price %></p>
+            <%= link_to "Edit", edit_item_path(item), class: "btn btn-outline-info" %>
             <%= link_to "Delete", item_path(item), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
             <% if item.wanted_by?(current_user) %>
               <p><span>欲しい解除: </span><%=link_to item.wants.count, item_wants_path(item.id), method: :delete %></p>
