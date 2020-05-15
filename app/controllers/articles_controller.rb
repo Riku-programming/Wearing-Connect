@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit,  :update, :show, :destroy]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_item, only: [:edit, :update, :destroy]
 
 
   def index
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = current_user
+    @article.item = current_item
     if @article.save
       flash[:success] = "Article was successfully created"
       redirect_to articles_path
@@ -37,8 +37,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    @item = Item.find(params[:id])
+    @articles = @item.articles.paginate(page: params[:page], per_page: 5)
   end
 
   # fixme flashメッセージがアプリケーションを通して表示されない
@@ -57,11 +57,11 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:item_id,:title, :content)
   end
 
-  def require_same_user
-    if current_user != @article.user
+  def require_same_item
+    if current_item != @article.item
       flash[:danger] = "You can only edit delete your own articles"
       redirect_to root_path
     end
