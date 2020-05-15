@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     @article.item = current_item
     if @article.save
       flash[:success] = "Article was successfully created"
-      redirect_to articles_path
+      redirect_to items_path
     else
       render 'new'
     end
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:item_id,:title, :content)
+    params.permit(:item_id,:title, :content)
   end
 
   def require_same_item

@@ -1,8 +1,5 @@
 class User < ApplicationRecord
   has_many :items
-  has_many :wants
-  has_many :want_items, through: :wants, source: :item
-  has_many :articles
   has_many :favorites
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :friendships

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with :exception
 
   def current_item
-    @current_item = Item.find(params[:id])
+    @current_item = Item.find(params[:item_id])
   end
 
 

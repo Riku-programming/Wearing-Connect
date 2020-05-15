@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <%= render 'shared/errors', obj: @article %>
-      <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+      <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", url: new_item_article_path ,local: true) do |f| %>
 
         <div class="form-group row">
           <%= f.label :title, class: "col-2 col-form-label text-light" %>
@@ -34,7 +34,7 @@
       <% end %>
     </div>
     <div class="link">
-      <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "text-info" %>
+      <%= link_to '[ Cancel and return to articles listing ]', items_path, class: "text-info" %>
     </div>
   </div>
 </div>
