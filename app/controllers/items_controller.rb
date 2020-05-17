@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # fixme current_userではなくUser.find([:params])かも
     @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end

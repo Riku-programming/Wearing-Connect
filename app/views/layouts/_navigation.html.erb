@@ -13,19 +13,19 @@
           </li>
 <!--          todo 後で作った機能のパスを＃に追加-->
           <li class="nav-item dropdown">
-<!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--              Article-->
-<!--            </a>-->
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Article
+            </a>
 <!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
               <%#= link_to article_path(current_user), class: 'dropdown-item' do %>
 <!--                <%#= fa_icon 'home' %> View my article-->
               <%# end %>
 
-              <%#= link_to new_article_path , class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'edit' %> Create Article-->
-              <%# end %>
+              <%= link_to item_path(current_user) , class: 'dropdown-item' do %>
+                <%= fa_icon 'edit' %> Create Article
+              <% end %>
 
-              <%#= link_to articles_path, class: 'dropdown-item' do %>
+              <%#= link_to item_articles_path, class: 'dropdown-item' do %>
 <!--                <%#= fa_icon 'search' %> Search all Article-->
               <%# end %>
 <!--              <div class="dropdown-divider"></div>-->

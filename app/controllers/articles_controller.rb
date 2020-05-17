@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit,  :update, :show, :destroy]
+  before_action :set_item, only: [:edit,  :update, :show, :destroy]
   before_action :require_same_item, only: [:edit, :update, :destroy]
 
 
@@ -9,6 +10,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = current_user
   end
 
   def edit
@@ -18,6 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user  = current_user
     @article.item = current_item
     if @article.save
       flash[:success] = "Article was successfully created"
@@ -37,7 +40,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @articles = @item.articles.paginate(page: params[:page], per_page: 5)
   end
 
@@ -45,7 +47,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     flash[:danger] = "Article was successfully deleted"
-    redirect_to articles_path
+    redirect_to item_article_path
   end
 
 
@@ -56,12 +58,16 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def article_params
-    params.permit(:item_id,:title, :content)
+    params.require(:article).permit(:title, :content)
   end
 
   def require_same_item
-    if current_item != @article.item
+    if current_user != @article.user
       flash[:danger] = "You can only edit delete your own articles"
       redirect_to root_path
     end

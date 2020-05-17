@@ -2,7 +2,8 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <%= render 'shared/errors', obj: @article %>
-      <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", url: new_item_article_path ,local: true) do |f| %>
+<!--      xxx--> urlを指定したらnewはできるがeditができない、urlを指定しないとeditはできるがnewはできない
+      <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-light rounded", url: new_item_article_path ,local: true) do |f| %>
 
         <div class="form-group row">
           <%= f.label :title, class: "col-2 col-form-label text-light" %>

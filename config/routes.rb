@@ -22,5 +22,6 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy, :show, :index]
     end
   end
+  # xxx
   post "items/:item_id/articles/new" => "articles#create"
 end

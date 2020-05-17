@@ -4,7 +4,7 @@
       <div class="col-8 mt-4">
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
-            <% if article.user %>
+            <% if article.user.id %>
               by <%= link_to article.user.name, user_path(article.user) %>
             <% end %>
           </div>
@@ -14,17 +14,17 @@
             <p class="card-text"><%= truncate(article.content, length: 100) %></p>
             <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-info" %>
             <%= link_to "Delete", article_path(article), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-            <% if article.favorited_by?(current_user) %>
+            <%# if article.favorited_by?(current_user) %>
               <!--              todo お気に入り登録、解除を星のボタンにして色を変更することで再現-->
-              <p>
-                <span>お気に入り解除:</span><%= link_to article.favorites.count, article_favorites_path(article.id), method: :delete %>
-              </p>
-            <% else %>
-            <p><span>
-              お気に入り登録:
-            </span><%= link_to article.favorites.count, article_favorites_path(article.id), method: :post %></p>
+<!--              <p>-->
+<!--                <span>お気に入り解除:</span><%#= link_to article.favorites.count, item_favorites_path(item.id), method: :delete %>-->
+<!--              </p>-->
+            <%# else %>
+<!--            <p><span>-->
+<!--              お気に入り登録:-->
+<!--            </span><%#= link_to article.favorites.count, item_favorites_path(item.id), method: :post %></p>-->
 
-            <% end %>
+            <%# end %>
           </div>
           <div class="card-footer text-muted">
             <small>Created<%= time_ago_in_words(article.created_at) %> ago,
