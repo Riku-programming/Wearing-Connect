@@ -28,6 +28,8 @@ gem 'rails-controller-testing'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'rakuten_web_service'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

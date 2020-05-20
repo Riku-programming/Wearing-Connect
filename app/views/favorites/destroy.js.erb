@@ -1,0 +1,2 @@
+alert("destroy")
+$('#likes_buttons_<%= @article.id %>').html("<%= j(render partial: 'articles/like', locals: {articles: @article}) %>");

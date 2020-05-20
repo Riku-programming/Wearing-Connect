@@ -14,17 +14,9 @@
             <p class="card-text"><%= truncate(article.content, length: 100) %></p>
             <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-info" %>
             <%= link_to "Delete", article_path(article), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-            <%# if article.favorited_by?(current_user) %>
-              <!--              todo お気に入り登録、解除を星のボタンにして色を変更することで再現-->
-<!--              <p>-->
-<!--                <span>お気に入り解除:</span><%#= link_to article.favorites.count, item_favorites_path(item.id), method: :delete %>-->
-<!--              </p>-->
-            <%# else %>
-<!--            <p><span>-->
-<!--              お気に入り登録:-->
-<!--            </span><%#= link_to article.favorites.count, item_favorites_path(item.id), method: :post %></p>-->
-
-            <%# end %>
+            <div id="likes_buttons_<%= article.id %>">
+              <%= render partial: 'articles/like', locals: {article: article} %>
+            </div>
           </div>
           <div class="card-footer text-muted">
             <small>Created<%= time_ago_in_words(article.created_at) %> ago,

@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   shallow do
     resources :items do
-      resources :articles
-      resource :favorites, only: [:create, :destroy, :show, :index]
+      resources :articles do
+        resource :favorites, only: [:create, :destroy]
+      end
+
     end
   end
   # xxx
