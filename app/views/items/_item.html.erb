@@ -7,6 +7,12 @@
             <% if item.user %>
               by <%= link_to item.user.name, item_path(item.user_id) %>
             <% end %>
+            <% if item.image? %>
+              <%= image_tag item.image.thumb.url %>
+            <% else %>
+<!--              todo imageがない場合のdefaultのimageを作る-->
+              <%= image_tag 'star-on.png'%>
+            <% end %>
           </div>
 
           <div class="card-body">

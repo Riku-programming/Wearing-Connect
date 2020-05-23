@@ -38,7 +38,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # fixme current_userではなくUser.find([:params])かも
+    # # fixme current_userではなくUser.find([:params])かも
+    # if @item.user_id == current_user.id
+    #   @user = current_user
+    # else
+    #   @user = User.find(params[:id])
+    # end
+
+    # @user = current_user
     @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end
@@ -82,7 +89,8 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:item_name, :price, :url)
+    # fixme image => img
+    params.require(:item).permit(:item_name, :price, :url, :image, :remove_image)
   end
 
   def require_same_user
