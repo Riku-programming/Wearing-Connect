@@ -1,5 +1,5 @@
 # 今からやること
-# todo お気に入り登録する時 ajax化したい
+# todo testを追加(RSpec)
 # todo おすすめ機能(要検討)つける この商品をお気に入り登録しているユーザを表示的な
 # todo itemを追加する際(欲しいものリスト)写真もついでに投稿できるように
 
@@ -13,7 +13,7 @@
 
 
 # 後ほど修正
-# todo testを追加(RSpec)
+# todo お気に入り登録する時 ajax化したい
 # todo flash messageを修正
 # todo　日本語化する
 
