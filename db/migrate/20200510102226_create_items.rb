@@ -7,7 +7,6 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :url
       t.timestamps
 
-    #   todo  データの型を指定して:imageを追加する
 
     end
   end

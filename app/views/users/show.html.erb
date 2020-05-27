@@ -6,14 +6,14 @@
   <%= link_to "Edit your profile", edit_user_registration_path(@user), class: "btn btn-outline-info" %>
 </div>
 
-<h3 class="text-left mt-4">Articles</h3>
-<h3 class="text-right mt-4"><%= link_to 'Favorite Article', item_favorites_path(current_user) %></h3>
+<!--<h3 class="text-left mt-4">Articles</h3>-->
+<!--<h3 class="text-right mt-4"><%#= link_to 'Favorite Article', item_favorites_path(current_user) %></h3>-->
 
-<div class="flickr_pagination">
-  <%= will_paginate @articles, :container => false %>
-</div>
-<%= render 'articles/article' %>
+<!--<div class="flickr_pagination">-->
+  <%#= will_paginate @articles, :container => false %>
+<!--</div>-->
+<%#= render 'articles/article' %>
 
-<div class="flickr_pagination mb-4">
-  <%= will_paginate @articles, :container => false %>
-</div>
+<!--<div class="flickr_pagination mb-4">-->
+  <%#= will_paginate @articles, :container => false %>
+<!--</div>-->

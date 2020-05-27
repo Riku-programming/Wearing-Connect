@@ -63,11 +63,10 @@ RSpec.describe User, type: :model do
       expect(@user.errors).to be_added(:password, :too_short, count: 8)
     end
 
-    # fixme　このテストを通したい
     it 'パスワードが8文字未満の場合、無効であること' do
-    @user.password = @user.password_confirmation = 'a' * 7
-          @user.valid?
-          expect(@user.errors).to be_added(:password, :too_short, count: 8)
+      @user.password = @user.password_confirmation = 'a' * 7
+      @user.valid?
+      expect(@user.errors).to be_added(:password, :too_short, count: 8)
     end
   end
 
@@ -83,6 +82,39 @@ RSpec.describe User, type: :model do
       duplicate_user.valid?
       expect(duplicate_user.errors).to be_added(:email, :taken, value: 'test@example.com')
     end
+  end
 
+  describe 'パスワードの検証' do
+    it 'パスワードと確認用パスワードが違う場合、無効であること' do
+      @user.password = 'password'
+      @user.password_confirmation = 'test'
+      expect(@user).to_not be_valid
+    end
+
+    it 'パスワードが暗号化されていること' do
+      expect(@user.encrypted_password).to_not eq 'password'
+    end
+  end
+
+  describe 'フォーマットの検証' do
+    # fixme valid_addressの中身を変える
+    it 'メールアドレスが正しいフォーマットの場合、有効であること' do
+      valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                           first.last@foo.jp alice+bob@baz.cn]
+      valid_addresses.each do |valid_address|
+        @user.email = valid_address
+        expect(@user).to be_valid
+      end
+    end
+
+    it 'メールアドレスが不正なフォーマットの場合、無効であること' do
+      invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
+                             foo@bar_baz.com foo@bar+baz.com]
+      invalid_addresses.each do |invalid_address|
+        @user.email = invalid_address
+        @user.valid?
+        expect(@user.errors).to be_added(:email, :invalid, value: invalid_address)
+      end
+    end
   end
 end

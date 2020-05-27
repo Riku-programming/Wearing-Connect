@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :item do
-    user_id { 1 }
+    id {1}
+    item_name {'test_item'}
+    price {'100'}
+    url {'https://www.test.com'}
+    image{'https://www.test.image.com'}
   end
 end
