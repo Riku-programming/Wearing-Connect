@@ -17,10 +17,7 @@
                                       DELETE /users(.:format)                                                                         devise/registrations#destroy
                                       POST   /users(.:format)                                                                         devise/registrations#create
                        users_sign_out GET    /users/sign_out(.:format)                                                                devise/sessions#destroy
-                   friendships_create GET    /friendships/create(.:format)                                                            friendships#create
-                  friendships_destroy GET    /friendships/destroy(.:format)                                                           friendships#destroy
                                  root GET    /                                                                                        home#show
-                                 show GET    /show(.:format)                                                                          home#show
                            my_friends GET    /my_friends(.:format)                                                                    users#my_friends
                         search_friend GET    /search_friend(.:format)                                                                 users#search
                           friendships GET    /friendships(.:format)                                                                   friendships#index

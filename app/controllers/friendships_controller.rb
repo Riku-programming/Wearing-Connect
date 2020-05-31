@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   def create
     friend = User.find(params[:friend])
     current_user.friendships.build(friend_id: friend.id)
-    if current_user.save
+    if current_user.save(validate: false)
       flash[:success] = "Following friend"
     else
       flash[:alert] = "There was something wrong with the tracking request"

@@ -8,10 +8,7 @@ Rails.application.routes.draw do
     # get '/users/:id' => 'devise/sessions#show'
   end
 
-  get 'friendships/create'
-  get 'friendships/destroy'
   root 'home#show'
-  get 'show', to: 'home#show'
   get 'my_friends', to: 'users#my_friends'
   get 'search_friend', to: 'users#search'
   resources :friendships
