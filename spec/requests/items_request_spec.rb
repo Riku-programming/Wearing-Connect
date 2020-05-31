@@ -2,15 +2,12 @@ require 'rails_helper'
 #todo contextの部分を共通化してDRYにしたい
 # fixme login機能の不具合の解決
 RSpec.describe 'Items', type: :request do
-  let(:user) {FactoryBot.create(:user)}
-  let(:item) {user.items.build(
-      id: 1,
-      item_name: "test_item",
-      price: 100,
-      url: 'test',
-      image: 'test_image'
-  )}
-  let(:item_params) {FactoryBot.attributes_for(:item)}
+  let!(:user) {FactoryBot.create(:user)}
+  let!(:another_user) {FactoryBot.create(:another_user)}
+  let!(:item) {FactoryBot.create(:item)}
+  let!(:another_item) {FactoryBot.create(:another_item)}
+  let!(:another_item_params) {FactoryBot.attributes_for(:another_item)}
+  let!(:item_params) {FactoryBot.attributes_for(:item)}
 
   describe '#index' do
     context 'ログインしていない状態の場合' do
@@ -40,34 +37,90 @@ RSpec.describe 'Items', type: :request do
       end
     end
   end
-# fixme itemを追加するテストがうまくいかない
-  # describe '#create' do
-  #   context 'ログインしている状態の場合' do
-  #     before do
-  #       sign_in user
-  #     end
-  #     subject do
-  #       post '/items', params: item_params
-  #     end
-  #     it '記事を作成すること' do
-  #       expect(subject).to change(user.items, :count).by(1)
-  #     end
-  #
-  #   end
-  # end
-  #
+
+  describe '#create' do
+    context 'ログインしている状態の場合' do
+      before do
+        sign_in user
+      end
+      it 'アイテムを作成すること' do
+        expect{post items_path(item),
+                    params: {item: item_params}}.to change{Item.count}.by(1)
+      end
+    end
+
+    context 'ログインしていない状態の場合' do
+      it 'ログインページにリダイレクトされること' do
+        post items_path, params: {item: item_params}
+        expect(response).to have_http_status 302
+        expect(response).to redirect_to '/users/sign_in'
+      end
+
+    end
+  end
+
 
   describe '#edit' do
-    context  'ログインしていない状態の時' do
+    context 'ログインしていない状態の時' do
       it 'ログインページにリダイレクトされること' do
         get edit_item_path(item)
         expect(response).to have_http_status 302
         expect(response).to redirect_to '/users/sign_in'
       end
     end
+
+    context 'アイテムを作成していないユーザーの場合' do
+      it 'ルートページにリダイレクトされること' do
+        sign_in another_user
+        get edit_item_path(item)
+        expect(response).to have_http_status 302
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 
-  describe  do
+  describe '#update' do
+    context 'ログインしていない状態の時' do
+      it 'ログインページにリダイレクトされること' do
+        patch item_path(item)
+        expect(response).to have_http_status 302
+        expect(response).to redirect_to '/users/sign_in'
+      end
+    end
+
+    context  'アイテムを作成していないユーザーの場合' do
+      before do
+        sign_in another_user
+      end
+      it 'アイテムを更新できず、ルートページにリダイレクトされること' do
+        patch item_path(item), params: {item: another_item_params}
+        expect(item.reload.item_name).to eq 'test_item'
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+
+  describe '#destroy' do
+    context 'ログインしていない状態の場合' do
+      it 'ログインページにリダイレクトされること' do
+        delete item_path(item)
+        expect(response).to have_http_status 302
+        expect(response).to redirect_to '/users/sign_in'
+      end
+    end
+
+    context 'アイテムを作成していないユーザの場合' do
+      before do
+        sign_in another_user
+      end
+      it 'アイテムを削除できずリダイレクトすること' do
+        expect{delete item_path(item)}.to change {Item.count}.by(0)
+        expect(response).to redirect_to root_path
+      end
+    end
 
   end
 end
+
+
+

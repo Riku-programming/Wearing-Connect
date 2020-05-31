@@ -17,4 +17,6 @@ module ApplicationHelper
     current_user && warden.session(:user)
   end
 
+
+
 end
