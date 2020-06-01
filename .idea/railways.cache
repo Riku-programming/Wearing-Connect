@@ -20,13 +20,8 @@
                                  root GET    /                                                                                        home#show
                            my_friends GET    /my_friends(.:format)                                                                    users#my_friends
                         search_friend GET    /search_friend(.:format)                                                                 users#search
-                          friendships GET    /friendships(.:format)                                                                   friendships#index
-                                      POST   /friendships(.:format)                                                                   friendships#create
-                       new_friendship GET    /friendships/new(.:format)                                                               friendships#new
-                      edit_friendship GET    /friendships/:id/edit(.:format)                                                          friendships#edit
+                          friendships POST   /friendships(.:format)                                                                   friendships#create
                            friendship GET    /friendships/:id(.:format)                                                               friendships#show
-                                      PATCH  /friendships/:id(.:format)                                                               friendships#update
-                                      PUT    /friendships/:id(.:format)                                                               friendships#update
                                       DELETE /friendships/:id(.:format)                                                               friendships#destroy
                                  user GET    /users/:id(.:format)                                                                     users#show
                     article_favorites DELETE /articles/:article_id/favorites(.:format)                                                favorites#destroy

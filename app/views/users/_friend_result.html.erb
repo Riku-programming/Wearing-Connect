@@ -3,7 +3,7 @@
 </div>
 
 <%# if !@friends.empty? %>
-<% if @friends.present?%>
+<% if @friends.present? %>
   <div class="card card-header results-block">
     <table class="col-md-12">
       <tbody>
@@ -16,7 +16,7 @@
               <%= link_to 'Follow friend?', friendships_path(friend: friend),
                           class: "btn btn-sm btn-success", method: :post %>
             <% else %>
-            <span class="badge badge-secondar">
+              <span class="badge badge-secondar">
               You are friends
             </span>
             <% end %>
