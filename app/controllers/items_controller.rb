@@ -46,8 +46,8 @@ class ItemsController < ApplicationController
     #   @user = User.find(params[:id])
     # end
 
-    # @user = current_user
-    @user = User.find(params[:id])
+    @user = current_user
+    # @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end
 
