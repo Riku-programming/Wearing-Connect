@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @item = Item.find(params[:id])
     # @article = Article.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
+    @friends = current_user.friends
+    @articles = @item.articles.paginate(page: params[:page], per_page: 5)
   end
 
   def my_friends

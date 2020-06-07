@@ -1,26 +1,15 @@
 <div class="row">
-  <div class="col-9">
-    <table class="table table-bordered table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Email</th>
-        <th scope="col">Name</th>
-        <th scope="col">Actions</th>
-        <th scope="col">Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @friends.each do |friend| %>
-      <tr>
-        <td><%= friend.email %></td>
-        <td><%= friend.name %></td>
-        <td><%= link_to 'View Profile', user_path(friend),
-                                        class: 'btn btn-sm btn-success'  %></td>
-        <td><%= link_to 'Stop Follow', friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?'},
-                                        class: 'btn btn-sm btn-warning'%></td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+  <% @friends.each do |friend| %>
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="user-card card card-index align-items-center">
+        <% if friend.avatar? %>
+          <%= link_to image_tag(friend.avatar.to_s, size: "150x150", class: "rounded-circle", alt: "avatar image"), friend %>
+        <% else %>
+          <%= link_to image_tag("no-avatar.png", size: "150x150", class: "rounded-circle", alt: "avatar image"), friend %>
+        <% end %>
+        <%= link_to friend.name, friend, class: 'user-name' %>
+        <%= link_to 'Stop Follow', friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-unfollow'%>
+      </div>
+    </div>
+  <% end %>
 </div>

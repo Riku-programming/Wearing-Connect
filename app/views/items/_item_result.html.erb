@@ -13,7 +13,7 @@
           <th scope="col">Image</th>
           <th scope="col">URL</th>
           <!--          todo いいね機能をつける-->
-          <th scope="col">favorite</th>
+          <th scope="col">Save</th>
         </tr>
         </thead>
         <tbody>
@@ -23,10 +23,7 @@
             <td><%= "#{item['itemPrice']} yen" %></td>
             <td><%= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>
             <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>
-            <td><%= link_to("#") do %>
-                <%= fa_icon 'star' %>
-              <% end %>
-            </td>
+            <td><%= link_to 'Save', "#{item['itemUrl']}", class: 'btn btn-primary' %></td>
           </tr>
         <% end %>
         </tbody>

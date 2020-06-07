@@ -1,30 +1,30 @@
-<!--<h2>Results</h2>-->
+<h2>Results</h2>
 
-<!--  todo 検索した単語を表示-->
-<!--<div class="row">-->
-<!--  <div class="col-9">-->
-<!--    <table class="table table-bordered table-hover">-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th scope="col">Name</th>-->
-<!--        <th scope="col">Price</th>-->
-<!--        <th scope="col">Image</th>-->
-<!--        <th scope="col">URL</th>-->
-        <!--          todo いいね機能をつける-->
-<!--        <th scope="col">save</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-      <%# @items.first(10).each do |item| %>
-<!--        <tr>-->
-<!--          <td><%#= item['itemName'] %></td>-->
-<!--          <td><%#= "#{item['itemPrice']} yen" %></td>-->
-<!--          <td><%#= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>-->
-<!--          <td><%#= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>-->
-<!--          <td><%#= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>-->
-<!--        </tr>-->
-      <%# end %>
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  </div>-->
-<!--</div>-->
+  todo 検索した単語を表示
+<div class="row">
+  <div class="col-9">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">URL</th>
+                  todo いいね機能をつける
+        <th scope="col">save</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @items.first(10).each do |item| %>
+        <tr>
+          <td><%= item['itemName'] %></td>
+          <td><%= "#{item['itemPrice']} yen" %></td>
+          <td><%= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>
+          <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>
+          <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
