@@ -1,4 +1,5 @@
                                Prefix Verb   URI Pattern                                                                              Controller#Action
+                                 root GET    /                                                                                        home#show
                           search_item GET    /search_item(.:format)                                                                   items#search
                              my_items GET    /my_items(.:format)                                                                      items#my_items
                      new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
@@ -16,24 +17,23 @@
                                       PUT    /users(.:format)                                                                         devise/registrations#update
                                       DELETE /users(.:format)                                                                         devise/registrations#destroy
                                       POST   /users(.:format)                                                                         devise/registrations#create
-                       users_sign_out GET    /users/sign_out(.:format)                                                                devise/sessions#destroy
-                                 root GET    /                                                                                        home#show
+                     user_friendships GET    /users/:user_id/friendships(.:format)                                                    friendships#show
+                                      DELETE /users/:user_id/friendships(.:format)                                                    friendships#destroy
+                                      POST   /users/:user_id/friendships(.:format)                                                    friendships#create
+                         follows_user GET    /users/:id/follows(.:format)                                                             users#follows
+                       followers_user GET    /users/:id/followers(.:format)                                                           users#followers
+                       favorites_user GET    /users/:id/favorites(.:format)                                                           users#favorites
+                           items_user GET    /users/:id/items(.:format)                                                               users#items
+                            edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+                                 user GET    /users/:id(.:format)                                                                     users#show
                            my_friends GET    /my_friends(.:format)                                                                    users#my_friends
                         search_friend GET    /search_friend(.:format)                                                                 users#search
-                          friendships POST   /friendships(.:format)                                                                   friendships#create
-                           friendship GET    /friendships/:id(.:format)                                                               friendships#show
-                                      DELETE /friendships/:id(.:format)                                                               friendships#destroy
-                                 user GET    /users/:id(.:format)                                                                     users#show
-                    article_favorites DELETE /articles/:article_id/favorites(.:format)                                                favorites#destroy
-                                      POST   /articles/:article_id/favorites(.:format)                                                favorites#create
-                        item_articles GET    /items/:item_id/articles(.:format)                                                       articles#index
-                                      POST   /items/:item_id/articles(.:format)                                                       articles#create
-                     new_item_article GET    /items/:item_id/articles/new(.:format)                                                   articles#new
-                         edit_article GET    /articles/:id/edit(.:format)                                                             articles#edit
-                              article GET    /articles/:id(.:format)                                                                  articles#show
-                                      PATCH  /articles/:id(.:format)                                                                  articles#update
-                                      PUT    /articles/:id(.:format)                                                                  articles#update
-                                      DELETE /articles/:id(.:format)                                                                  articles#destroy
+                         search_items GET    /items/search(.:format)                                                                  items#search
+                        item_articles POST   /items/:item_id/articles(.:format)                                                       articles#create
+                           item_likes POST   /items/:item_id/likes(.:format)                                                          likes#create
+                            item_like DELETE /items/:item_id/likes/:id(.:format)                                                      likes#destroy
+                       item_favorites DELETE /items/:item_id/favorites(.:format)                                                      favorites#destroy
+                                      POST   /items/:item_id/favorites(.:format)                                                      favorites#create
                                 items GET    /items(.:format)                                                                         items#index
                                       POST   /items(.:format)                                                                         items#create
                              new_item GET    /items/new(.:format)                                                                     items#new
