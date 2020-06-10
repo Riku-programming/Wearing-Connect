@@ -10,41 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_083932) do
+ActiveRecord::Schema.define(version: 2020_06_10_054553) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "item_id"
-    t.integer "favorites_count"
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "article_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "article_id"], name: "index_favorites_on_user_id_and_article_id", unique: true
+    t.index ["item_id"], name: "index_articles_on_item_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "favories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_favories_on_item_id"
+    t.index ["user_id"], name: "index_favories_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id"
+    t.integer "following_id"
+    t.integer "follower_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "item_name"
-    t.integer "price"
+    t.text "name", null: false
+    t.integer "price", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,6 +79,11 @@ ActiveRecord::Schema.define(version: 2020_06_09_083932) do
     t.index ["user_id", "item_id"], name: "index_wants_on_user_id_and_item_id", unique: true
   end
 
-  add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "articles", "items"
+  add_foreign_key "articles", "users"
+  add_foreign_key "favories", "items"
+  add_foreign_key "favories", "users"
+  add_foreign_key "items", "users"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
 end
