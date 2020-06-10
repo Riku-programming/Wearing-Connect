@@ -20,10 +20,6 @@
 
 
         <div class="form-group row">
-          <%= f.label :URL, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :url, rows: 10, class: "form-control shadow rounded", placeholder: "Url of item" %>
-          </div>
           <%= f.label :image %><br/>
           <%= f.file_field :image, class: "image" %>
           <p><%= f.check_box :remove_image %>remove image</p>

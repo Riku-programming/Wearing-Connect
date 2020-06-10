@@ -19,14 +19,10 @@ class ArticlesController < ApplicationController
 
 
   def create
-    @article = Article.new(article_params)
-    @article.user  = current_user
-    @article.item = current_item
-    if @article.save
-      flash[:success] = "Article was successfully created"
-      redirect_to items_path
-    else
-      render 'new'
+    @article = Article.create(article_params)
+    respond_to do |format|
+      format.html {redirect_to item_path(params[:item_path])}
+      format.json
     end
   end
 

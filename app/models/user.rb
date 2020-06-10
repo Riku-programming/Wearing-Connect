@@ -1,10 +1,27 @@
 class User < ApplicationRecord
-  has_many :articles
-  has_many :items
-  has_many :favorites
-  has_many :favorite_articles, through: :favorites, source: :article
-  has_many :friendships
-  has_many :friends, through: :friendships
+  has_many :articles, dependent: :destroy
+
+  has_many :items, dependent: :destroy
+
+  has_many :favorites, dependent: :destroy
+  has_many :favorites_items, through: :favorites, source: :item
+
+  has_many :likes, dependent: :destroy
+  has_many :likes_items, through: :likes, source: :item
+
+  has_many :active_relationships, class_name:
+      'Friendship', foreign_key:
+               :following_id, dependent:
+               :destroy
+
+  has_many :followings, through: :active_relationships, source: :follower
+
+  has_many :passive_relationships, class_name:
+      'Friendship', foreign_key:
+               :follower_id, dependent:
+               :destroy
+  has_many :followers, through: :passive_relationships, source: :following
+
 
   validates :name, presence: true, length: {maximum: 15}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -49,6 +66,10 @@ class User < ApplicationRecord
 
   def not_friends_with?(id_of_friend)
     !self.friends.where(id: id_of_friend).exists?
+  end
+
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
   end
 
 end

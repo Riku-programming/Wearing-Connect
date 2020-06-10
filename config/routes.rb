@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :articles, only: [:create]
+    resources :articles, only: [:create,:destroy]
     resources :likes, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
 

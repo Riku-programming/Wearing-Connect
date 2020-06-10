@@ -29,7 +29,14 @@
                            my_friends GET    /my_friends(.:format)                                                                    users#my_friends
                         search_friend GET    /search_friend(.:format)                                                                 users#search
                          search_items GET    /items/search(.:format)                                                                  items#search
-                        item_articles POST   /items/:item_id/articles(.:format)                                                       articles#create
+                        item_articles GET    /items/:item_id/articles(.:format)                                                       articles#index
+                                      POST   /items/:item_id/articles(.:format)                                                       articles#create
+                     new_item_article GET    /items/:item_id/articles/new(.:format)                                                   articles#new
+                    edit_item_article GET    /items/:item_id/articles/:id/edit(.:format)                                              articles#edit
+                         item_article GET    /items/:item_id/articles/:id(.:format)                                                   articles#show
+                                      PATCH  /items/:item_id/articles/:id(.:format)                                                   articles#update
+                                      PUT    /items/:item_id/articles/:id(.:format)                                                   articles#update
+                                      DELETE /items/:item_id/articles/:id(.:format)                                                   articles#destroy
                            item_likes POST   /items/:item_id/likes(.:format)                                                          likes#create
                             item_like DELETE /items/:item_id/likes/:id(.:format)                                                      likes#destroy
                        item_favorites DELETE /items/:item_id/favorites(.:format)                                                      favorites#destroy

@@ -1,56 +1,3 @@
-<!--<h1 class="text-center mt-4"><%#= @user.name %>'s page</h1>-->
-
-<%#= gravatar_for @user, size: 200 %>
-
-
-<!--<div id="friend-results">-->
-<%# if !@friends.empty? %>
-  <%# if @friends.present? %>
-    <%#= render 'friends/list' %>
-  <%# end %>
-<!--</div>-->
-
-<!--<div class="text-center mt-4">-->
-  <%#= link_to "Edit your profile", edit_user_registration_path(@user), class: "btn btn-outline-info" %>
-<!--</div>-->
-
-<!--<div class="flickr_pagination">-->
-  <%#= will_paginate @items, :container => false %>
-<!--</div>-->
-
-<!--<div class="container">-->
-  <%# @items.each do |item| %>
-<!--    <div class="row justify-content-md-center">-->
-<!--      <div class="col-8 mt-4">-->
-<!--        <div class="card-text-center shadow mb-5 bg-white rounded">-->
-<!--          <div class="card-header font-italic">-->
-            <%# if item.user %>
-<!--              by <%#= link_to item.user.name, item_path(item.user_id) %>-->
-            <%# end %>
-            <%# if item.image? %>
-<!--              <div id="image">-->
-                <%#= image_tag item.image.thumb.url %>
-                <%#= image_tag item.image.url %>
-<!--              </div>-->
-            <%# else %>
-              <!--              todo imageがない場合のdefaultのimageを作る-->
-              <%#= image_tag 'star-on.png'%>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-  <%# end %>
-<!--</div>-->
-
-
-
-
-<!--<div class="flickr_pagination mb-4">-->
-  <%#= will_paginate @items, :container => false %>
-<!--</div>-->
-
-
 <% provide :title, 'マイページ' %>
 
 <div class="container mt-5">
@@ -68,26 +15,26 @@
       <div class="user-name font-weight-bold pb-2">
         <%= @user.name %>
       </div>
-<!--      <div class="user-menu pb-2">-->
-        <%# if user_signed_in? %>
-          <%# if current_user.admin? %>
-            <%# if @user.admin? || @user.guest? %>
-              <!-- なにも表示しない -->
-            <%# else %>
-              <%#= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
-            <%# end %>
-          <%# else %>
-            <%# if current_user.id == @user.id %>
-              <%#= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
-            <%# else %>
-              <%#= render 'follow_area', user: @user %>
-            <%# end %>
-          <%# end %>
-        <%# end %>
-<!--      </div>-->
-<!--      <div class="user-profile" style="max-width: 400px; max-height: 140px; overflow: hidden;">-->
-        <%#= simple_format(@user.profile) %>
-<!--      </div>-->
+      <!--      <div class="user-menu pb-2">-->
+      <%# if user_signed_in? %>
+      <%# if current_user.admin? %>
+      <%# if @user.admin? || @user.guest? %>
+      <!-- なにも表示しない -->
+      <%# else %>
+      <%#= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
+      <%# end %>
+      <%# else %>
+      <%# if current_user.id == @user.id %>
+      <%#= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
+      <%# else %>
+      <%#= render 'follow_area', user: @user %>
+      <%# end %>
+      <%# end %>
+      <%# end %>
+      <!--      </div>-->
+      <!--      <div class="user-profile" style="max-width: 400px; max-height: 140px; overflow: hidden;">-->
+      <%#= simple_format(@user.profile) %>
+      <!--      </div>-->
     </div>
   </div>
 
@@ -105,11 +52,23 @@
         <div class="user-status">
           <span class="status-name">フォロー</span>
           <div class="status-value" id="followings_<%= @user.id %>">
-            <%= @user.friends.count.to_s(:delimited) %>
+            <%#= @user.followings.count.to_s(:delimited) %>
           </div>
         </div>
       </a>
     </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">フォロワー</span>
+          <div class="status-value" id="followers_<%= @user.id %>">
+            <%#= @user.follower.count.to_s(:delimited) %>
+          </div>
+        </div>
+      </a>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link" id="articles-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
         <div class="user-status">
@@ -120,14 +79,14 @@
         </div>
       </a>
     </li>
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">-->
-<!--        <div class="user-status">-->
-<!--          <span class="status-name">いいね</span>-->
-<!--          <div class="status-value"><%#= @user._items.count.to_s(:delimited) %></div>-->
-<!--        </div>-->
-<!--      </a>-->
-<!--    </li>-->
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">-->
+    <!--        <div class="user-status">-->
+    <!--          <span class="status-name">いいね</span>-->
+    <!--          <div class="status-value"><%#= @user._items.count.to_s(:delimited) %></div>-->
+    <!--        </div>-->
+    <!--      </a>-->
+    <!--    </li>-->
   </ul>
 
   <div class="tab-content">
@@ -143,15 +102,29 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="followings-tab">
-      <% if @user.friends.any? %>
-        <%= render 'friends/list', objects: @friends %>
-      <% else %>
-        <div class="no-contents d-flex justify-content-center align-items-center">
-          誰もフォローしていません
-        </div>
+      <% if current_user != @user %>
+        <% if @user.followings.any? %>
+          <%= render 'users/follows', objects: @user %>
+        <% else %>
+          <div class="no-contents d-flex justify-content-center align-items-center">
+            誰もフォローしていません
+          </div>
+        <% end %>
       <% end %>
     </div>
-    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="articles-tab">
+
+    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="followings-tab">
+      <% if current_user != @user %>
+        <% if @user.followers.any? %>
+          <%= render 'users/follows', objects: @user %>
+        <% else %>
+          <div class="no-contents d-flex justify-content-center align-items-center">
+            フォロワーはいません
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="articles-tab">
       <% if @user.articles.any? %>
         <%= render 'articles/article', objects: @articles %>
       <% else %>
@@ -160,16 +133,16 @@
         </div>
       <% end %>
     </div>
-<!--    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">-->
-      <%# if @user.like_items.any? %>
-<!--        <div id="show-likes">-->
-          <%#= render 'show_items', objects: @like_items %>
-<!--        </div>-->
-      <%# else %>
-<!--        <div class="no-contents d-flex justify-content-center align-items-center">-->
-<!--          いいね！ した投稿がありません-->
-<!--        </div>-->
-      <%# end %>
-<!--    </div>-->
+    <!--    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">-->
+    <%# if @user.like_items.any? %>
+    <!--        <div id="show-likes">-->
+    <%#= render 'show_items', objects: @like_items %>
+    <!--        </div>-->
+    <%# else %>
+    <!--        <div class="no-contents d-flex justify-content-center align-items-center">-->
+    <!--          いいね！ した投稿がありません-->
+    <!--        </div>-->
+    <%# end %>
+    <!--    </div>-->
   </div>
 </div>

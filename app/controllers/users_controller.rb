@@ -1,24 +1,19 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show]
 
 
   def show
-    @user = User.find(params[:id])
     @item = Item.find(params[:id])
-    # @article = Article.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
-    @friends = current_user.friends
+    @friendship = Friendship.new
     @articles = @item.articles.paginate(page: params[:page], per_page: 5)
   end
 
-  def my_friends
-    @friends = current_user.friends
-  end
-
   def search
-    if params[:friend].present?
-      @friends = User.search(params[:friend])
-      @friends = current_user.except_current_user(@friends)
-      if @friends
+    if params[:user].present?
+      @users = User.search(params[:user])
+      @users = current_user.except_current_user(@friends)
+      if @users
         respond_to do |format|
           format.js {render partial: 'users/friend_result'}
         end
@@ -34,5 +29,23 @@ class UsersController < ApplicationController
         format.js {render partial: 'users/friend_result'}
       end
     end
+  end
+
+  def favorite
+    @favorite_items = @user.favorites_items
+  end
+
+  def follows
+    @users = @user.followings
+  end
+
+  def followers
+    @users = @user.followers
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

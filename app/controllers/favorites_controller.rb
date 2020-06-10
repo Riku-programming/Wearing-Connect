@@ -1,23 +1,24 @@
 class FavoritesController < ApplicationController
-  before_action :article_set, only: [:create, :destroy]
+  before_action :set_item
+
   def create
-    favorite = current_user.favorites.build(article_id: params[:article_id])
-    favorite.save
-  end
-  # fixme ajaxができない
-  def destroy
-    favorite = Favorite.find_by(article_id: params[:article_id], user_id: current_user.id)
-    favorite.destroy
+    @favorite = Favorite.create(
+        user_id: current_user.id, item_id: params[:item_id]
+    )
+    @favorites = Favorite.where(item_id: params[:item_id])
   end
 
-  def show
-    @user = User.find(current_user.id)
-    @favorite_articles  = @user.favorite_articles
+  def destroy
+    @favorite = Favorite.find_by(
+                            user_id: current_user.id, item_id: params[:item_id]
+    )
+    @favorite.destroy
+    @favorites = Favorite.where(item_id: params[:item_id])
   end
 
   private
 
-  def article_set
-    @article = Article.find(params[:article_id])
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
