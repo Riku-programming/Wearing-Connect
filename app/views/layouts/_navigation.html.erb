@@ -93,13 +93,13 @@
         <li class="nav-item">
           <%= header_link_item(icon('fas', 'rss') + 'アイテム一覧', items_path) %>
         </li>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'search') + ' アイテム検索', my_items_path) %>
+        </li>
+        <li class="nav-item">
+          <%= header_link_item(icon('fa', 'user-plus') + '友達', follows_user_path(current_user.id)) %>
+        </li>
       <% end %>
-      <li class="nav-item">
-        <%= header_link_item(icon('fas', 'search') + ' アイテム検索', my_items_path) %>
-      </li>
-      <li class="nav-item">
-        <%= header_link_item(icon('fa', 'user-plus') + '友達', search_friend_path) %>
-      </li>
       <li class="nav-item">
         <%= header_link_item(icon('fa', 'file') + '記事', '#') %>
       </li>
@@ -114,7 +114,7 @@
           <%= link_to icon('fas', 'user') + " #{current_user.name}さん", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to icon('fas', 'user') + ' マイページ', user_path(current_user), class: 'dropdown-item' %>
-            <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', destroy_user_session_path, class: 'dropdown-item',data: {confirm: "ログアウトしますか？"} %>
+            <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete, data: {confirm: "ログアウトしますか？"} %>
           </div>
         </li>
       <% else %>

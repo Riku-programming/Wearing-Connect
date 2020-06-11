@@ -2,6 +2,7 @@
                                  root GET    /                                                                                        home#show
                           search_item GET    /search_item(.:format)                                                                   items#search
                              my_items GET    /my_items(.:format)                                                                      items#my_items
+                       users_sign_out GET    /users/sign_out(.:format)                                                                devise/sessions/#destroy
                      new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
                          user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
                  destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -29,14 +30,8 @@
                            my_friends GET    /my_friends(.:format)                                                                    users#my_friends
                         search_friend GET    /search_friend(.:format)                                                                 users#search
                          search_items GET    /items/search(.:format)                                                                  items#search
-                        item_articles GET    /items/:item_id/articles(.:format)                                                       articles#index
-                                      POST   /items/:item_id/articles(.:format)                                                       articles#create
-                     new_item_article GET    /items/:item_id/articles/new(.:format)                                                   articles#new
-                    edit_item_article GET    /items/:item_id/articles/:id/edit(.:format)                                              articles#edit
-                         item_article GET    /items/:item_id/articles/:id(.:format)                                                   articles#show
-                                      PATCH  /items/:item_id/articles/:id(.:format)                                                   articles#update
-                                      PUT    /items/:item_id/articles/:id(.:format)                                                   articles#update
-                                      DELETE /items/:item_id/articles/:id(.:format)                                                   articles#destroy
+                        item_articles POST   /items/:item_id/articles(.:format)                                                       articles#create
+                         item_article DELETE /items/:item_id/articles/:id(.:format)                                                   articles#destroy
                            item_likes POST   /items/:item_id/likes(.:format)                                                          likes#create
                             item_like DELETE /items/:item_id/likes/:id(.:format)                                                      likes#destroy
                        item_favorites DELETE /items/:item_id/favorites(.:format)                                                      favorites#destroy

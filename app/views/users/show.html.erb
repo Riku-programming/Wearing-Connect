@@ -52,25 +52,25 @@
         <div class="user-status">
           <span class="status-name">フォロー</span>
           <div class="status-value" id="followings_<%= @user.id %>">
-            <%#= @user.followings.count.to_s(:delimited) %>
+            <%= @user.followings.count.to_s(:delimited) %>
           </div>
         </div>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
+      <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item2" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロワー</span>
           <div class="status-value" id="followers_<%= @user.id %>">
-            <%#= @user.follower.count.to_s(:delimited) %>
+            <%= @user.followers.count.to_s(:delimited) %>
           </div>
         </div>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" id="articles-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
+      <a class="nav-link" id="articles-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item3" aria-selected="true">
         <div class="user-status">
           <span class="status-name">記事</span>
           <div class="status-value">
@@ -102,26 +102,23 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="followings-tab">
-      <% if current_user != @user %>
-        <% if @user.followings.any? %>
-          <%= render 'users/follows', objects: @user %>
-        <% else %>
-          <div class="no-contents d-flex justify-content-center align-items-center">
-            誰もフォローしていません
-          </div>
-        <% end %>
+      <% if @user.followings.any? %>
+        <%= render 'users/partial/follows', objects: @user %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          誰もフォローしていません
+        </div>
       <% end %>
+
     </div>
 
     <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="followings-tab">
-      <% if current_user != @user %>
-        <% if @user.followers.any? %>
-          <%= render 'users/follows', objects: @user %>
-        <% else %>
-          <div class="no-contents d-flex justify-content-center align-items-center">
-            フォロワーはいません
-          </div>
-        <% end %>
+      <% if @user.followers.any? %>
+        <%= render 'users/partial/followers', objects: @user %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          フォロワーはいません
+        </div>
       <% end %>
     </div>
     <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="articles-tab">
