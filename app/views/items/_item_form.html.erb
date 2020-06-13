@@ -1,47 +1,61 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <%= render 'shared/errors', obj: @item %>
-      <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+<div class="container item_form">
+  <%= render 'shared/errors', obj: @item %>
+  <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+    <div class="form-group row">
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
+      <div class="col-md-6 add_image text-center" id="img_field" onClick="$('#post_image').click()">
+        <% if @item.image.url.present? %>
+          <%= image_tag(@item.image.url) %>
+        <% else %>
+          <i class="fas fa-camera"><p class="help-block">※ 5MBまでの画像をアップロードできます</p></i>
+        <% end %>
+      </div>
+      <div class="col-md-6 col-right">
+        <%= f.label :item_name,'商品名',class: "col-form-label text-light" %>
+        <%= f.text_field :item_name, class: "form-control shadow rounded", placeholder: "商品名を入力してください" %>
+        <%= f.label :price,'価格', class: "col-form-label text-light" %>
+        <%= f.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "価格" %>
 
-        <div class="form-group row">
-          <%= f.label :item_name, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :item_name, class: "form-control shadow rounded", placeholder: "Name of item" %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :price, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "Price of item" %>
-          </div>
-        </div>
-
-
-        <div class="form-group row">
-          <%= f.label :image %><br/>
-          <%= f.file_field :image, class: "image" %>
-          <p><%= f.check_box :remove_image %>remove image</p>
-        </div>
-
-
-        <!--        チェックボックスはCategory modelを作ってから-->
-        <!--        <div class="form-group row">-->
-        <!--          <div class="col-sm-offset-2 col-sm-8">-->
-        <%#= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-        <%# cb.label(class: "checkbox-inline input_checkbox")  {cb.check_box(class: "checkbox") + cb.text}%>
-        <%#  end %>
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <div class="form-group row justify-content-center">
-          <%= f.submit class: "btn btn-outline-light btn-lg" %>
-        </div>
-      <% end %>
+        <%= f.label :content,'レビュー',class: "col-form-label text-light" %>
+        <%= f.text_area :content, class: 'form-control', rows: 12, placeholder: 'レビューを入力してください' %>
+      </div>
     </div>
-    <div class="link">
-      <%= link_to '[ Cancel and return to items listing ]', items_path, class: "text-info" %>
+
+    <div class="item-form-btns text-right mb-4">
+      <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+      <%= link_to "戻る", items_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
     </div>
-  </div>
+  <% end %>
 </div>
+
+
+<script type="text/javascript">
+    $('#post_image').bind('change', function() {
+        let size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+            alert('ファイルサイズは5MB以下にしてください。');
+        }
+    });
+
+    // 画像プレビューを表示
+    $(function(){
+        $fileField = $('#post_image')
+        $($fileField).on('change', $fileField, function(e) {
+            file = e.target.files[0]
+            reader = new FileReader(),
+                $preview = $("#img_field");
+
+            reader.onload = (function(file) {
+                return function(e) {
+                    $preview.empty();
+                    $preview.append($('<img>').attr({
+                        src: e.target.result,
+                        class: "preview",
+                        title: file.name
+                    }));
+                };
+            })(file);
+            reader.readAsDataURL(file);
+        });
+    });
+</script>

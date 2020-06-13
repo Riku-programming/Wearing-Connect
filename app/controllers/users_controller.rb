@@ -44,6 +44,9 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
+  def like_items; end
+
+
   private
 
   def set_user

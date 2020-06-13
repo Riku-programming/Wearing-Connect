@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.create(article_params)
     respond_to do |format|
-      format.html {redirect_to item_path(params[:item_path])}
+      format.html {redirect_to item_articles_path(params[:item_id])}
       format.json
     end
   end

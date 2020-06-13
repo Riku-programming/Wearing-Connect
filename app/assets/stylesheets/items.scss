@@ -2,4 +2,28 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@mixin sm { @media (min-width: 576px) { @content; } }
+@mixin md { @media (min-width: 768px) { @content; } }
+@mixin lg { @media (min-width: 992px) { @content; } }
 
+
+.add_image {
+  border: black 4px dashed;
+  width: 100%;
+  margin-top: 10px;
+  height: 380px;
+  line-height: 460px;
+  border-radius: 10px;
+  cursor: pointer;
+  @include lg {
+    margin-top: 0px;
+    height: 500px;
+    line-height: 550px;
+  }
+  i {
+    font-size: 120px;
+  }
+  p {
+    font-size: 12px;
+  }
+}

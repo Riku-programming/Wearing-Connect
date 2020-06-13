@@ -1,0 +1,17 @@
+<div id="like_btn_<%= item.id %>">
+  <% if current_user.id == item.user.id %>
+    <%= link_to '', class: 'btn btn-cantlike' do %>
+      <%= "#{item.likes.count} いいね！ " %><i class="far fa-heart"></i>
+    <% end %>
+  <% else %>
+    <% if item.liked_by?(current_user.id) %>
+      <%= link_to item_like_path(item_id: item.id, id: current_user.id), method: :delete, remote: true, class: 'btn btn-unlike' do %>
+        <%= "#{item.likes.count} いいね済 " %><i class="fas fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%= link_to item_likes_path(item.id), method: :post, remote: true, class: 'btn btn-like' do %>
+        <%= "#{item.likes.count} いいね！ " %><i class="far fa-heart"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
