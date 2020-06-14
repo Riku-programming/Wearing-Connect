@@ -1,0 +1,28 @@
+<div class="container">
+  <% @likes.each do |like| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card-text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            <% if like.item.image? %>
+              <%= image_tag like.item.image.thumb.url %>
+              <%#= image_tag like.item.image.url %>
+            <% else %>
+              <%= image_tag 'no-image.jpg'%>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to like.item.item_name, item_path(like.item.user_id), class: "text-success" %></h5>
+            <p class="card-text"><%= like.item.price %></p>
+            <p class="card-content"><%= like.item.content %></p>
+          </div>
+          <div class="card-footer text-muted PhotoBox SlideBox">
+            <small>作成日時 <%= like.item.created_at.to_s(:datetime_jp) %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

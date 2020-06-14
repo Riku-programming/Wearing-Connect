@@ -69,24 +69,24 @@
       </a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" id="articles-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item3" aria-selected="true">
-        <div class="user-status">
-          <span class="status-name">記事</span>
-          <div class="status-value">
-            <%= @user.articles.count.to_s(:delimited) %>
-          </div>
-        </div>
-      </a>
-    </li>
     <!--    <li class="nav-item">-->
-    <!--      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">-->
+    <!--      <a class="nav-link" id="articles-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item3" aria-selected="true">-->
     <!--        <div class="user-status">-->
-    <!--          <span class="status-name">いいね</span>-->
-    <!--          <div class="status-value"><%#= @user._items.count.to_s(:delimited) %></div>-->
+    <!--          <span class="status-name">記事</span>-->
+    <!--          <div class="status-value">-->
+    <%#= @user.articles.count.to_s(:delimited) %>
+    <!--          </div>-->
     <!--        </div>-->
     <!--      </a>-->
     <!--    </li>-->
+    <li class="nav-item">
+      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">いいね</span>
+          <div class="status-value"><%= @user.likes.count.to_s(:delimited) %></div>
+        </div>
+      </a>
+    </li>
   </ul>
 
   <div class="tab-content">
@@ -121,25 +121,25 @@
         </div>
       <% end %>
     </div>
-    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="articles-tab">
-      <% if @user.articles.any? %>
-        <%= render 'articles/article', objects: @articles %>
-      <% else %>
-        <div class="no-contents d-flex justify-content-center align-items-center">
-          記事がありません
-        </div>
-      <% end %>
-    </div>
-    <!--    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">-->
-    <%# if @user.like_items.any? %>
-    <!--        <div id="show-likes">-->
-    <%#= render 'show_items', objects: @like_items %>
-    <!--        </div>-->
+    <!--    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="articles-tab">-->
+    <%# if @user.likes.any? %>
+    <%#= render 'articles/article', objects: @articles %>
     <%# else %>
     <!--        <div class="no-contents d-flex justify-content-center align-items-center">-->
-    <!--          いいね！ した投稿がありません-->
+    <!--          記事がありません-->
     <!--        </div>-->
     <%# end %>
     <!--    </div>-->
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
+      <% if @user.likes.any? %>
+        <div id="show-likes">
+          <%= render 'users/partial/show_items', objects: @like_items %>
+        </div>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          いいね！ した投稿がありません
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

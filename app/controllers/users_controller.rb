@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     # @item = Item.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
+    @likes = @user.likes.paginate(page: params[:page], per_page: 5)
     @friendship = Friendship.new
     @users = @user.followings
     # @articles = @item.articles.paginate(page: params[:page], per_page: 5)
