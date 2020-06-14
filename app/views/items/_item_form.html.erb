@@ -1,22 +1,24 @@
 <div class="container item_form">
-  <%= render 'shared/errors', obj: @item %>
   <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+    <%= render 'shared/errors', obj: @item %>
     <div class="form-group row">
-      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
-      <div class="col-md-6 add_image text-center" id="img_field" onClick="$('#post_image').click()">
-        <% if @item.image.url.present? %>
-          <%= image_tag(@item.image.url) %>
-        <% else %>
-          <i class="fas fa-camera"><p class="help-block">※ 5MBまでの画像をアップロードできます</p></i>
-        <% end %>
-      </div>
+      <%= f.label :image, class: "form-image" do %>
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
+        <div class="col-md-6 add_image text-center" id="img_field" >
+          <% if @item.image.url.present? %>
+            <%= image_tag(@item.image.url) %>
+          <% else %>
+            <i class="fas fa-camera"><p class="help-block">※ 5MBまでの画像をアップロードできます</p></i>
+          <% end %>
+        </div>
+      <% end %>
       <div class="col-md-6 col-right">
-        <%= f.label :item_name,'商品名',class: "col-form-label text-light" %>
+        <%= f.label :item_name, '商品名', class: "col-form-label text-light" %>
         <%= f.text_field :item_name, class: "form-control shadow rounded", placeholder: "商品名を入力してください" %>
-        <%= f.label :price,'価格', class: "col-form-label text-light" %>
+        <%= f.label :price, '価格', class: "col-form-label text-light" %>
         <%= f.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "価格" %>
-
-        <%= f.label :content,'レビュー',class: "col-form-label text-light" %>
+        <%= f.label :content, 'レビュー', class: "col-form-label text-light" %>
+<!--        fixme なぜかcontentの値が0になる-->
         <%= f.text_area :content, class: 'form-control', rows: 12, placeholder: 'レビューを入力してください' %>
       </div>
     </div>
@@ -30,32 +32,18 @@
 
 
 <script type="text/javascript">
-    $('#post_image').bind('change', function() {
-        let size_in_megabytes = this.files[0].size/1024/1024;
-        if (size_in_megabytes > 5) {
-            alert('ファイルサイズは5MB以下にしてください。');
+    $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_field').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-    });
-
-    // 画像プレビューを表示
-    $(function(){
-        $fileField = $('#post_image')
-        $($fileField).on('change', $fileField, function(e) {
-            file = e.target.files[0]
-            reader = new FileReader(),
-                $preview = $("#img_field");
-
-            reader.onload = (function(file) {
-                return function(e) {
-                    $preview.empty();
-                    $preview.append($('<img>').attr({
-                        src: e.target.result,
-                        class: "preview",
-                        title: file.name
-                    }));
-                };
-            })(file);
-            reader.readAsDataURL(file);
+        $("#custom-file").change(function(){
+            readURL(this);
         });
     });
 </script>

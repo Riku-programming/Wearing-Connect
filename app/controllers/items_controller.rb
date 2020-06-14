@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.create(item_params)
     @item.user = current_user
     if @item.save
       flash[:success] = "item was successfully created"
@@ -90,8 +90,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    # fixme image => img
-    params.require(:item).permit(:item_name, :price, :url, :image, :remove_image)
+    params[:item].permit(:item_name,:content,:price,:image)
   end
 
   def require_same_user

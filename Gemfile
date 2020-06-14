@@ -30,7 +30,7 @@ gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'rakuten_web_service'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

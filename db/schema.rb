@@ -12,17 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_06_12_075720) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.integer "user_id"
-    t.integer "item_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_articles_on_item_id"
-    t.index ["user_id"], name: "index_articles_on_user_id"
-  end
-
   create_table "favories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "item_id"
@@ -42,12 +31,12 @@ ActiveRecord::Schema.define(version: 2020_06_12_075720) do
   create_table "items", force: :cascade do |t|
     t.text "item_name", null: false
     t.integer "price", null: false
+    t.integer "content"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.integer "likes_count"
-    t.integer "content"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -82,8 +71,6 @@ ActiveRecord::Schema.define(version: 2020_06_12_075720) do
     t.index ["user_id", "item_id"], name: "index_wants_on_user_id_and_item_id", unique: true
   end
 
-  add_foreign_key "articles", "items"
-  add_foreign_key "articles", "users"
   add_foreign_key "favories", "items"
   add_foreign_key "favories", "users"
   add_foreign_key "items", "users"
