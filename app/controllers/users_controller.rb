@@ -8,8 +8,14 @@ class UsersController < ApplicationController
     @likes = @user.likes.paginate(page: params[:page], per_page: 5)
     @friendship = Friendship.new
     @users = @user.followings
-    # @articles = @item.articles.paginate(page: params[:page], per_page: 5)
   end
+
+  def like
+    @user = current_user
+    @likes = @user.likes.paginate(page: params[:page], per_page: 5)
+  end
+
+
 
   def search
     if params[:user].present?

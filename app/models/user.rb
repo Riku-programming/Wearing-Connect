@@ -21,6 +21,7 @@ class User < ApplicationRecord
                :follower_id, dependent:
                :destroy
   has_many :followers, through: :passive_relationships, source: :following
+  mount_uploader :avatar, ImageUploader
 
 
   validates :name, presence: true, length: {maximum: 15}
@@ -61,7 +62,7 @@ class User < ApplicationRecord
   end
 
   def except_current_user(users)
-    users.reject { |user| user.id == self.id }
+    users.reject {|user| user.id == self.id}
   end
 
   def not_follows_with?(user)
@@ -72,9 +73,21 @@ class User < ApplicationRecord
     passive_relationships.find_by(following_id: user.id).present?
   end
 
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
+  def update_with_password(params, *options)
+    params.delete(:current_password)
 
-
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+    result = update(params, *options)
+    clean_up_passwords
+    result
+  end
 
 
 end

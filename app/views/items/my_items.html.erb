@@ -1,11 +1,11 @@
-<h1>Search</h1>
+<h1>アイテム検索</h1>
 
 <div class='search-area'>
-  <h4>Search items</h4>
+  <h4>検索</h4>
   <%= form_with url: search_item_path, remote: true, method: :get do |f| %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
-        <%= f.text_field :keyword, placeholder: "Enter item name", autofocus: true, class: "form-control form-control-lg" %>
+        <%= f.text_field :keyword, placeholder: "アイテム名を入力してください", autofocus: true, class: "form-control form-control-lg" %>
       </div>
       <div class="col-sm-3 no-left-padding">
         <%= button_tag type: :submit, class: "btn btn-success" do %>

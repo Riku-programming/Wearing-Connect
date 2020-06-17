@@ -83,6 +83,7 @@ class ItemsController < ApplicationController
     end
   end
 
+
   private
 
   def set_item
@@ -90,7 +91,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item].permit(:item_name,:content,:price,:image)
+    params[:item].permit(:item_name,:price,:image)
   end
 
   def require_same_user
@@ -99,6 +100,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
 
 
 

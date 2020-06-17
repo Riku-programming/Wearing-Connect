@@ -3,6 +3,7 @@
     <%= render 'shared/errors', obj: @item %>
     <div class="form-group row">
       <%= f.label :image, class: "form-image" do %>
+        <img id="item_img_prev" src="#" class='hidden  z-depth-0 mb-4' style="width: 200px; height: 200px; object-fit: cover; cursor: pointer;" alt="item image"/>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
         <div class="col-md-6 add_image text-center" id="img_field" >
           <% if @item.image.url.present? %>
@@ -35,13 +36,17 @@
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+
                 reader.onload = function (e) {
-                    $('#img_field').attr('src', e.target.result);
+                    $('#item_img_prev').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#custom-file").change(function(){
+
+        $("#user_avatar").change(function(){
+            $('#avatar_img_prev').removeClass('hidden');
+            $('.avatar_present_img').remove();
             readURL(this);
         });
     });

@@ -6,7 +6,6 @@ class Item < ApplicationRecord
 
   validates :item_name, presence: true
   validates :price, presence: true, length: {maximum: 10}
-  validates :content, presence: true, length: {minimum: 10, maximum: 200}
   mount_uploader :image, ImageUploader
 
   def favorite_user(user_id)

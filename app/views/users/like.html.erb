@@ -1,0 +1,9 @@
+<% if @user.likes.any? %>
+  <div id="show-likes">
+    <%= render 'users/partial/show_items' %>
+  </div>
+<% else %>
+  <div class="no-contents d-flex justify-content-center align-items-center">
+    いいね！ した投稿がありません
+  </div>
+<% end %>

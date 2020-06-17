@@ -1,80 +1,3 @@
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--  <div class="container">-->
-    <%#= link_to 'Want to Connect', root_path, class: 'navbar-brand' %>
-    <%# if current_user %>
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-
-<!--      <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--        <ul class="navbar-nav mr-auto">-->
-<!--          <li class="nav-item <%#= 'active' if request.path == my_friends_path %>">-->
-            <%#= link_to 'My Friends', my_friends_path, class: 'nav-link' %>
-<!--          </li>-->
-<!--          <li class="nav-item dropdown">-->
-<!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--              Item-->
-<!--            </a>-->
-<!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-              <%#= link_to item_path(current_user), class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'home' %> View my Item-->
-              <%# end %>
-
-              <%#= link_to new_item_path, class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'edit' %> Add to Item-->
-              <%# end %>
-
-              <%#= link_to items_path, class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'search' %> Search all Item-->
-              <%# end %>
-<!--              <div class="dropdown-divider"></div>-->
-<!--              <a class="dropdown-item" href="#">Something else here</a>-->
-<!--            </div>-->
-<!--          </li>-->
-<!--          <li class="nav-item dropdown">-->
-<!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--              Profile-->
-<!--            </a>-->
-<!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-              <%#= link_to user_path(current_user), class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'home' %> View my profile-->
-              <%# end %>
-
-              <%#= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'edit' %> Edit profile-->
-              <%# end %>
-
-              <%#= link_to my_items_path, class: 'dropdown-item' do %>
-<!--                <%#= fa_icon 'search' %> Search item-->
-              <%# end %>
-<!--              <div class="dropdown-divider"></div>-->
-<!--              <a class="dropdown-item" href="#">Something else here</a>-->
-<!--            </div>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--        <div class="navbar-right">-->
-<!--        <ul class="navbar-nav">-->
-<!--          <li class="nav-item dropdown">-->
-<!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-              <%#= "#{current_user.name}" %>
-              <%#= fa_icon 'user' %>
-<!--            </a>-->
-<!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-              <%#= link_to("Logout",destroy_user_session_path, class: "btn btn-danger logout-button", method: :delete, data: {confirm: "Are you sure?"}) %>
-              <%# end %>
-<!--            </div>-->
-<!--          </li>-->
-
-<!--          <li class="nav-item dropdown user_name">-->
-
-<!--          </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--      </div>-->
-<!--  </div>-->
-<!--</nav>-->
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <%= link_to image_tag('', class: 'navbar-logo'), root_path, class: 'navbar-brand' %>
 
@@ -101,7 +24,10 @@
         </li>
       <% end %>
       <li class="nav-item">
-        <%= header_link_item(icon('fa', 'file') + '記事', '#') %>
+        <%= header_link_item(icon('fa', 'heart') + 'お気に入り', like_user_path(current_user.id)) %>
+      </li>
+      <li class="nav-item">
+        <%= header_link_item(icon('fas', 'tshirt') + 'コーディネート', '#') %>
       </li>
     </ul>
 
@@ -115,6 +41,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to icon('fas', 'user') + ' マイページ', user_path(current_user), class: 'dropdown-item' %>
             <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete, data: {confirm: "ログアウトしますか？"} %>
+            <%= link_to icon('fas', 'edit') + '編集', edit_user_registration_path, class: 'dropdown-item', data: {confirm: 'ユーザー情報を編集しますか？'} %>
           </div>
         </li>
       <% else %>

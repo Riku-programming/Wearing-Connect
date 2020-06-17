@@ -2,9 +2,23 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.user-name{
-  padding-left: 75px;
+.user-name-label{
+  padding-left: 100px;
+  padding-top: 30px;
 }
+
+.col-right, .post-right {
+  margin-top: 1rem;
+  @include md {
+    margin-top: 0;
+  }
+}
+//
+//
+//.user-introduction{
+//  float: right;
+//  //margin-bottom: 500px;
+//}
 
 
 div.PhotoBox {
@@ -30,3 +44,6 @@ div.SlideBox p {
   padding-left: 5px;
 }
 
+.form-avatar{
+  display: none;
+}

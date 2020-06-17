@@ -8,7 +8,7 @@
           <%= link_to image_tag("no-avatar.png", size: "150x150", class: "rounded-circle", alt: "avatar image"), user %>
         <% end %>
         <%= link_to user.name, user, class: 'user-name' %>
-        <%= link_to 'Stop Follow', user_friendships_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-unfollow'%>
+        <%= link_to 'Stop Follow', user_friendships_path(user), method: :delete, data: {confirm: 'フォローを解除しますか?'}, class: 'btn btn-sm btn-unfollow'%>
       </div>
     </div>
   <% end %>

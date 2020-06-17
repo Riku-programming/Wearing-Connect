@@ -20,10 +20,12 @@
         <% @items.first(10).each do |item| %>
           <tr>
             <td><%= item['itemName'] %></td>
-            <td><%= "#{item['itemPrice']} yen" %></td>
+            <td><%= "#{item['itemPrice']} 円" %></td>
             <td><%= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>
             <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>
-            <td><%= link_to 'Save', "#{item['itemUrl']}", class: 'btn btn-primary' %></td>
+            <td><%= link_to 'Save',{controller: "items", action: "create", id: (Item.count + 1), item_name: item['itemName'], user_id: current_user.id, image: item['mediumImageUrls'][0]},
+            method: :post, data: {confirm: '保存しますか？' }, class: 'btn btn-primary' %></td>
+
           </tr>
         <% end %>
         </tbody>

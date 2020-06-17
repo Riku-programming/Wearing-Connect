@@ -18,6 +18,11 @@
 @import "users";
 
 
+@mixin sm { @media (min-width: 576px) { @content; } }
+@mixin md { @media (min-width: 768px) { @content; } }
+@mixin lg { @media (min-width: 992px) { @content; } }
+
+
 .link{
     margin-top: 20px;
 }
@@ -40,6 +45,14 @@
     height: 200px;
 }
 
+.hidden {
+  display: none;
+}
+
 //.user-name{
 //  padding-left: 75px;
 //}
+
+.form-image{
+  display: none;
+}
