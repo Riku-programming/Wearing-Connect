@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_06_14_114049) do
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false

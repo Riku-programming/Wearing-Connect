@@ -18,10 +18,10 @@
 
           <div class="card-body">
             <h5 class="card-title"><%= link_to item.item_name, item_path(item.user_id), class: "text-success" %></h5>
-            <p class="card-text"><%= item.price %></p>
+            <p class="card-text"><%= item.price%>円</p>
             <p class="card-content"><%= item.content %></p>
             <%= link_to "Edit", edit_item_path(item), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", item_path(item), class: "btn btn-outline-danger", method: :delete, data: {confirm: "フォローを解除しますか?"} %>
+            <%= link_to "Delete", item_path(item), class: "btn btn-outline-danger", method: :delete, data: {confirm: "アイテムを削除しますか?"} %>
             <li class="list-inline-item">
               <%= render 'likes/like_area', item: item %>
             </li>

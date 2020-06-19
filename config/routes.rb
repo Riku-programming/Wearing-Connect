@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   get 'search_friend', to: 'users#search'
+  post 'save', to: 'items#save'
   resources :items do
     collection do
       get 'search'

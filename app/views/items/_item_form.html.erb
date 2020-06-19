@@ -2,7 +2,7 @@
   <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
     <%= render 'shared/errors', obj: @item %>
     <div class="form-group row">
-      <%= f.label :image, class: "form-image" do %>
+      <%= f.label :image do %>
         <img id="item_img_prev" src="#" class='hidden  z-depth-0 mb-4' style="width: 200px; height: 200px; object-fit: cover; cursor: pointer;" alt="item image"/>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
         <div class="col-md-6 add_image text-center" id="img_field" >

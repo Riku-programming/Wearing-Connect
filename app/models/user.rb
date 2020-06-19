@@ -1,10 +1,5 @@
 class User < ApplicationRecord
-  has_many :articles, dependent: :destroy
-
   has_many :items, dependent: :destroy
-
-  has_many :favorites, dependent: :destroy
-  has_many :favorites_items, through: :favorites, source: :item
 
   has_many :likes, dependent: :destroy
   has_many :likes_items, through: :likes, source: :item

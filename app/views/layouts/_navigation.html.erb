@@ -22,13 +22,14 @@
         <li class="nav-item">
           <%= header_link_item(icon('fa', 'user-plus') + '友達', follows_user_path(current_user.id)) %>
         </li>
-      <% end %>
+
       <li class="nav-item">
         <%= header_link_item(icon('fa', 'heart') + 'お気に入り', like_user_path(current_user.id)) %>
       </li>
       <li class="nav-item">
         <%= header_link_item(icon('fas', 'tshirt') + 'コーディネート', '#') %>
       </li>
+      <% end %>
     </ul>
 
     <ul class="navbar-nav">

@@ -16,9 +16,7 @@ RSpec.describe 'Items', type: :request do
         expect(response).to have_http_status 302
         expect(response).to redirect_to '/users/sign_in'
       end
-
     end
-
   end
 
   describe '#new' do
@@ -55,7 +53,6 @@ RSpec.describe 'Items', type: :request do
         expect(response).to have_http_status 302
         expect(response).to redirect_to '/users/sign_in'
       end
-
     end
   end
 
@@ -93,9 +90,20 @@ RSpec.describe 'Items', type: :request do
         sign_in another_user
       end
       it 'アイテムを更新できず、ルートページにリダイレクトされること' do
-        patch item_path(item), params: {item: another_item_params}
+        patch item_path(item), params: {item: item_params}
         expect(item.reload.item_name).to eq 'test_item'
         expect(response).to redirect_to root_path
+      end
+    end
+
+    context  'アイテムを作成しているユーザーの場合' do
+      before do
+        sign_in user
+      end
+      it 'アイテムを更新して、showページにリダイレクトされること' do
+        patch item_path(item), params: {item: item_params}
+        expect(item.reload.item_name).to eq 'test_item'
+        expect(response).to redirect_to item_path(item)
       end
     end
   end
@@ -118,7 +126,36 @@ RSpec.describe 'Items', type: :request do
         expect(response).to redirect_to root_path
       end
     end
+    context  'アイテムを作成したユーザーの場合' do
+      before do
+        sign_in user
+      end
+      it '正常にアイテムが削除されること' do
+        expect{delete item_path(item)}.to change {Item.count}.by(-1)
+        expect(response).to redirect_to items_path
+      end
 
+    end
+
+  end
+
+  describe '#my_items' do
+    context 'ログインしていない状態の場合' do
+      it 'ログインページにリダイレクトされること' do
+        get my_items_path
+        expect(response).to have_http_status 302
+        expect(response).to redirect_to '/users/sign_in'
+      end
+    end
+    context 'ログインしている状態の場合' do
+      before do
+        sign_in user
+      end
+      it 'successステータスを返すこと' do
+        get my_items_path
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 end
 

@@ -28,6 +28,7 @@
                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
                                  user GET    /users/:id(.:format)                                                                     users#show
                         search_friend GET    /search_friend(.:format)                                                                 users#search
+                                 save POST   /save(.:format)                                                                          items#save
                          search_items GET    /items/search(.:format)                                                                  items#search
                            item_likes POST   /items/:item_id/likes(.:format)                                                          likes#create
                             item_like DELETE /items/:item_id/likes/:id(.:format)                                                      likes#destroy

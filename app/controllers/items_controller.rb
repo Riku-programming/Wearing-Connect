@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
   end
 
 
-
   def create
     @item = Item.create(item_params)
     @item.user = current_user
@@ -25,6 +24,16 @@ class ItemsController < ApplicationController
       redirect_to items_path
     else
       render 'new'
+    end
+  end
+
+
+  def save
+    item = Item.create(user_id: current_user.id, item_name: params['item_name'], price: params['price'])
+    item.image = params['image']
+    if item.save
+      flash[:success] = "item was successfully created"
+      redirect_to items_path
     end
   end
 
@@ -39,7 +48,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # # fixme current_userではなくUser.find([:params])かも
+    # fixme current_userではなくUser.find([:params])かも
     # if @item.user_id == current_user.id
     #   @user = current_user
     # else
@@ -91,7 +100,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item].permit(:item_name,:price,:image)
+    params[:item].permit(:item_name, :price, :image)
   end
 
   def require_same_user
@@ -100,9 +109,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
-
-
 
 
 end
