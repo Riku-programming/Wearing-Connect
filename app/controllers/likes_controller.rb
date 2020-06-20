@@ -5,7 +5,6 @@ class LikesController < ApplicationController
     @like = Like.create(user_id: current_user.id, item_id: params[:item_id])
     @likes = Like.where(item_id: params[:_id])
     @item.reload
-    redirect_to items_path
   end
 
   def destroy
@@ -13,7 +12,6 @@ class LikesController < ApplicationController
     @like.destroy
     @likes = Like.where(item_id: params[:item_id])
     @item.reload
-    redirect_to items_path
   end
 
   private

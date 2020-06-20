@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :friendship do
-    user { nil }
+    id {1}
+    following_id {1}
+    follower_id {2}
   end
 end

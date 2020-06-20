@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'my_items', to: 'items#my_items'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:edit, :show] do
+  resources :users, only: [:show] do
     resource :friendships, only: [:create, :destroy, :show]
     member do
       get :follows, :followers, :favorites, :items, :like
@@ -18,7 +18,5 @@ Rails.application.routes.draw do
       get 'search'
     end
     resources :likes, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
-
   end
 end

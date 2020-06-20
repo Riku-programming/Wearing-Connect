@@ -2,8 +2,8 @@ require 'rails_helper'
 
 
 RSpec.describe "UserAuthentications", type: :request do
-  let(:user) {FactoryBot.create(:user)}
-  let(:another_user) {FactoryBot.create(:another_user )}
+  let!(:user) {FactoryBot.create(:user)}
+  let!(:another_user) {FactoryBot.create(:another_user )}
 
   describe 'new_user_session' do
     context 'ログインしていない状態の場合' do
@@ -20,10 +20,6 @@ RSpec.describe "UserAuthentications", type: :request do
         get user_path(user)
         expect(response).to have_http_status(:success)
       end
-
-
     end
-
   end
-
 end
