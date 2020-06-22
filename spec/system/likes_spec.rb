@@ -13,9 +13,9 @@ RSpec.describe 'Likes', type: :system do
   it '既存の投稿にいいね/解除する', js: true do
     visit root_path
 
-    # Rikuがログインする
+    # Userがログインする
     click_link 'ログイン'
-    expect(current_path).to eq new_user_session_path
+    expect(current_path).to eq "/users/sign_in"
     expect(page).to have_content 'Remember me'
 
     fill_in 'user[email]', with: 'test@example.com'

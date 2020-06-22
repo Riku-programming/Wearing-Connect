@@ -24,7 +24,11 @@
     </div>
 
     <div class="item-form-btns text-right mb-4">
-      <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+      <% if params['action'] == 'new' %>
+        <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+      <% else %>
+        <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
+      <% end %>
       <%= link_to "戻る", items_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
     </div>
   <% end %>

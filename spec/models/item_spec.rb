@@ -7,7 +7,8 @@ RSpec.describe Item, type: :model do
         id: 1,
         item_name: "test_item",
         price: 100,
-        image: 'test_image'
+        image: 'test_image',
+        content: 'test_content'
     )
   end
 
@@ -45,6 +46,5 @@ RSpec.describe Item, type: :model do
       @item.price = 10000000000
       expect(@item).to_not be_valid
     end
-
   end
 end

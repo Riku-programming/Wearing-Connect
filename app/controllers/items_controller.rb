@@ -55,8 +55,8 @@ class ItemsController < ApplicationController
     #   @user = User.find(params[:id])
     # end
 
-    @user = current_user
-    # @user = User.find(params[:id])
+    # @user = current_user
+    @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end
 
@@ -100,7 +100,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item].permit(:item_name, :price, :image)
+    params[:item].permit(:item_name, :price, :image, :content)
   end
 
   def require_same_user
