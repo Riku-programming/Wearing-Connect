@@ -25,6 +25,18 @@
             <li class="list-inline-item">
               <%= render 'likes/like_area', item: item %>
             </li>
+            <div class="listing-form-box">
+              <div class="listing-product-detail__category">
+
+                <div class="listing-select-wrapper">
+                  <div class="listing-select-wrapper__box">
+                    <%#= f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>
+                    <i class="fas fa-chevron-down listing-select-wrapper__box--arrow-down"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
 
           </div>
           <div class="card-footer text-muted PhotoBox SlideBox">

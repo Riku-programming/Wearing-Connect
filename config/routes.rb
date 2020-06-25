@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'save', to: 'items#save'
   resources :items do
     collection do
+      get 'get_category_children', defaults: {format: 'json'}
+      get 'get_category_grandchildren', defaults: {format: 'json'}
       get 'search'
     end
     resources :likes, only: [:create, :destroy]
