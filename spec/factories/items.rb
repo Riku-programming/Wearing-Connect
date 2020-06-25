@@ -5,6 +5,7 @@ FactoryBot.define do
     price {'100'}
     image{'https://www.test.image.com'}
     user_id {1}
+    likes_count {0}
   end
 
   factory :another_item, class: Item do
@@ -13,5 +14,6 @@ FactoryBot.define do
     price {'1000'}
     image{'https://www.another.image.com'}
     user_id {2}
+    likes_count {5}
   end
 end

@@ -31,6 +31,9 @@ gem 'jquery-rails'
 gem 'rakuten_web_service'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
