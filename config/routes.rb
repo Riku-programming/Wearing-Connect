@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # devise_for :users
   root 'home#show'
   get 'search_item', to: 'items#search'
   get 'my_items', to: 'items#my_items'

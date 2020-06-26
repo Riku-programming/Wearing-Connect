@@ -1,11 +1,10 @@
 class Item < ApplicationRecord
 
   belongs_to :user
+  belongs_to :category
   has_many :likes, dependent: :destroy
   has_many :likes_users, through: :likes, source: :user
 
-  has_many :item_categories, dependent: :destroy
-  has_many :categories,  through: :item_categories
 
 
   validates :item_name, presence: true
