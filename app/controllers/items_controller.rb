@@ -9,10 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @category_parent_array = ["---"]
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
+    @category = Category.where(ancestry: 1)
     @item = Item.new
   end
 
@@ -22,8 +19,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
+    @category = Category.where(ancestry: 1)
+    # @category_grandchildren = Category.find("#{params[:child_id]}").children
     @item.user = current_user
-    if @item.save
+    if @item.save!
       flash[:success] = "item was successfully created"
       redirect_to items_path
     else
@@ -112,7 +111,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item].permit(:item_name, :price, :image, :content, :ancestry)
+    params[:item].permit(:item_name, :price, :image, :content, :category_id)
   end
 
   def require_same_user
