@@ -26,8 +26,12 @@
       <li class="nav-item">
         <%= header_link_item(icon('fa', 'heart') + 'お気に入り', like_user_path(current_user.id)) %>
       </li>
-      <li class="nav-item">
-        <%= header_link_item(icon('fas', 'tshirt') + 'コーディネート', '#') %>
+      <li class="nav-item dropdown">
+        <%= link_to icon('fas', 'tshirt') + 'コーディネート', '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }  %>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to icon('fas', 'edit') + '作成', new_coordinate_path, class: 'dropdown-item' %>
+          <%= link_to icon('fas', 'rss') + '一覧', coordinates_path, class: 'dropdown-item' %>
+        </div>
       </li>
       <% end %>
     </ul>

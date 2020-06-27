@@ -23,30 +23,14 @@
         <%= f.label :category, 'カテゴリー', class: 'col-form-label text-light' %>
         <%= f.collection_select(:category_id, @category, :id, :name, {prompt: '選択して下さい', selected: @item.category}, {class: 'form-control'}) %>
 
-
-        <!--        todo Viewを整える-->
-        <!--        <div class="listing-form-box">-->
-        <!--          <div class="listing-product-detail__category">-->
-        <%#= f.label 'カテゴリー', class: 'listing-default__label' %>
-        <!--            <span class="listing-default--require">必須</span>-->
-        <!--            <div class="listing-select-wrapper">-->
-        <!--              <div class="listing-select-wrapper__box">-->
-        <%#= f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>
-        <!--                <i class="fas fa-chevron-down listing-select-wrapper__box--arrow-down"></i>-->
-        <!--              </div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
-
-
-      <div class="item-form-btns text-right mb-4">
-        <% if params['action'] == 'new' %>
-          <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
-        <% else %>
-          <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
-        <% end %>
-        <%= link_to "戻る", items_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
+        <div class="item-form-btns text-right mb-4">
+          <% if params['action'] == 'new' %>
+            <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+          <% else %>
+            <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
+          <% end %>
+          <%= link_to "戻る", items_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
+        </div>
       </div>
   <% end %>
   </div>

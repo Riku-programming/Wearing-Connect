@@ -1,0 +1,25 @@
+<div class="container">
+  <% @coordinates.each do |coordinate| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card-text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            <% if coordinate.user %>
+              by <%= link_to coordinate.user.name, coordinate_path(coordinate) %>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to coordinate.name, coordinate_path(coordinate), class: "text-success" %></h5>
+            <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
+            <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
+          </div>
+          <div class="card-footer text-muted PhotoBox SlideBox">
+            <small>作成日時 <%= coordinate.created_at.to_s(:datetime_jp) %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

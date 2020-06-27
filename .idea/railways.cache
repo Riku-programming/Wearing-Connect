@@ -1,7 +1,4 @@
                                Prefix Verb   URI Pattern                                                                              Controller#Action
-                     coordinate_index GET    /coordinate/index(.:format)                                                              coordinate#index
-                      coordinate_show GET    /coordinate/show(.:format)                                                               coordinate#show
-                       coordinate_new GET    /coordinate/new(.:format)                                                                coordinate#new
                                  root GET    /                                                                                        home#show
                           search_item GET    /search_item(.:format)                                                                   items#search
                              my_items GET    /my_items(.:format)                                                                      items#my_items
@@ -23,19 +20,20 @@
                      user_friendships GET    /users/:user_id/friendships(.:format)                                                    friendships#show
                                       DELETE /users/:user_id/friendships(.:format)                                                    friendships#destroy
                                       POST   /users/:user_id/friendships(.:format)                                                    friendships#create
-                  new_user_coordinate GET    /users/:user_id/coordinate/new(.:format)                                                 coordinates#new
-                 edit_user_coordinate GET    /users/:user_id/coordinate/edit(.:format)                                                coordinates#edit
-                      user_coordinate GET    /users/:user_id/coordinate(.:format)                                                     coordinates#show
-                                      PATCH  /users/:user_id/coordinate(.:format)                                                     coordinates#update
-                                      PUT    /users/:user_id/coordinate(.:format)                                                     coordinates#update
-                                      DELETE /users/:user_id/coordinate(.:format)                                                     coordinates#destroy
-                                      POST   /users/:user_id/coordinate(.:format)                                                     coordinates#create
                          follows_user GET    /users/:id/follows(.:format)                                                             users#follows
                        followers_user GET    /users/:id/followers(.:format)                                                           users#followers
                        favorites_user GET    /users/:id/favorites(.:format)                                                           users#favorites
                            items_user GET    /users/:id/items(.:format)                                                               users#items
                             like_user GET    /users/:id/like(.:format)                                                                users#like
                                  user GET    /users/:id(.:format)                                                                     users#show
+                          coordinates GET    /coordinates(.:format)                                                                   coordinates#index
+                                      POST   /coordinates(.:format)                                                                   coordinates#create
+                       new_coordinate GET    /coordinates/new(.:format)                                                               coordinates#new
+                      edit_coordinate GET    /coordinates/:id/edit(.:format)                                                          coordinates#edit
+                           coordinate GET    /coordinates/:id(.:format)                                                               coordinates#show
+                                      PATCH  /coordinates/:id(.:format)                                                               coordinates#update
+                                      PUT    /coordinates/:id(.:format)                                                               coordinates#update
+                                      DELETE /coordinates/:id(.:format)                                                               coordinates#destroy
                         search_friend GET    /search_friend(.:format)                                                                 users#search
                                  save POST   /save(.:format)                                                                          items#save
                          search_items GET    /items/search(.:format)                                                                  items#search

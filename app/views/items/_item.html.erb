@@ -5,7 +5,7 @@
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
             <% if item.user %>
-              by <%= link_to item.user.name, item_path(item.user_id) %>
+              by <%= link_to item.user.name, item_path(item) %>
             <% end %>
             <% if item.image? %>
               <%= image_tag item.image.thumb.url %>

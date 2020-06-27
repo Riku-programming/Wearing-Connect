@@ -3,7 +3,7 @@ module ControllerMacros
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:admin]
       admin = FactoryBot.create(:admin)
-      sign_in :user, admin # sign_in(scope, resource)
+      sign_in :user, admin # sign_in(scope, coordinates)
     end
   end
 
