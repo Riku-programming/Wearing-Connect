@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'coordinate/index'
+  get 'coordinate/show'
+  get 'coordinate/new'
   # devise_for :users
   root 'home#show'
   get 'search_item', to: 'items#search'
@@ -7,6 +10,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show] do
     resource :friendships, only: [:create, :destroy, :show]
+    resource :coordinate
     member do
       get :follows, :followers, :favorites, :items, :like
     end
@@ -16,8 +20,6 @@ Rails.application.routes.draw do
   post 'save', to: 'items#save'
   resources :items do
     collection do
-      get 'get_category_children', defaults: {format: 'json'}
-      get 'get_category_grandchildren', defaults: {format: 'json'}
       get 'search'
     end
     resources :likes, only: [:create, :destroy]

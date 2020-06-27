@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_category, only: [:new, :create, :edit]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
 
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
-    @category = Category.where(ancestry: 1)
+
     # @category_grandchildren = Category.find("#{params[:child_id]}").children
     @item.user = current_user
     if @item.save!
@@ -58,8 +59,8 @@ class ItemsController < ApplicationController
     #   @user = User.find(params[:id])
     # end
 
-    # @user = current_user
-    @user = User.find(params[:id])
+    @user = current_user
+    # @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page], per_page: 5)
   end
 
@@ -119,6 +120,10 @@ class ItemsController < ApplicationController
       flash[:danger] = "You can only edit delete your own items"
       redirect_to root_path
     end
+  end
+
+  def set_category
+    @category = Category.where(ancestry: 1)
   end
 
 

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :items, dependent: :destroy
+  has_many :coordinates
 
   has_many :likes, dependent: :destroy
   has_many :likes_items, through: :likes, source: :item
