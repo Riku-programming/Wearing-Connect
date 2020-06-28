@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
 
   belongs_to :user
-  belongs_to :coordinate
   belongs_to :category
+  has_many :coordinates
   has_many :likes, dependent: :destroy
   has_many :likes_users, through: :likes, source: :user
 

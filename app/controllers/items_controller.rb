@@ -20,8 +20,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
-
-    # @category_grandchildren = Category.find("#{params[:child_id]}").children
     @item.user = current_user
     if @item.save!
       flash[:success] = "item was successfully created"

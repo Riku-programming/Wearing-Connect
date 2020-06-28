@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_124316) do
+ActiveRecord::Schema.define(version: 2020_06_28_025338) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_06_27_124316) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_coordinates_on_item_id"
     t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 
@@ -56,10 +58,8 @@ ActiveRecord::Schema.define(version: 2020_06_27_124316) do
     t.string "content"
     t.string "ancestry"
     t.integer "category_id"
-    t.integer "coordinate_id"
     t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["coordinate_id"], name: "index_items_on_coordinate_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 2020_06_27_124316) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coordinates", "items"
   add_foreign_key "coordinates", "users"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "coordinates"
   add_foreign_key "items", "users"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"

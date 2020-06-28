@@ -34,6 +34,7 @@ gem 'mini_magick'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'ancestry'
+gem 'rails-i18n'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
