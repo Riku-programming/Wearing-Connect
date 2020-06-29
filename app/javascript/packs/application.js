@@ -18,3 +18,4 @@ require("channels")
 
 import "bootstrap"
 import "jquery"
+import "cocoon"

@@ -12,6 +12,10 @@
           <div class="card-body">
             <h5 class="card-title"><%= link_to coordinate.name, coordinate_path(coordinate), class: "text-success" %></h5>
             <h5><%="#{coordinate.items[0].item_name}" %></h5>
+            <h5><%="#{coordinate.items[1].item_name}" %></h5>
+<!--            <h5><%#="#{coordinate.items[2].item_name}" %></h5>-->
+<!--            <h5><%#="#{coordinate.items[3].item_name}" %></h5>-->
+<!--            <h5><%#="#{coordinate.items[4].item_name}" %></h5>-->
             <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
             <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
           </div>

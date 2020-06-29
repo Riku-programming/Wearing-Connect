@@ -1,8 +1,8 @@
 class CoordinatesController < ApplicationController
 
   before_action :set_coordinate, only: [:edit, :update, :show, :destroy]
+  before_action :coordinate_params, only: [:create]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-
 
 
   def index
@@ -55,7 +55,8 @@ class CoordinatesController < ApplicationController
   end
 
   def coordinate_params
-    params[:coordinate].permit(:name, :item_ids)
+    params[:coordinate].permit(:name,
+                               classifications_attributes: [:item_id, :_destroy])
   end
 
   def require_same_user
