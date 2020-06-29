@@ -2,7 +2,8 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-  has_many :coordinates
+  has_many :classifications
+  has_many :coordinates, through: :classifications
   has_many :likes, dependent: :destroy
   has_many :likes_users, through: :likes, source: :user
 

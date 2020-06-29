@@ -5,9 +5,8 @@
       <div class="col-md-6 col-right">
         <%= f.label :name, 'コーディネート名', class: "col-form-label text-light" %>
         <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "コーディネート名を入力してください" %>
-        <%= f.label :item_name, 'アイテム名', class: "col-form-label text-light" %>
-<!--        fixme selectがおかしい、coordinate.itemsができない -->
-        <%= f.collection_select(:item_id, @items, :id, :item_name, {prompt: '選択して下さい', selected: @items}, {class: 'form-control'}) %>
+        <%= f.label :item_id, 'アイテム名', class: "col-form-label text-light" %>
+        <%= f.collection_select(:item_ids, @items, :id, :item_name, {prompt: '選択して下さい', selected: @items}, {class: 'form-control'}) %>
 
         <div class="item-form-btns text-right mb-4">
           <% if params['action'] == 'new' %>
@@ -18,7 +17,6 @@
           <%= link_to "戻る", coordinates_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
         </div>
       </div>
-
 
 
   <% end %>

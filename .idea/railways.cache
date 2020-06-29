@@ -26,6 +26,8 @@
                            items_user GET    /users/:id/items(.:format)                                                               users#items
                             like_user GET    /users/:id/like(.:format)                                                                users#like
                                  user GET    /users/:id(.:format)                                                                     users#show
+           coordinate_classifications POST   /coordinates/:coordinate_id/classifications(.:format)                                    classifications#create
+            coordinate_classification DELETE /coordinates/:coordinate_id/classifications/:id(.:format)                                classifications#destroy
                           coordinates GET    /coordinates(.:format)                                                                   coordinates#index
                                       POST   /coordinates(.:format)                                                                   coordinates#create
                        new_coordinate GET    /coordinates/new(.:format)                                                               coordinates#new

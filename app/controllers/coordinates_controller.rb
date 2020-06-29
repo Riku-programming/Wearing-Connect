@@ -14,12 +14,12 @@ class CoordinatesController < ApplicationController
 
   def new
     @coordinate = Coordinate.new
+    @coordinate.classifications.build
     @items = Item.all
   end
 
   def create
-    @items = Item.all
-    @coordinate = Coordinate.create(coordinate_params)
+    @coordinate = Coordinate.new(coordinate_params)
     @coordinate.user = current_user
     if @coordinate.save!
       flash[:success] = "コーディネートが作成されました"
@@ -55,7 +55,7 @@ class CoordinatesController < ApplicationController
   end
 
   def coordinate_params
-    params[:coordinate].permit(:name, :item_id)
+    params[:coordinate].permit(:name, :item_ids)
   end
 
   def require_same_user

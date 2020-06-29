@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_025338) do
+ActiveRecord::Schema.define(version: 2020_06_28_035655) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -21,13 +21,20 @@ ActiveRecord::Schema.define(version: 2020_06_28_025338) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "classifications", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "coordinate_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coordinate_id"], name: "index_classifications_on_coordinate_id"
+    t.index ["item_id"], name: "index_classifications_on_item_id"
+  end
+
   create_table "coordinates", force: :cascade do |t|
     t.text "name", null: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "item_id"
-    t.index ["item_id"], name: "index_coordinates_on_item_id"
     t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 
@@ -87,7 +94,8 @@ ActiveRecord::Schema.define(version: 2020_06_28_025338) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "coordinates", "items"
+  add_foreign_key "classifications", "coordinates"
+  add_foreign_key "classifications", "items"
   add_foreign_key "coordinates", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"

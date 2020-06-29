@@ -1,4 +1,6 @@
 class Coordinate < ApplicationRecord
   belongs_to :user
-  belongs_to :item
+  has_many :classifications
+  has_many :items, through: :classifications, dependent: :destroy
+  accepts_nested_attributes_for :classifications, allow_destroy: true
 end
