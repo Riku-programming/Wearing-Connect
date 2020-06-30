@@ -10,6 +10,8 @@ class CoordinatesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @coordinates = @user.coordinates.paginate(page: params[:page], per_page: 5)
   end
 
   def new

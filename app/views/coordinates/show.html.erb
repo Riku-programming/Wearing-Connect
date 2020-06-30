@@ -1,4 +1,4 @@
-<h1 class="text-center mt-4"><%= @user.name %>'s Item</h1>
+<h1 class="text-center mt-4">マイコーディネート</h1>
 
 <%#= gravatar_for @user, size: 200 %>
 
@@ -11,7 +11,7 @@
 <div class="flickr_pagination">
   <%= will_paginate @items, :container => false %>
 </div>
-<%= render 'items/item' %>
+<%= render 'coordinates/coordinate' %>
 
 <div class="flickr_pagination mb-4">
   <%= will_paginate @items, :container => false %>
