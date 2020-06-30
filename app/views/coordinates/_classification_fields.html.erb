@@ -1,11 +1,12 @@
-<%#= form_with(model: @coordinate, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
-  <tr class="nested-fields">
-    <%= f.hidden_field :item_id %>
-    <td>
-      <%= f.collection_select :item_id, @items, :id, :item_name, {prompt: '選択して下さい', selected: @items}, class: 'form-control' %>
-    </td>
-    <td>
-      <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
-    </td>
-  </tr>
-<%# end %>
+<div class="nested-fields form-group">
+  <%#= f.hidden_field :item_id %>
+  <div class="col-form-label text-light">
+    <%= f.label :item_id, 'アイテム名', class: "col-form-label text-light" %>
+    <%= f.collection_select(:item_id, @items, :id, :item_name, {}, {class: 'form-control'}) %>
+    <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+  </div>
+
+  <%#= f.label :item_id, 'アイテム(1/5)', class: "col-form-label text-light" %>
+  <%#= f.collection_select(:item_ids, @items, :id, :item_name, {prompt: '選択して下さい', selected: @items}, {class: 'form-control'}) %>
+</div>
+
