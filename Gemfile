@@ -36,6 +36,7 @@ gem 'devise-i18n-views'
 gem 'ancestry'
 gem 'rails-i18n'
 gem 'cocoon'
+gem 'coffee-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

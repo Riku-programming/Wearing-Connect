@@ -8,6 +8,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 $(document).on("turbolinks:load", function() {
     setTimeout("$('.time-limit').fadeOut('slow')", 1500)
 })
