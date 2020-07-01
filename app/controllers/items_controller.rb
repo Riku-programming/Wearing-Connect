@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @item = Item.create(item_params)
     @item.user = current_user
     if @item.save!
-      flash[:success] = "item was successfully created"
+      flash[:success] = "アイテムを投稿しました"
       redirect_to items_path
     else
       render 'new'
@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     item = Item.create(user_id: current_user.id, item_name: params['item_name'], price: params['price'])
     item.image = params['image']
     if item.save
-      flash[:success] = "item was successfully created"
+      flash[:success] = "アイテムを投稿しました"
       redirect_to items_path
     end
   end
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:success] = "item was successfully updated"
+      flash[:success] = "アイテムは正常に更新されました"
       redirect_to item_path(@item)
     else
       render 'edit'
@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
   # fixme flashメッセージがアプリケーションを通して表示されない
   def destroy
     @item.destroy
-    flash[:danger] = "item was successfully deleted"
+    flash[:danger] = "アイテムは正常に削除されました"
     redirect_to items_path
   end
 
@@ -101,7 +101,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item].permit(:item_name, :price, :image, :content, :category_id)
+    params[:item].permit(:item_name, :price, :image, :content, :brand, :category_id)
   end
 
   def require_same_user

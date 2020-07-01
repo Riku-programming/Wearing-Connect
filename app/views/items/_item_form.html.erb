@@ -18,6 +18,8 @@
         <%= f.text_field :item_name, class: "form-control shadow rounded", placeholder: "商品名を入力してください" %>
         <%= f.label :price, '価格', class: "col-form-label text-light" %>
         <%= f.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "価格" %>
+        <%= f.label :brand, 'ブランド', class: "col-form-label text-light"%>
+        <%= f.text_field :brand, class: "form-control shadow rounded", placeholder: "ブランド名" %>
         <%= f.label :content, 'レビュー', class: "col-form-label text-light" %>
         <%= f.text_area :content, class: 'form-control', rows: 12, placeholder: 'レビューを入力してください' %>
         <%= f.label :category, 'カテゴリー', class: 'col-form-label text-light' %>

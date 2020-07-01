@@ -19,6 +19,7 @@
           <div class="card-body">
             <h5 class="card-title">アイテム名　　　<%= link_to item.item_name, item_path(item.user_id), class: "text-success" %></h5>
             <h6 class="card-text">価格　　　　　　　　<%= item.price%>円</h6>
+            <h6 class="card-text">ブランド　　　　　　<%= item.brand %></h6>
             <h6 class="card-text">カテゴリ　　　　　　<%= item.category.name %></h6>
             <p class="card-content">感想　　　　　　　　<%= item.content %></p>
 
