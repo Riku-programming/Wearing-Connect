@@ -15,6 +15,6 @@ CSV.foreach('db/csv/item.csv') do |row|
   brand = row[CSV_BRAND]
   content = row[CSV_CONTENT]
 
-  Item.find_or_create_by(id: id, item_name: item_name, price: price, brand: brand, content: content, image: image)
+  Item.find_or_create_by(id: id, item_name: item_name, price: price, brand: brand, content: content)
 end
 

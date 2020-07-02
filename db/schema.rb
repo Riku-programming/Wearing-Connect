@@ -45,15 +45,6 @@ ActiveRecord::Schema.define(version: 2020_06_30_082356) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "item_categories", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_item_categories_on_category_id"
-    t.index ["item_id"], name: "index_item_categories_on_item_id"
-  end
-
   create_table "items", force: :cascade do |t|
     t.text "item_name", null: false
     t.integer "price", null: false
@@ -63,10 +54,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_082356) do
     t.string "image"
     t.integer "likes_count"
     t.string "content"
-    t.string "ancestry"
     t.integer "category_id"
     t.string "brand"
-    t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
