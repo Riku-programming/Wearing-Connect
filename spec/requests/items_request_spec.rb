@@ -1,6 +1,5 @@
 require 'rails_helper'
 #todo contextの部分を共通化してDRYにしたい
-# fixme login機能の不具合の解決
 RSpec.describe 'Items', type: :request do
   let!(:user) {FactoryBot.create(:user)}
   let!(:another_user) {FactoryBot.create(:another_user)}

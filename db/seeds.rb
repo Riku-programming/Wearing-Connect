@@ -55,16 +55,12 @@ end
   password = "password"
   User.create!(name: name,
                email: email,
+               avatar: open("#{Rails.root}/db/fixtures/avatar/avatar-#{n}.jpg"),
                password: password,
                password_confirmation: password,
                created_at: Time.zone.now)
 end
 
-users = User.order(:id).take(10)
-users.each_with_index do |user, n|
-  user.avatar = open("#{Rails.root}/db/fixtures/avatar/avatar-#{n + 1}.jpg")
-  user.save
-end
 
 # # お気に入りアイテム作成
 # users = User.order(:id).take(6)
