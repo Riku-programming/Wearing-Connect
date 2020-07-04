@@ -94,7 +94,13 @@
     <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="items-tab">
       <% if @user.items.any? %>
         <div id="show-items">
+          <div class="flickr_pagination">
+            <%= paginate @items %>
+          </div>
           <%= render 'items/item', objects: @items %>
+          <div class="flickr_pagination">
+            <%= paginate @items %>
+          </div>
         </div>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
@@ -125,7 +131,14 @@
     <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
       <% if @user.likes.any? %>
         <div id="show-likes">
+          <div class="flickr_pagination">
+            <%= paginate @likes %>
+          </div>
+<!--          fixme いいねした投稿が出てこない-->
           <%= render 'users/partial/show_items'%>
+          <div class="flickr_pagination">
+            <%= paginate @likes %>
+          </div>
         </div>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">

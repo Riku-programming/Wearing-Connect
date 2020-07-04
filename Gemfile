@@ -22,7 +22,6 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
-gem 'will_paginate', '3.1.7'
 gem 'devise'
 gem 'rails-controller-testing'
 gem 'font-awesome-sass'
@@ -36,6 +35,8 @@ gem 'ancestry'
 gem 'rails-i18n'
 gem 'cocoon'
 gem 'faker'
+gem 'kaminari'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

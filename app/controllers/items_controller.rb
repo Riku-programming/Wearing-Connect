@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.paginate(page: params[:page], per_page: 5)
+    @items = Item.all.page(params[:page]).per(5)
   end
 
   def new
@@ -75,6 +75,7 @@ class ItemsController < ApplicationController
   def search
     if params[:keyword].present?
       @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+      @item = Item.all.page(params[:page]).per(5)
       if @items.count >= 1
         respond_to do |format|
           format.js {render partial: 'item_result'}
