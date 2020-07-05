@@ -1,10 +1,10 @@
 <div class="container">
-  <% @likes.each do |like| %>
+  <% @user.likes.each do |like| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
-            <% if like.item.image? %>
+           <% if like.item.image? %>
               <%= image_tag like.item.image.thumb.url %>
               <%#= image_tag like.item.image.url %>
             <% else %>

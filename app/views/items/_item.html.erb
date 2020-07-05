@@ -8,8 +8,8 @@
               by <%= link_to item.user.name, item_path(item) %>
             <% end %>
             <% if item.image? %>
-              <%= image_tag item.image.thumb.url %>
-              <%#= image_tag item.image.url %>
+              <%#= image_tag item.image.thumb.url %>
+              <%= image_tag item.image.url %>
             <% else %>
               <%= image_tag 'no-image.jpg'%>
             <% end %>
@@ -20,7 +20,7 @@
             <h6 class="card-text">価格　　　　　　　　<%= item.price%>円</h6>
             <h6 class="card-text">ブランド　　　　　　<%= item.brand %></h6>
             <h6 class="card-text">カテゴリ　　　　　　<%= item.category.name %></h6>
-            <p class="card-content">感想　　　　　　　　<%= item.content %></p>
+            <span class="card-content"><%= simple_format(item.content) %></span>
 
             <%= link_to "編集", edit_item_path(item), class: "btn btn-outline-info" %>
             <%= link_to "削除", item_path(item), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "アイテムを削除しますか?"} %>
