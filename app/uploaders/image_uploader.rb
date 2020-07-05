@@ -23,8 +23,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 # todo resizeの大きさfill fitどちらにするか考える
   # Process files as they are uploaded:
   # process scale: [200, 300]
-  # process :resize_to_fill => [300, 300]
-  process resize_to_fit:  [300, 200, 'Center']
+  # process :resize_to_fill => [1080, 1080, 'Center']
+  process resize_to_fit:  [1080, 1080]
   # process :resize_to_limit => [700, 700]
   #
   # def scale(width, height)

@@ -9,7 +9,7 @@
             <% end %>
             <% if item.image? %>
               <%#= image_tag item.image.thumb.url %>
-              <%= image_tag item.image.url %>
+              <%= image_tag(item.image.url, size: "300x350") %>
             <% else %>
               <%= image_tag 'no-image.jpg'%>
             <% end %>
