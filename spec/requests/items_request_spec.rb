@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Items', type: :request do
   let!(:user) {FactoryBot.create(:user)}
   let!(:another_user) {FactoryBot.create(:another_user)}
+  let!(:category) {FactoryBot.create(:category)}
   let!(:item) {FactoryBot.create(:item)}
   let!(:another_item) {FactoryBot.create(:another_item)}
   let!(:another_item_params) {FactoryBot.attributes_for(:another_item)}

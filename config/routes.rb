@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#show'
+  root 'home#index'
   get 'search_item', to: 'items#search'
   get 'my_items', to: 'items#my_items'
   devise_for :users, controllers: { registrations: 'users/registrations' }

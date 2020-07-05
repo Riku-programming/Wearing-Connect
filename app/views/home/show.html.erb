@@ -1,35 +1,32 @@
-<main role="main">
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Hello, world!</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
-    </div>
+<% if @items.any? %>
+  <div class="row item-cards">
+    <% @items.each do |item| %>
+      <div class="col-lg-4 col-md-12 card-index">
+        <div class="card">
+          <div class="card-header" >
+            <div class="item-user">
+              <% if item.user.avatar? %>
+                <%= link_to image_tag(item.user.avatar.to_s, size: "50x50", class: 'user_avatar rounded-circle d-none d-md-inline', alt: 'avatar image'), item.user, class: 'mr-2' %>
+              <% else %>
+                <%= link_to image_tag('no-avatar.png',size: "50x50",  class: 'user_avatar rounded-circle d-none d-md-inline', alt: 'avatar image'), item.user, class: 'mr-2' %>
+              <% end %>
+              <%= link_to item.user.name, item.user %>
+            </div>
+            <div class="item-info">
+<!--              <small><%#= set_address(item.prefecture.name, item.city.name) %></small><br>-->
+              <small><%= item.created_at.to_s(:datetime_jp) %></small>
+            </div>
+          </div>
+          <%= link_to image_tag(item.image.to_s, size: "347x350", class: 'weather_image_index', alt: 'Weather image'), item %>
+
+          <div class="card-footer">
+            <div>
+<!--              <span><%#= "コメント#{item.comments.count}件" %></span>-->
+              <span><%= "いいね！#{item.likes.count}件" %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-      </div>
-    </div>
-
-    <hr>
-
-  </div> <!-- /container -->
-
-</main>
+<% end %>

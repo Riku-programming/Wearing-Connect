@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Items', type: :system do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:category) {FactoryBot.create(:category)}
 
   it '新規アイテム, 編集、削除をする', js: true do
     visit "/users/sign_in"
@@ -9,7 +10,7 @@ describe 'Items', type: :system do
     #ログインする
     click_link 'ログイン'
     expect(current_path).to eq "/users/sign_in"
-    expect(page).to have_content 'Remember me'
+    expect(page).to have_content '次回から自動でログインする'
 
     fill_in 'user[email]', with: 'test@example.com'
     fill_in 'user[password]', with: 'password'
@@ -24,7 +25,9 @@ describe 'Items', type: :system do
     attach_file 'item[image]', "#{Rails.root}/spec/fixtures/rspec_test.jpeg", make_visible: true
     fill_in '商品名', with: 'Apple'
     fill_in '価格', with: '777'
+    fill_in 'ブランド', with: 'Apple'
     fill_in 'レビュー', with: 'とてもいいアイテムです!'
+    select 'カバン', from: "item[category_id]"
     click_button '投稿する'
 
     item = Item.first

@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @user = FactoryBot.create(:user)
+    @category = FactoryBot.create(:category)
     @item = @user.items.build(
         id: 1,
         item_name: "test_item",
         price: 100,
         image: 'test_image',
-        content: 'test_content'
+        content: 'test_content',
+        category_id: @category.id
     )
   end
 

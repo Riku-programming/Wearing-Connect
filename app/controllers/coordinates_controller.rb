@@ -6,7 +6,7 @@ class CoordinatesController < ApplicationController
 
 
   def index
-    @coordinates = Coordinate.paginate(page: params[:page], per_page: 5)
+    @coordinates = Coordinate.all.page(params[:page]).per(5)
   end
 
   def show
