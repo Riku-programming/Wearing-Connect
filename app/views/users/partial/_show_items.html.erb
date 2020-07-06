@@ -4,18 +4,28 @@
       <div class="col-8 mt-4">
         <div class="card-text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
-           <% if like.item.image? %>
-              <%= image_tag like.item.image.thumb.url %>
-              <%#= image_tag like.item.image.url %>
+            <%# if like.user %>
+            <!--              by <%#= link_to like.user.name, like_path(like) %>-->
+            <%# end %>
+            <% if like.item.image? %>
+              <%#= image_tag like.image.thumb.url %>
+              <%= link_to image_tag(like.item.image.to_s, class: "mx-auto d-block", size: '300x340', alt: 'Weather image'), item_path(like.item.id) %>
             <% else %>
-              <%= image_tag 'no-image.jpg'%>
+              <%= image_tag 'no-image.jpg' %>
             <% end %>
           </div>
 
           <div class="card-body">
-            <h5 class="card-title"><%= link_to like.item.item_name, item_path(like.item.user_id), class: "text-success" %></h5>
-            <p class="card-text"><%= like.item.price %></p>
-            <p class="card-content"><%= like.item.content %></p>
+            <h5 class="card-title">アイテム名　　　<%= link_to like.item.item_name, item_path(like.user_id), class: "text-success" %></h5>
+            <h6 class="card-text">価格　　　　　　　　<%= like.item.price %>円</h6>
+            <h6 class="card-text">ブランド　　　　　　<%= like.item.brand %></h6>
+            <h6 class="card-text">カテゴリ　　　　　　<%= like.item.category.name %></h6>
+            <span class="card-content"><%= simple_format(like.item.content) %></span>
+
+            <% if like.item.user_id == current_user.id %>
+              <%= link_to "編集", edit_item_path(like.item.id), class: "btn btn-outline-info" %>
+              <%= link_to "削除", item_path(like.item.id), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "アイテムを削除しますか?"} %>
+            <% end %>
           </div>
           <div class="card-footer text-muted PhotoBox SlideBox">
             <small>作成日時 <%= like.item.created_at.to_s(:datetime_jp) %>
@@ -26,3 +36,14 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+    $(document).on("turbolinks:load", function () {
+        $(".PhotoBox").hover(function () {
+            $(".SlideBox", this).stop().animate({bottom: "0px"}, "fast");
+        }, function () {
+            $(".SlideBox", this).stop().animate({bottom: "-70px"}, "slow");
+        });
+    })
+</script>
+
