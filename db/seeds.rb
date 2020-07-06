@@ -15,6 +15,19 @@ User.create!(name: 'riku',
              avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
              introduction: "よろしくお願いします")
 
+# デモユーザー
+1.upto(6) do |n|
+  name = Faker::Name.name
+  email = "sample-#{n}@example.com"
+  password = "password"
+  User.create!(name: name,
+               email: email,
+               avatar: open("#{Rails.root}/db/fixtures/avatar/avatar-#{n}.jpg"),
+               password: password,
+               password_confirmation: password,
+               created_at: Time.zone.now)
+end
+
 
 
 
@@ -48,18 +61,7 @@ end
 
 
 
-# デモユーザー
-1.upto(6) do |n|
-  name = Faker::Name.name
-  email = "sample-#{n}@example.com"
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               avatar: open("#{Rails.root}/db/fixtures/avatar/avatar-#{n}.jpg"),
-               password: password,
-               password_confirmation: password,
-               created_at: Time.zone.now)
-end
+
 
 
 # # お気に入りアイテム作成

@@ -17,24 +17,26 @@
               <thead>
               <tr>
                 <th>アイテム名</th>
-                <th>価格</th>
                 <th>カテゴリ名</th>
+                <th>価格</th>
+
 
               </tr>
               </thead>
               <% coordinate.items.each do |item| %>
                 <tr>
                   <td>
-                    <%= "#{item.item_name} " %>
-                  </td>
-                  <td>
-                    <%= "#{item.price} 円" %>
+                    <%= link_to("#{item.item_name}",item, class: "item_link")%>
                   </td>
                   <td>
                     <%= "#{item.category.name}" %>
                   </td>
+                  <td>
+                    <%= "#{item.price} 円" %>
+                  </td>
                 </tr>
               <% end %>
+
             </table>
 
             <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>

@@ -4,8 +4,23 @@
 @mixin md { @media (min-width: 768px) { @content; } }
 @mixin lg { @media (min-width: 992px) { @content; } }
 
+//font
+.coordinate-font {
+  font-family: 'Cinzel', cursive;
+}
+
+.item-font {
+  font-family: 'Cinzel', cursive;
+}
+.like-font {
+  font-family: 'Cinzel', cursive;
+}
+
+
+
 /* body */
 body {
+  font-family: "Lola";
   margin: 0;
   display: flex;
   flex-flow: column;
@@ -14,7 +29,7 @@ body {
 
 /* header */
 .navbar {
-  border-radius: 0px;
+  border-radius: 0;
 }
 .navbar-logo {
   width: 150px;
