@@ -9,9 +9,9 @@
       <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><strong>Name</strong><%= user.name %></td>
-          <td><strong>Email</strong><%= user.email %></td>
-          <td><strong>Actions:</strong><%= link_to "View Profile", user_path(user), class: "btn btn-sm btn-success" %>
+          <td><strong>Name</strong>　<%= user.name %></td>
+          <td><strong>Email</strong>　<%= user.email %></td>
+          <td><strong>Actions:</strong>　<%= link_to "View Profile", user_path(user), class: "btn btn-sm btn-success" %>
             <% if current_user.not_follows_with?(user) %>
               <%= link_to 'Follow user?', user_friendships_path(user), class: "btn btn-sm btn-success", method: :post %>
             <% else %>

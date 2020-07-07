@@ -18,6 +18,8 @@
     margin-top: 0;
   }
 }
+
+
 //
 //
 //.user-introduction{
@@ -51,4 +53,23 @@ div.SlideBox p {
 
 .form-avatar{
   display: none;
+}
+.search{
+  text-align: center;
+}
+
+.friend-search{
+  padding-top: 20px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.btn-search{
+  font-size: 1.4em;
+  margin-left: 2px;
+}
+.results-block{
+  margin-top: 25px;
 }

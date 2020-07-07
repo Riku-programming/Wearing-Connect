@@ -1,5 +1,5 @@
 # 今からやること
-# todo 画像のサイズを変更
+# todo rekuten search 機能いらん
 
 
 
