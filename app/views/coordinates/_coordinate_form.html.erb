@@ -5,8 +5,6 @@
       <div class="col-md-6 col-right">
         <%= f.label :name, 'コーディネート名', class: "col-form-label text-light" %>
         <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "コーディネート名を入力してください" %>
-        <%#= f.label :item_id, 'アイテム(1/5)', class: "col-form-label text-light" %>
-        <%#= f.collection_select(:item_ids, @items, :id, :item_name, {prompt: '選択して下さい', selected: @items}, {class: 'form-control'}) %>
         <div class="text-right">
           <%= link_to_add_association 'アイテムを追加', f, :classifications, id: 'add-item',
                                       class: 'btn btn-default',

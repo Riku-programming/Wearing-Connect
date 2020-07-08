@@ -31,10 +31,10 @@ class ItemsController < ApplicationController
 
 
   def save
-    item = Item.create(user_id: current_user.id, item_name: params['item_name'], price: params['price'])
-    item.image = params['image']
-    if item.save
-      flash[:success] = "アイテムを投稿しました"
+    @item = Item.create(user_id: current_user.id, item_name: params['item_name'], price: params['price'], category: Category.find(21), brand: params['brand'])
+    @item.remote_image_url=  params['image']
+    if @item.save!
+      flash[:success] = "アイテムを保存しました"
       redirect_to items_path
     end
   end
