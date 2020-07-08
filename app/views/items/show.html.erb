@@ -1,12 +1,4 @@
-<h1 class="text-center mt-4">マイアイテム</h1>
-
-<%#= gravatar_for @user, size: 200 %>
-
-<div class="text-center mt-4">
-  <%= link_to "Edit your profile", edit_user_registration_path(@user), class: "btn btn-outline-info" %>
-</div>
-
-
+<h1 class="text-center mt-4 item-font">My Item</h1>
 
 <div class="flickr_pagination">
   <%= paginate @items %>

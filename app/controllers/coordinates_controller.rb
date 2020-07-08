@@ -11,7 +11,7 @@ class CoordinatesController < ApplicationController
 
   def show
     @user = current_user
-    @coordinates = @user.coordinates.paginate(page: params[:page], per_page: 5)
+    @coordinates = @user.coordinates.all.page(params[:page]).per(5)
   end
 
   def new
@@ -32,6 +32,7 @@ class CoordinatesController < ApplicationController
   end
 
   def edit
+    @items = Item.all
   end
 
   def update

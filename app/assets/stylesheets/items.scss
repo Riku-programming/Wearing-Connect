@@ -28,7 +28,7 @@
   height: 335px;
 }
 
-//.weather_image_post {
+//.item_image_post {
 //  width: 500px;
 //  max-width: 100%;
 //  height: auto;
@@ -46,16 +46,16 @@
 }
 
 .add_image {
-  border: black 4px dashed;
+  border: lightgray 1px solid;
   width: 100%;
   margin-top: 10px;
-  height: 380px;
+  height: 320px;
   line-height: 460px;
   border-radius: 10px;
   cursor: pointer;
   @include lg {
-    margin-top: 0;
-    height: 500px;
+    margin-top: 10px;
+    height: 610px;
     line-height: 550px;
   }
   i {
@@ -83,7 +83,7 @@
   box-sizing: border-box;
   transition: 0.3s ease-out;
   &:hover {
-    background-color: #EDBC6C;
+    background-color: lightgray;
     & i{
       color: #fff;
     }
@@ -208,3 +208,29 @@ div.SlideBox p {
 //    }
 //  }
 //}
+.rakuten-search{
+  padding-top: 20px;
+  padding-left: 70px;
+  justify-content: center;
+  align-items: center;
+
+}
+.rakuten-btn-search{
+  font-size: 1.4em;
+  background-color: deepskyblue;
+  color: white;
+}
+.btn-rakuten-page{
+  background-color: lightgreen;
+  color: white;
+}
+.btn-rakuten-save{
+  background-color: deepskyblue;
+  color: white;
+}
+
+.table-bordered{
+  margin-left: 130px;
+  justify-content: center;
+  align-items: center;
+}

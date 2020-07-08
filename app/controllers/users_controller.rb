@@ -3,9 +3,9 @@ class UsersController < ApplicationController
 
 
   def show
-    # @item = Item.find(params[:id])
     @items = @user.items.all.page(params[:page]).per(5)
     @likes = @user.likes.all.page(params[:page]).per(5)
+    @coordinates = @user.coordinates.all.page(params[:page]).per(5)
     @friendship = Friendship.new
     @users = @user.followings
   end

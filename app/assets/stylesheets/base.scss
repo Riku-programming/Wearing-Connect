@@ -5,6 +5,10 @@
 @mixin lg { @media (min-width: 992px) { @content; } }
 
 //font
+.user-font {
+  font-family: 'Cinzel', cursive;
+}
+
 .coordinate-font {
   font-family: 'Cinzel', cursive;
 }
@@ -21,6 +25,10 @@
 .search-font {
   font-family: 'Cinzel', cursive;
 }
+.rakuten-search-font {
+  padding-left: 50px;
+}
+
 
 
 /* body */
