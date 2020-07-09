@@ -3,6 +3,7 @@ class CoordinatesController < ApplicationController
   before_action :set_coordinate, only: [:edit, :update, :show, :destroy]
   before_action :coordinate_params, only: [:create]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :set_all_item,  only: [:new, :edit]
 
 
   def index
@@ -17,7 +18,6 @@ class CoordinatesController < ApplicationController
   def new
     @coordinate = Coordinate.new
     @coordinate.classifications.build
-    @items = Item.all
   end
 
   def create
@@ -32,7 +32,6 @@ class CoordinatesController < ApplicationController
   end
 
   def edit
-    @items = Item.all
   end
 
   def update
@@ -60,6 +59,10 @@ class CoordinatesController < ApplicationController
   def coordinate_params
     params[:coordinate].permit(:name,
                                classifications_attributes: [:item_id, :_destroy])
+  end
+
+  def set_all_item
+    @items = Item.all
   end
 
   def require_same_user
