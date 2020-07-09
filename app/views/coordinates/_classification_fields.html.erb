@@ -1,0 +1,11 @@
+<div class="nested-fields form-group">
+  <%#= f.hidden_field :item_id %>
+  <div class="col-form-label text-light">
+    <%= f.label :item_id, 'アイテム名', class: "col-form-label text-light" %>
+    <%= f.collection_select(:item_id, @items, :id, :item_name, {}, {class: 'form-control'}) %>
+    <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+  </div>
+</div>
+
+
+

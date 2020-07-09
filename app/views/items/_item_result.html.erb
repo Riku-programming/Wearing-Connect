@@ -12,21 +12,18 @@
           <th scope="col">Price</th>
           <th scope="col">Image</th>
           <th scope="col">URL</th>
-          <!--          todo いいね機能をつける-->
-          <th scope="col">favorite</th>
+          <th scope="col">Save</th>
         </tr>
         </thead>
         <tbody>
         <% @items.first(10).each do |item| %>
           <tr>
             <td><%= item['itemName'] %></td>
-            <td><%= "#{item['itemPrice']} yen" %></td>
+            <td><%= "#{item['itemPrice']} 円" %></td>
             <td><%= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>
-            <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success' %></td>
-            <td><%= link_to("#") do %>
-                <%= fa_icon 'star' %>
-              <% end %>
-            </td>
+            <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success btn-rakuten-page' %></td>
+            <td><%= link_to 'Save', {:controller => "items", :action => "save", :item_name => item['itemName'], :price => item['itemPrice'], :brand => item['shopName'], :image => item['mediumImageUrls'][0].gsub("?_ex=128x128", "")},
+                            method: :post, data: {confirm: '保存しますか？'}, class: 'btn btn-primary btn-rakuten-save' %></td>
           </tr>
         <% end %>
         </tbody>

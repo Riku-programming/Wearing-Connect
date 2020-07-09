@@ -1,21 +1,18 @@
 class FriendshipsController < ApplicationController
   def create
-    friend = User.find(params[:friend])
-    current_user.friendships.build(friend_id: friend.id)
-    if current_user.save
-      flash[:success] = "Following friend"
-    else
-      flash[:alert] = "There was something wrong with the tracking request"
-    end
-    redirect_to my_friends_path
+    follow = current_user.active_relationships.build(
+        follower_id: params[:user_id]
+    )
+    follow.save
+    redirect_to user_path(current_user)
   end
 
-  # todo flashの表示方法を色々変えて追加したい
   def destroy
-    friendship = current_user.friendships.where(friend_id: params[:id]).first
-    friendship.destroy
-    flash[:info] = "Stopped following"
-    redirect_to my_friends_path
+    # user = User.find(params[:user_id])
+    follow = current_user.active_relationships.find_by(
+        follower_id: params[:user_id]
+    )
+    follow.destroy
+    redirect_to user_path(current_user)
   end
-
 end

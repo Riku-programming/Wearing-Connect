@@ -8,16 +8,16 @@
         <%= render "layouts/labels" %>
 
         <div class="form-group row">
-          <%= f.label :name, class: "col-2 col-form-label text-light" %><br>
+          <%= f.label :name, "ユーザー名", class: "col-2 col-form-label text-light" %><br>
           <div class="col-10">
-            <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Enter your name", autofocus: true %>
+            <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "名前を入力してください", autofocus: true %>
           </div>
         </div>
 
         <div class="form-group row">
-          <%= f.label :email, class: "col-2 col-form-label text-light" %>
+          <%= f.label :email, "メールアドレス", class: "col-2 col-form-label text-light" %>
           <div class="col-10">
-            <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email address" %>
+            <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "メールアドレスを入力してください" %>
           </div>
         </div>
         <%# if @minimum_password_length %>
@@ -30,21 +30,21 @@
 
 
         <div class="form-group row">
-          <%= f.label :password, class: "col-2 col-form-label text-light" %>
+          <%= f.label :password, "パスワード", class: "col-2 col-form-label text-light" %>
           <div class="col-10">
-            <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "6 characters minimum" %>
+            <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "6文字以上でお願いします" %>
           </div>
         </div>
 
         <div class="form-group row ">
-          <%= f.label :password_confirmation, class: "col-2 col-form-label text-light" %><br/>
+          <%= f.label :password_confirmation,"パスワード確認", class: "col-2 col-form-label text-light" %><br/>
           <div class="col-10 password-form password-confirmation">
-            <%= f.password_field :password_confirmation, class: "form-control shadow rounded", autocomplete: "new-password", placeholder: "Enter your password again" %>
+            <%= f.password_field :password_confirmation, class: "form-control shadow rounded", autocomplete: "new-password", placeholder: "パスワードをもう一度入力してください" %>
           </div>
         </div>
 
         <div class="actions">
-          <%= f.submit('Sign in', class: 'btn btn-lg btn-primary btn-block') %>
+          <%= f.submit('新規登録', class: 'btn btn-lg btn-primary btn-block') %>
         </div>
       <% end %>
       <div class="link">

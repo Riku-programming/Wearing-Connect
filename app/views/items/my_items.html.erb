@@ -1,0 +1,29 @@
+<div class='search-area search'>
+  <div class="text-center mt-4 search-font">
+    <h1>Search</h1>
+    <h6 class="rakuten-search-font">by Rakuten</h6>
+  </div>
+
+  <%= form_with url: search_item_path, remote: true, method: :get do |f| %>
+    <div class="form-group row rakuten-search">
+      <div class="col-xs-9">
+        <%= f.text_field :keyword, placeholder: "楽天市場で検索する", autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <div class="col-xs-3 search-btn">
+        <%= button_tag type: :submit, class: "btn btn-primary rakuten-btn-search" do %>
+          <%= icon('fas', 'search') %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id='item-results'>
+  <% if @items.present? %>
+    <%= render 'item_list' %>
+  <% end %>
+</div>
+
+
+
+

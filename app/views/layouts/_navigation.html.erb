@@ -1,55 +1,62 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <%= link_to 'Want to Connect', root_path, class: 'navbar-brand' %>
-    <% if current_user %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <%= link_to image_tag('', class: 'navbar-logo'), root_path, class: 'navbar-brand' %>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-<!--          todo 後で作った機能のパスを＃に追加-->
-          <li class="nav-item <%= 'active' if request.path == "#" %>">
-            <%= link_to 'Articles', articles_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item <%= 'active' if request.path == my_friends_path %>">
-            <%= link_to 'My Friends', my_friends_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Profile
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to user_path(current_user), class: 'dropdown-item' do %>
-                <%= fa_icon 'home' %> View my profile
-              <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-              <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-                <%= fa_icon 'edit' %> Edit profile
-              <% end %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <%# if user_signed_in? && current_user.admin?  %>
+<!--        <li class="nav-item">-->
+          <%#= header_link_item(icon('fas', 'users') + ' すべてのユーザー', users_path) %>
+<!--        </li>-->
+      <%# end %>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'rss') + 'アイテム一覧', items_path) %>
+        </li>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'search') + ' アイテム検索', my_items_path) %>
+        </li>
+        <li class="nav-item">
+          <%= header_link_item(icon('fa', 'user-plus') + '友達', follows_user_path(current_user.id)) %>
+        </li>
 
-              <%= link_to search_item_path, class: 'dropdown-item' do %>
-                <%= fa_icon 'search' %> Search item
-              <% end %>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <ul class='navbar-nav ml-auto'>
-          <li class='nav-item user-name'>
-            <%= fa_icon 'user' %> <%= current_user.name %>
-          </li>
-          <li class='nav-item'>
-            <%= link_to("Logout", destroy_user_session_path,
-                        class: "btn btn-danger logout-button", method: :delete)%>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    <% end %>
+      <li class="nav-item">
+        <%= header_link_item(icon('fa', 'heart') + 'お気に入り', like_user_path(current_user.id)) %>
+      </li>
+      <li class="nav-item dropdown">
+        <%= link_to icon('fas', 'tshirt') + 'コーディネート', '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }  %>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to icon('fas', 'edit') + '作成', new_coordinate_path, class: 'dropdown-item' %>
+          <%= link_to icon('fas', 'rss') + '一覧', coordinates_path, class: 'dropdown-item' %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'edit') + ' 新しいアイテム', new_item_path) %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to icon('fas', 'user') + " #{current_user.name}さん", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to icon('fas', 'user') + ' マイページ', user_path(current_user), class: 'dropdown-item' %>
+            <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete, data: {confirm: "ログアウトしますか？"} %>
+            <%= link_to icon('fas', 'edit') + '編集', edit_user_registration_path, class: 'dropdown-item', data: {confirm: 'ユーザー情報を編集しますか？'} %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'user-plus') + ' 新規登録', new_user_registration_path) %>
+        </li>
+        <li class="nav-item">
+          <%= header_link_item(icon('fas', 'sign-in-alt') + ' ログイン', new_user_session_path) %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </nav>

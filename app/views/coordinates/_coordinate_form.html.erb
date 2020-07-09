@@ -1,0 +1,38 @@
+<div class="container coordinate_form">
+  <%= form_with(model: @coordinate, class: "shadow p-3 mb-3 bg-light rounded", remote: true) do |f| %>
+    <%= render 'shared/errors', obj: @coordinate %>
+    <div class="form-group row　coordinate-form">
+      <div class="col-md-6 col-right">
+        <%= f.label :name, 'コーディネート名', class: "col-form-label text-light" %>
+        <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "コーディネート名を入力してください" %>
+        <div class="text-right">
+          <%= link_to_add_association 'アイテムを追加', f, :classifications, id: 'add-item',
+                                      class: 'btn btn-default',
+                                      data: {association_insertion_method: 'after',
+                                             association_insertion_node: '#classifications'}
+          %>
+        </div>
+
+
+        <div id="classifications">
+          <%= f.fields_for :classifications do |classification| %>
+            <%= render 'classification_fields', f: classification %>
+          <% end %>
+        </div>
+
+        <div class="item-form-btns text-right mb-4">
+          <% if params['action'] == 'new' %>
+            <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+          <% else %>
+            <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
+          <% end %>
+          <%= link_to "戻る", coordinates_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
+        </div>
+      </div>
+
+
+  <% end %>
+  </div>
+</div>
+
+<%#= javascript_include_tag 'coordinate' %>

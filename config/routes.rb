@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
+  root 'home#index'
   get 'search_item', to: 'items#search'
-  # get 'my_items', to: 'items#my_items'
-  devise_for :users
+  get 'my_items', to: 'items#my_items'
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-    # get '/users/:id' => 'devise/sessions#show'
+  resources :users, only: [:show] do
+    resource :friendships, only: [:create, :destroy, :show]
+    member do
+      get :follows, :followers, :favorites, :items, :like
+    end
   end
+  resources :coordinates
 
-  get 'friendships/create'
-  get 'friendships/destroy'
-  root 'home#show'
-  get 'show', to: 'home#show'
-  get 'my_friends', to: 'users#my_friends'
   get 'search_friend', to: 'users#search'
-  resources :friendships
-  resources :users, only: [:show]
-  resources :articles
+  post 'save', to: 'items#save'
+  resources :items do
+    collection do
+      get 'search'
+    end
+    resources :likes, only: [:create, :destroy]
+  end
 end

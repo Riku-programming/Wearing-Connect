@@ -1,0 +1,65 @@
+<div class="container item_form">
+  <%= form_with(model: @item, class: "shadow p-3 mb-3 bg-light rounded", remote: true) do |f| %>
+    <%= render 'shared/errors', obj: @item %>
+    <div class="form-group row">
+      <%= f.label :image do %>
+        <img id="item_img_prev" src="#" class='hidden z-depth-0 mb-4 add-item-img' style="width: 250px; height: 250px; cursor: pointer;" alt="item image"/>
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
+        <div class="col-md-6 add_image text-center" id="img_field">
+          <% if @item.image.url.present? %>
+            <%= image_tag(@item.image.url, class: "item-present-img z-depth-0",size: "200x250") %>
+          <% else %>
+            <i class="fas fa-camera"><p class="help-block">アイテムの画像を選択してください</p></i>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="col-md-6 col-right">
+        <%= f.label :item_name, '商品名', class: "col-form-label text-light" %>
+        <%= f.text_field :item_name, class: "form-control shadow rounded", placeholder: "商品名を入力してください" %>
+        <%= f.label :price, '価格', class: "col-form-label text-light" %>
+        <%= f.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "価格" %>
+        <%= f.label :brand, 'ブランド', class: "col-form-label text-light"%>
+        <%= f.text_field :brand, class: "form-control shadow rounded", placeholder: "ブランド名" %>
+        <%= f.label :content, 'レビュー', class: "col-form-label text-light" %>
+        <%= f.text_area :content, class: 'form-control', rows: 12, placeholder: 'レビューを入力してください' %>
+        <%= f.label :category, 'カテゴリー', class: 'col-form-label text-light' %>
+        <%= f.collection_select(:category_id, @category, :id, :name, {prompt: '選択して下さい', selected: @item.category}, {class: 'form-control'}) %>
+
+        <div class="item-form-btns text-right mb-4">
+          <% if params['action'] == 'new' %>
+            <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+          <% else %>
+            <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
+          <% end %>
+          <%= link_to "戻る", items_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
+        </div>
+      </div>
+  <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#item_img_prev').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#item_image").change(function () {
+            $('#item_img_prev').removeClass('hidden');
+            $('.item_present_img').remove();
+            readURL(this);
+        });
+    });
+</script>
+
+
+
+
+

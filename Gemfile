@@ -21,13 +21,22 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'will_paginate', '3.1.7'
-gem 'bootstrap-will_paginate', '1.00'
+gem 'bootstrap'
 gem 'devise'
 gem 'rails-controller-testing'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'rakuten_web_service'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'ancestry'
+gem 'rails-i18n'
+gem 'cocoon'
+gem 'faker'
+gem 'kaminari'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -40,7 +49,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
-  gem 'faker'
 end
 
 group :development do

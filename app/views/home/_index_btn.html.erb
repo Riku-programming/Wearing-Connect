@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+  <nav class="nav-login nav nav-pills nav-justified navbar-expand-lg mb-2">
+    <%= nav_link_add_active('マイページ', user_path(current_user)) %>
+    <%= nav_link_add_active('アイテム一覧', items_path) %>
+    <%= nav_link_add_active('コーディネート',coordinates_path ) %>
+  </nav>
+<% else %>
+  <nav class="nav-notlogin nav nav-pills nav-justified navbar-expand-lg mb-2">
+    <%= nav_link_add_active('アイテム一覧', item_path) %>
+    <%= nav_link_add_active('コーディネート',coordinates_path ) %>
+  </nav>
+<% end %>

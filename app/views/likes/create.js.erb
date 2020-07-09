@@ -1,0 +1,2 @@
+$("#like_btn_<%= @item.id %>").html("<%= j(render 'like_area',{ item: @item }) %>");
+$("#likes_<%= @item.id %>").html('<%= "#{@item.likes.count.to_s(:delimited)} 件" %>');

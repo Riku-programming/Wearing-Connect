@@ -1,8 +1,5 @@
 # 今からやること
-# todo paginationつける
-# todo 検索結果をajax化する
-
-
+# todo rekuten search 機能いらん
 
 
 
@@ -10,6 +7,7 @@
 
 # 後ほど修正
 # todo flash messageを修正
+# todo　日本語化する
 
 
 

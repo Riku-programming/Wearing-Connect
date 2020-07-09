@@ -1,0 +1,14 @@
+<h1 class="text-center mt-4 coordinate-font">My Coordinate</h1>
+
+<%#= gravatar_for @user, size: 200 %>
+
+
+
+<div class="flickr_pagination">
+  <%= paginate @coordinates %>
+</div>
+<%= render 'coordinates/coordinate' %>
+
+<div class="flickr_pagination mb-4">
+  <%= paginate @coordinates %>
+</div>

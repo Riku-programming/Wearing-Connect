@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ */
+
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "base";
+@import "items";
+@import "users";
+@import "coordinates";
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+
+
+
+@mixin sm { @media (min-width: 576px) { @content; } }
+@mixin md { @media (min-width: 768px) { @content; } }
+@mixin lg { @media (min-width: 992px) { @content; } }
+
+.item_link{
+  color: darkblue;
+}
+.link{
+    margin-top: 20px;
+}
+
+.password-confirmation{
+    margin-top: 10px;
+}
+
+
+
+.debug_dump {
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+}
+.image{
+    margin-left: 500px;
+    width: 300px;
+    height: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+//.user-name{
+//  padding-left: 75px;
+//}
+
+.form-image{
+  display: none;
+}
+.pagination > {
+  li > a {
+    border: none;
+    color: #696969;
+  }
+
+  .active > a {
+    background: #93c9ff;
+    border-radius: 15px;
+  }
+
+  li > a:hover {
+    border-radius: 15px;
+  }
+}
+
+.card-content > p{
+  padding-left: 160px;
+}

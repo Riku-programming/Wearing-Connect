@@ -1,0 +1,53 @@
+<div class="container">
+  <% @coordinates.each do |coordinate| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card-text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            <% if coordinate.user %>
+              by <%= link_to coordinate.user.name, coordinate_path(coordinate) %>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-title coordinate-title"><%= link_to coordinate.name, coordinate_path(coordinate), class: "text-success" %></h3>
+
+
+            <table class="table table-list">
+              <thead>
+              <tr>
+                <th>アイテム名</th>
+                <th>カテゴリ名</th>
+                <th>価格</th>
+
+
+              </tr>
+              </thead>
+              <% coordinate.items.each do |item| %>
+                <tr>
+                  <td>
+                    <%= link_to("#{item.item_name}",item, class: "item_link")%>
+                  </td>
+                  <td>
+                    <%= "#{item.category.name}" %>
+                  </td>
+                  <td>
+                    <%= "#{item.price} 円" %>
+                  </td>
+                </tr>
+              <% end %>
+
+            </table>
+
+            <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
+            <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
+          </div>
+          <div class="card-footer text-muted PhotoBox SlideBox">
+            <small>作成日時 <%= coordinate.created_at.to_s(:datetime_jp) %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

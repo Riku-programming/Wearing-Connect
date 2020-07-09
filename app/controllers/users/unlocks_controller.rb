@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 class Users::UnlocksController < Devise::UnlocksController
-  # GET /resource/unlock/new
+  # GET /coordinates/unlock/new
   # def new
   #   super
   # end
 
-  # POST /resource/unlock
+  # POST /coordinates/unlock
   # def create
   #   super
   # end
 
-  # GET /resource/unlock?unlock_token=abcdef
+  # GET /coordinates/unlock?unlock_token=abcdef
   # def show
   #   super
   # end
@@ -19,12 +19,12 @@ class Users::UnlocksController < Devise::UnlocksController
   # protected
 
   # The path used after sending unlock password instructions
-  # def after_sending_unlock_instructions_path_for(resource)
-  #   super(resource)
+  # def after_sending_unlock_instructions_path_for(coordinates)
+  #   super(coordinates)
   # end
 
-  # The path used after unlocking the resource
-  # def after_unlock_path_for(resource)
-  #   super(resource)
+  # The path used after unlocking the coordinates
+  # def after_unlock_path_for(coordinates)
+  #   super(coordinates)
   # end
 end

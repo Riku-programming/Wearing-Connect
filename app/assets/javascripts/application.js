@@ -1,5 +1,16 @@
-//= require jquery
+//
+//= require jquery3
+//= require popper
+//= require bootstrap
+//= require rails-ujs
+//= require jquery-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
 
-$(function () {
-    setTimeout("$('.flash').fadeOut('slow')",2000)
-});
+
+$(document).on("turbolinks:load", function() {
+    setTimeout("$('.time-limit').fadeOut('slow')", 1500)
+})
+
+
