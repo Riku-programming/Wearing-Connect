@@ -36,6 +36,7 @@ gem 'rails-i18n'
 gem 'cocoon'
 gem 'faker'
 gem 'kaminari'
+gem 'rename'
 
 
 # Use Active Storage variant
