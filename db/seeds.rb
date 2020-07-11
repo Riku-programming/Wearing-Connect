@@ -15,8 +15,18 @@ User.create!(name: 'riku',
              avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
              introduction: "よろしくお願いします")
 
+# ゲストユーザー
+User.create!(name: 'Guest User',
+             email: 'guest@example.com',
+             password: 'guest_password',
+             password_confirmation: 'guest_password',
+             created_at: Time.zone.now,
+             avatar: open("#{Rails.root}/db/fixtures/avatar/guest.jpg"),
+             introduction: "このユーザーはゲストユーザーです",
+             guest: true)
+
 # デモユーザー
-1.upto(6) do |n|
+2.upto(7) do |n|
   name = Faker::Name.name
   email = "sample-#{n}@example.com"
   password = "password"
