@@ -12,8 +12,8 @@
 <body class="d-flex flex-column">
 <%= render 'layouts/navigation' %>
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<!--  <p class="notice"><%#= notice %></p>-->
+<!--  <p class="alert"><%#= alert %></p>-->
   <% flash.each do |name, msg| %>
     <div class="alert alert-<%= name %>">
       <%= msg.html_safe %>

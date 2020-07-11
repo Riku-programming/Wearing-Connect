@@ -23,7 +23,7 @@
         <%= f.label :content, 'レビュー', class: "col-form-label text-light" %>
         <%= f.text_area :content, class: 'form-control', rows: 12, placeholder: 'レビューを入力してください' %>
         <%= f.label :category, 'カテゴリー', class: 'col-form-label text-light' %>
-        <%= f.collection_select(:category_id, @category, :id, :name, {prompt: '選択して下さい', selected: @item.category}, {class: 'form-control'}) %>
+        <%= f.collection_select(:category_id, @category, :id, :name, {prompt: 'カテゴリを選択して下さい', selected: @item.category}, {class: 'form-control'}) %>
 
         <div class="item-form-btns text-right mb-4">
           <% if params['action'] == 'new' %>
