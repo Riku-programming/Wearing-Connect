@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [index destroy]
   before_action :set_user, only: [:show, :followers, :follows]
+  before_action :admin_user, only: %i[index destroy]
+
+  def index
+    @users = User.order(admin: :DESC, id: :ASC).page(params[:page]).per(PER * 2)
+  end
 
 
   def show
@@ -58,5 +64,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end

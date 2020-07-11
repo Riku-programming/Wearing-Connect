@@ -13,7 +13,8 @@ User.create!(name: 'riku',
              password_confirmation: 'password',
              created_at: Time.zone.now,
              avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
-             introduction: "よろしくお願いします")
+             introduction: "よろしくお願いします",
+             admin: true)
 
 # ゲストユーザー
 User.create!(name: 'Guest User',
