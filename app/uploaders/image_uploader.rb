@@ -20,7 +20,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-# todo resizeの大きさfill fitどちらにするか考える
   # Process files as they are uploaded:
   # process scale: [200, 300]
   # process :resize_to_fill => [1080, 1080, 'Center']

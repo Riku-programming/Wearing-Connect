@@ -39,7 +39,7 @@
 
             </table>
 
-            <% if (current_user == item.user) || current_user.admin? %>
+            <% if (current_user == coordinate.user) || current_user.admin? %>
               <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
               <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
             <% end %>
