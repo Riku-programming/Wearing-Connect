@@ -26,7 +26,7 @@
               <% coordinate.items.each do |item| %>
                 <tr>
                   <td>
-                    <%= link_to("#{item.item_name}",item, class: "item_link")%>
+                    <%= link_to("#{item.item_name}", item, class: "item_link") %>
                   </td>
                   <td>
                     <%= "#{item.category.name}" %>
@@ -39,8 +39,10 @@
 
             </table>
 
-            <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
-            <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
+            <% if (current_user == item.user) || current_user.admin? %>
+              <%= link_to "編集", edit_coordinate_path(coordinate), class: "btn btn-outline-info" %>
+              <%= link_to "削除", coordinate_path(coordinate), class: "btn btn-outline-danger", id: "delete-button", method: :delete, data: {confirm: "コーディネートを削除しますか?"} %>
+            <% end %>
           </div>
           <div class="card-footer text-muted PhotoBox SlideBox">
             <small>作成日時 <%= coordinate.created_at.to_s(:datetime_jp) %>

@@ -66,9 +66,6 @@ class CoordinatesController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @coordinate.user
-      flash[:danger] = "You can only edit delete your own items"
-      redirect_to root_path
-    end
+    redirect_to(root_url) unless (@coordinate.user == current_user) || current_user.admin?
   end
 end

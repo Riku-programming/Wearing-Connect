@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [index destroy]
-  before_action :set_user, only: [:show, :followers, :follows]
-  before_action :admin_user, only: %i[index destroy]
+  before_action :authenticate_user!, only: [:index, :destroy]
+  before_action :admin_user, only: [:index ,:destroy]
+  before_action :set_user, only: [:show, :destroy,:followers, :follows]
+
 
   def index
-    @users = User.order(admin: :DESC, id: :ASC).page(params[:page]).per(PER * 2)
+    @users = User.order(admin: :DESC, id: :ASC).page(params[:page]).per(5 * 2)
   end
 
 
@@ -57,8 +58,13 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
-  def like_items; end
 
+
+  def destroy
+    @user.destroy
+    flash[:success] = "ユーザー「#{@user.name}」は正常に削除されました"
+    redirect_to users_path
+  end
 
   private
 

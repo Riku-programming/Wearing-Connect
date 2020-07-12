@@ -62,7 +62,6 @@ class ItemsController < ApplicationController
     @items = @user.items.all.page(params[:page]).per(5)
   end
 
-  # fixme flashメッセージがアプリケーションを通して表示されない
   def destroy
     @item.destroy
     flash[:danger] = "アイテムは正常に削除されました"
@@ -106,10 +105,7 @@ class ItemsController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @item.user
-      flash[:danger] = "You can only edit delete your own items"
-      redirect_to root_path
-    end
+    redirect_to(root_url) unless (@item.user == current_user) || current_user.admin?
   end
 
   def set_category

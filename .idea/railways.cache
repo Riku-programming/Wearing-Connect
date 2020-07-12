@@ -25,7 +25,9 @@
                        favorites_user GET    /users/:id/favorites(.:format)                                                           users#favorites
                            items_user GET    /users/:id/items(.:format)                                                               users#items
                             like_user GET    /users/:id/like(.:format)                                                                users#like
+                                users GET    /users(.:format)                                                                         users#index
                                  user GET    /users/:id(.:format)                                                                     users#show
+                                      DELETE /users/:id(.:format)                                                                     users#destroy
                           coordinates GET    /coordinates(.:format)                                                                   coordinates#index
                                       POST   /coordinates(.:format)                                                                   coordinates#create
                        new_coordinate GET    /coordinates/new(.:format)                                                               coordinates#new
