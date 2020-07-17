@@ -4,22 +4,70 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+#default: &default
+#  adapter: sqlite3
+#  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
+
+#default: &default
+#  adapter: postgresql
+#  encoding: unicode
+#  host: db
+#  username: postgres
+#  password: password
+#  pool: 5
+
+
+#development:
+#  <<: *default
+#  database: db/development.sqlite3
+
+#development:
+#  <<: *default
+#  database: my_app_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+#test:
+#  <<: *default
+#  database: db/test.sqlite3
+
+#test:
+#  <<: *default
+#  database: myapp_test
+
+
+#production:
+#  <<: *default
+#  database: db/production.sqlite3
+
+#production:
+#  <<: *default
+#  database: my_app_prouction
+
+
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
+  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+  host: db
+
+development:
+  <<: *default
+  database: myapp_development
+
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: myapp_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: myapp_production
+  host:     <%= ENV.fetch('DB_HOST_PRODUCTION') { 'localhost' } %>
+  username: <%= ENV.fetch('DB_USERNAME_PRODUCTION') { 'mysql_user' } %>
+  password: <%= ENV.fetch('DB_PASSWORD_PRODUCTION') { 'password' } %>
