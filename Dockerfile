@@ -37,12 +37,12 @@ RUN bundle install
 COPY . $APP_ROOT
 RUN mkdir -p tmp/sockets
 
-##fixme
+###fixme
+##
+##
+#COPY entrypoint.sh /usr/bin/
+#RUN chmod +x /usr/bin/entrypoint.sh
+#ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+#EXPOSE 3000
 #
-#
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-EXPOSE 3000
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["rails", "server", "-b", "0.0.0.0"]

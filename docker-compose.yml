@@ -4,6 +4,9 @@ services:
     build:
       context: .
 #    image: Wearing-Connect_app:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: bundle exec puma -C config/puma.rb
     tty: true
     stdin_open: true
     volumes:

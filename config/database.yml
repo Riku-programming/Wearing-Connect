@@ -55,19 +55,22 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
   password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+  #  ローカル環境でrails Server するにはhostをlocalhostにしてpasswordの部分を空白にする
+  #  host: localhost
   host: db
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: myapp_development
+  database: wearing-connect_development
 
 test:
   <<: *default
-  database: myapp_test
+  database: wearing-connect_test
 
 production:
   <<: *default
-  database: myapp_production
+  database: wearing-connect_production
   host:     <%= ENV.fetch('DB_HOST_PRODUCTION') { 'localhost' } %>
   username: <%= ENV.fetch('DB_USERNAME_PRODUCTION') { 'mysql_user' } %>
   password: <%= ENV.fetch('DB_PASSWORD_PRODUCTION') { 'password' } %>
