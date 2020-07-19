@@ -57,10 +57,9 @@ default: &default
   password:
   #  ローカル環境でrails Server するにはhostをlocalhostにしてpasswordの部分を空白にする
   host: localhost
-  #  host: db
-  #  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+#  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+#  host: db
 
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -69,6 +68,7 @@ development:
 test:
   <<: *default
   database: wearing-connect_test
+  host: localhost
 
 production:
   <<: *default

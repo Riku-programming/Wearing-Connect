@@ -13,7 +13,7 @@ RSpec.describe 'Signup', type: :system do
     fill_in 'ユーザー名', with: 'a' * 16
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
-    fill_in 'パスワード確認', with: 'error_password'
+    fill_in 'パスワード（確認用)', with: 'error_password'
 
     expect do
       click_button '新規登録'
@@ -28,7 +28,7 @@ RSpec.describe 'Signup', type: :system do
     fill_in 'ユーザー名', with: 'John'
     fill_in 'メールアドレス', with: 'john@example.com'
     fill_in 'パスワード', with: 'password_john'
-    fill_in 'パスワード確認', with: 'password_john'
+    fill_in 'パスワード（確認用)', with: 'password_john'
     expect do
       click_button '新規登録'
       expect(current_path).to eq root_path

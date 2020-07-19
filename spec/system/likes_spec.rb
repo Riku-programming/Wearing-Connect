@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Likes', type: :system do
   let!(:user) {FactoryBot.create(:user)}
   let!(:another_user) {FactoryBot.create(:another_user)}
+  let!(:category) {FactoryBot.create(:category)}
   let!(:item) {FactoryBot.create(:item)}
   # let!(:another_item) {FactoryBot.create(:another_item)}
   # let!(:another_item_params) {FactoryBot.attributes_for(:another_item)}
@@ -24,7 +25,8 @@ RSpec.describe 'Likes', type: :system do
     expect(current_path).to eq root_path
 
     # アイテム一覧へ移動する
-    click_link 'アイテム一覧'
+    click_link 'アイテム一覧',match: :first
+    item = user.items.first
     expect(page).to have_link "#{item.item_name}", href: "/items/#{item.id}"
     click_link "#{item.item_name}", href: "/items/#{item.id}"
     expect(current_path).to eq "/items/#{item.id}"
@@ -38,15 +40,15 @@ RSpec.describe 'Likes', type: :system do
       click_link "0 いいね！", href: "/items/#{item.id}/likes"
       expect(page).to have_content '1 いいね済'
       expect(page).to_not have_content '0 いいね!'
-    end.to change(item.likes, :count).by(-1)
+    end.to change(item.likes, :count).by(1)
 
-    # # いいね！解除する
-    # expect(page).to have_content '1 いいね済'
-    # expect do
-    #   click_link 'いいね済'
-    #   expect(page).to have_content '0 いいね！'
-    #   expect(page).to_not have_content '1 いいね済'
-    # end.to change(item.likes, :count).by(-1)
+    # いいね！解除する
+    expect(page).to have_content '1 いいね済'
+    expect do
+      click_link 'いいね済'
+      expect(page).to have_content '0 いいね！'
+      expect(page).to_not have_content '1 いいね済'
+    end.to change(item.likes, :count).by(-1)
   end
 end
 

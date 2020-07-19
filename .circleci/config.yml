@@ -15,6 +15,9 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/Wearing-Connect
 
@@ -53,9 +56,11 @@ jobs:
           paths:
             - ~/.cache/yarn
 
+      - run: mv config/database.ci.yml config/database.yml
+
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # Database setup
       - run: bundle exec rake db:create
@@ -78,10 +83,19 @@ jobs:
           name: run rubocop
           command: bundle exec rubocop
 
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
+
+
+#      # collect reports
+#      - store_test_results:
+#          path: /tmp/test-results
 #      - store_artifacts:
 #          path: /tmp/test-results
 #          destination: test-results
-
+workflows:
+  version: 2
+  rubocop_rspec:
+    jobs:
+      - rubocop
+      - rspec:
+          requires:
+            - rubocop
