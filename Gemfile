@@ -56,6 +56,13 @@ group :development, :test do
   gem "rubocop-rails"
   gem "factory_bot_rails"
   gem "rspec_junit_formatter"
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
+
 end
 
 group :development do
