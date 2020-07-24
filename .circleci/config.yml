@@ -1,6 +1,13 @@
 version: 2
+
+#commands:
+#  bundle-install-command:
+#    description: "checkout and bundle install and caching"
+#    steps:
+
+
 jobs:
-  build:
+  rspec:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.6.5-node-browsers
@@ -20,11 +27,10 @@ jobs:
           MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/Wearing-Connect
+    # Download and cache dependencies
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -40,6 +46,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
 
       - restore_cache:
           keys:
@@ -79,6 +86,27 @@ jobs:
                             --format progress \
                             $TEST_FILES
 
+  rubocop:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    working_directory: ~/Wearing-Connect
+    steps:
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            gem install bundler -v 2.0.2
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
       - run:
           name: run rubocop
           command: bundle exec rubocop
@@ -91,6 +119,8 @@ jobs:
 #      - store_artifacts:
 #          path: /tmp/test-results
 #          destination: test-results
+
+
 workflows:
   version: 2
   rubocop_rspec:

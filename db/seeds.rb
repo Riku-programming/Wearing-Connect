@@ -24,7 +24,7 @@ User.create!(name: 'Guest User',
              created_at: Time.zone.now,
              avatar: open("#{Rails.root}/db/fixtures/avatar/guest.jpg"),
              introduction: "このユーザーはゲストユーザーです",
-             # guest: true
+             guest: true
              )
 
 # デモユーザー
