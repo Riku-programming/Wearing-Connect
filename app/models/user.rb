@@ -6,33 +6,33 @@ class User < ApplicationRecord
   has_many :likes_items, through: :likes, source: :item
 
   has_many :active_relationships, class_name:
-      'Friendship', foreign_key:
+      "Friendship", foreign_key:
                :following_id, dependent:
                :destroy
 
   has_many :followings, through: :active_relationships, source: :follower
 
   has_many :passive_relationships, class_name:
-      'Friendship', foreign_key:
+      "Friendship", foreign_key:
                :follower_id, dependent:
                :destroy
   has_many :followers, through: :passive_relationships, source: :following
   mount_uploader :avatar, ImageUploader
 
 
-  validates :name, presence: true, length: {maximum: 15}
+  validates :name, presence: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-  before_save {self.email = email.downcase}
+  before_save { self.email = email.downcase }
   validates :email,
             presence: true,
-            uniqueness:{case_sensitive: false},
-            length: {maximum: 255},
+            uniqueness: { case_sensitive: false },
+            length: { maximum: 255 },
             format: {
                 with: VALID_EMAIL_REGEX
             }
   validates :password,
             presence: true,
-            length: {minimum: 8}
+            length: { minimum: 8 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -46,11 +46,11 @@ class User < ApplicationRecord
   end
 
   def self.name_matches(param)
-    matches('name', param)
+    matches("name", param)
   end
 
   def self.email_matches(param)
-    matches('email', param)
+    matches("email", param)
   end
 
   def self.matches(field_name, param)
@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def except_current_user(users)
-    users.reject {|user| user.id == self.id}
+    users.reject { |user| user.id == self.id }
   end
 
   def not_follows_with?(user)
@@ -84,6 +84,4 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-
-
 end

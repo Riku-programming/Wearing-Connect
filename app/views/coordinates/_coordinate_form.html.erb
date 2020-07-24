@@ -22,9 +22,9 @@
 
         <div class="item-form-btns text-right mb-4">
           <% if params['action'] == 'new' %>
-            <%= f.submit "投稿する", class: "btn btn-outline-light btn-lg" %>
+            <%= f.submit "投稿する", class: "btn btn-outline-dark btn-lg",style: "border: none;" %>
           <% else %>
-            <%= f.submit "更新する", class: "btn btn-outline-light btn-lg" %>
+            <%= f.submit "更新する", class: "btn btn-outline-dark btn-lg",style: "border: none;"%>
           <% end %>
           <%= link_to "戻る", coordinates_path, class: "btn post-form-btn mr-2", style: "border: none;" %>
         </div>

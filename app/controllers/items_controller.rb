@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :set_category, only: [:new, :create, :edit]
   before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -25,14 +24,14 @@ class ItemsController < ApplicationController
       flash[:success] = "アイテムを投稿しました"
       redirect_to items_path
     else
-      render 'new'
+      render "new"
     end
   end
 
 
   def save
-    @item = Item.create(user_id: current_user.id, item_name: params['item_name'], price: params['price'], category: Category.find(21), brand: params['brand'])
-    @item.remote_image_url=  params['image']
+    @item = Item.create(user_id: current_user.id, item_name: params["item_name"], price: params["price"], category: Category.find(21), brand: params["brand"])
+    @item.remote_image_url=  params["image"]
     if @item.save!
       flash[:success] = "アイテムを保存しました"
       redirect_to items_path
@@ -45,7 +44,7 @@ class ItemsController < ApplicationController
       flash[:success] = "アイテムは正常に更新されました"
       redirect_to item_path(@item)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -77,40 +76,37 @@ class ItemsController < ApplicationController
       @item = Item.all.page(params[:page]).per(5)
       if @items.count >= 1
         respond_to do |format|
-          format.js {render partial: 'item_result'}
+          format.js { render partial: "item_result" }
         end
       elsif @items.count == 0
         respond_to do |format|
           flash.now[:alert] = "Couldn't find item"
-          format.js {render partial: 'item_result'}
+          format.js { render partial: "item_result" }
         end
       end
     else
       respond_to do |format|
         flash.now[:alert] = "Please enter a item name to search"
-        format.js {render partial: 'item_result'}
+        format.js { render partial: "item_result" }
       end
     end
   end
 
 
   private
+    def set_item
+      @item = Item.find(params[:id])
+    end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
+    def item_params
+      params[:item].permit(:item_name, :price, :image, :content, :brand, :category_id)
+    end
 
-  def item_params
-    params[:item].permit(:item_name, :price, :image, :content, :brand, :category_id)
-  end
+    def require_same_user
+      redirect_to(root_url) unless (@item.user == current_user) || current_user.admin?
+    end
 
-  def require_same_user
-    redirect_to(root_url) unless (@item.user == current_user) || current_user.admin?
-  end
-
-  def set_category
-    @category = Category.where(ancestry: 1)
-  end
-
-
+    def set_category
+      @category = Category.where(ancestry: 1)
+    end
 end

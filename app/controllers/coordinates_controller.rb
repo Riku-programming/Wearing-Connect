@@ -1,5 +1,4 @@
 class CoordinatesController < ApplicationController
-
   before_action :set_coordinate, only: [:edit, :update, :show, :destroy]
   before_action :coordinate_params, only: [:create]
   before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -27,7 +26,7 @@ class CoordinatesController < ApplicationController
       flash[:success] = "コーディネートが作成されました"
       redirect_to root_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -39,7 +38,7 @@ class CoordinatesController < ApplicationController
       flash[:success] = "コーディネートは正常に更新されました"
       redirect_to coordinate_path(@coordinate)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -51,21 +50,20 @@ class CoordinatesController < ApplicationController
 
 
   private
+    def set_coordinate
+      @coordinate = Coordinate.find(params[:id])
+    end
 
-  def set_coordinate
-    @coordinate = Coordinate.find(params[:id])
-  end
+    def coordinate_params
+      params[:coordinate].permit(:name,
+                                 classifications_attributes: [:item_id, :_destroy])
+    end
 
-  def coordinate_params
-    params[:coordinate].permit(:name,
-                               classifications_attributes: [:item_id, :_destroy])
-  end
+    def set_all_item
+      @items = Item.all
+    end
 
-  def set_all_item
-    @items = Item.all
-  end
-
-  def require_same_user
-    redirect_to(root_url) unless (@coordinate.user == current_user) || current_user.admin?
-  end
+    def require_same_user
+      redirect_to(root_url) unless (@coordinate.user == current_user) || current_user.admin?
+    end
 end

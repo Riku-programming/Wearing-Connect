@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :index, :destroy]
-  before_action :admin_user, only: [:index ,:destroy]
-  before_action :set_user, only: [:show, :destroy,:followers, :follows]
+  before_action :admin_user, only: [:index, :destroy]
+  before_action :set_user, only: [:show, :destroy, :followers, :follows]
 
 
   def index
@@ -30,18 +30,18 @@ class UsersController < ApplicationController
       @users = current_user.except_current_user(@users)
       if @users
         respond_to do |format|
-          format.js {render partial: 'users/partial/friend_result'}
+          format.js { render partial: "users/partial/friend_result" }
         end
       else
         respond_to do |format|
           flash.now[:alert] = "Couldn't find user"
-          format.js {render partial: 'users/partial/friend_result'}
+          format.js { render partial: "users/partial/friend_result" }
         end
       end
     else
       respond_to do |format|
         flash.now[:alert] = "Please enter a friend name or email to search"
-        format.js {render partial: 'users/partial/friend_result'}
+        format.js { render partial: "users/partial/friend_result" }
       end
     end
   end
@@ -67,12 +67,11 @@ class UsersController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end

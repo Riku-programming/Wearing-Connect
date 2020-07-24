@@ -3,4 +3,3 @@ class AddReferencesToItems < ActiveRecord::Migration[6.0]
     add_reference :items, :category, foreign_key: true
   end
 end
-

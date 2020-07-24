@@ -2,25 +2,25 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 Faker::Config.locale = :ja
-require 'csv'
-require './db/seeds/category.rb'
+require "csv"
+require "./db/seeds/category.rb"
 # require '../db/seeds/coordinate.rb'
 
 # 　管理ユーザー
-User.create!(name: 'riku',
-             email: 'riku@example.com',
-             password: 'password',
-             password_confirmation: 'password',
+User.create!(name: "riku",
+             email: "riku@example.com",
+             password: "password",
+             password_confirmation: "password",
              created_at: Time.zone.now,
              avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
              introduction: "よろしくお願いします",
              admin: true)
 
 # ゲストユーザー
-User.create!(name: 'Guest User',
-             email: 'guest@example.com',
-             password: 'guest_password',
-             password_confirmation: 'guest_password',
+User.create!(name: "Guest User",
+             email: "guest@example.com",
+             password: "guest_password",
+             password_confirmation: "guest_password",
              created_at: Time.zone.now,
              avatar: open("#{Rails.root}/db/fixtures/avatar/guest.jpg"),
              introduction: "このユーザーはゲストユーザーです",
@@ -55,7 +55,7 @@ CSV_IMAGE = 7
 
 
 # CSVファイルを読み込み、DB（テーブル）へ保存
-CSV.foreach('db/csv/item.csv') do |row|
+CSV.foreach("db/csv/item.csv") do |row|
   id = row[CSV_ID]
   item_name = row[CSV_ITEM_NAME]
   price = row[CSV_PRICE]
@@ -66,7 +66,7 @@ CSV.foreach('db/csv/item.csv') do |row|
   image = open("#{Rails.root}/db/fixtures/item_image/#{row[CSV_IMAGE]}")
   created_at = Time.zone.now
 
-  Item.create!(id: id, item_name: item_name, price: price, brand: brand, content: content, user_id: user_id,  category_id: category_id, image: image,created_at: created_at)
+  Item.create!(id: id, item_name: item_name, price: price, brand: brand, content: content, user_id: user_id,  category_id: category_id, image: image, created_at: created_at)
 end
 
 
@@ -84,6 +84,3 @@ end
 #     user.likes(item) unless user.id == item.user_id
 #   end
 # end
-
-
-
