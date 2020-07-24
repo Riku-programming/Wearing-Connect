@@ -25,6 +25,7 @@ gem "jbuilder", "~> 2.7"
 # gem 'bcrypt', '~> 3.1.7'
 gem "bootstrap"
 gem "devise"
+gem 'i18n', '~> 1.8', '>= 1.8.5'
 gem "rails-controller-testing"
 gem "font-awesome-sass"
 gem "jquery-rails"
@@ -39,7 +40,6 @@ gem "cocoon"
 gem "faker"
 gem "kaminari"
 gem "rename"
-
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

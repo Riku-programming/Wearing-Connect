@@ -369,6 +369,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass
+  i18n (~> 1.8, >= 1.8.5)
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
