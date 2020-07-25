@@ -40,6 +40,8 @@ gem "cocoon"
 gem "faker"
 gem "kaminari"
 gem "rename"
+# gem 'therubyracer',  platforms: :ruby
+# gem 'libv8'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -62,6 +64,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'capistrano3-unicorn'
 
 end
 
