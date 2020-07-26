@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.4.0"
+lock "~> 3"
 
 set :application, "Wearing-Connect"
 set :repo_url, "git@github.com:Riku-programming/Wearing-Connect.git"
@@ -15,8 +15,12 @@ set :linked_files, fetch(:linked_files, []).push("config/settings.yml")
 # シンボリックリンクをはるフォルダ
 set :linked_dirs, fetch(:linked_dirs, []).push("log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system")
 
+set :linked_files, 'config/credentials/production.key'
+
 # 保持するバージョンの個数(※後述)
 set :keep_releases, 5
+
+set :bundle_gemfile, "/var/www/rails/Wearing-Connect/Gemfile"
 
 
 # rubyのバージョン

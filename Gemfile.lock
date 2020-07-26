@@ -383,6 +383,7 @@ DEPENDENCIES
   rails (~> 6.0.2, >= 6.0.2.2)
   rails-controller-testing
   rails-i18n
+  raindrops
   rakuten_web_service
   rename
   rspec-rails (~> 3.6)
@@ -391,6 +392,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sass-rails (>= 6)
+  sassc
+  sassc-rails
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

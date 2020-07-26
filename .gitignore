@@ -41,3 +41,6 @@ yarn-debug.log*
 /terraform/variables.tf
 */*.tfvars
 *.tfvars
+/terraform/.terraform/plugins/darwin_amd64/lock.json
+
+/config/credentials/production.key
