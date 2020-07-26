@@ -25,17 +25,17 @@ gem "jbuilder", "~> 2.7"
 # gem 'bcrypt', '~> 3.1.7'
 gem "bootstrap"
 gem "devise"
-# gem 'i18n'
+gem "i18n", "1.8.4"
 gem "rails-controller-testing"
 gem "font-awesome-sass"
 gem "jquery-rails"
 gem "rakuten_web_service"
 gem "carrierwave"
 gem "mini_magick"
-# gem "devise-i18n"
-# gem "devise-i18n-views"
+gem "devise-i18n"
+gem "devise-i18n-views"
 gem "ancestry"
-# gem "rails-i18n"
+gem "rails-i18n"
 gem "cocoon"
 gem "faker"
 gem "kaminari"
@@ -58,14 +58,13 @@ group :development, :test do
   gem "rubocop-rails"
   gem "factory_bot_rails"
   gem "rspec_junit_formatter"
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
-  gem 'ed25519'
-  gem 'bcrypt_pbkdf'
-  gem 'capistrano3-unicorn'
-
+  gem "capistrano"
+  gem "capistrano-bundler"
+  gem "capistrano-rails"
+  gem "capistrano-rbenv"
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
+  gem "capistrano3-unicorn"
 end
 
 group :development do
