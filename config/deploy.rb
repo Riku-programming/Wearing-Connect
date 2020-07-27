@@ -10,12 +10,14 @@ set :branch, "master"
 set :deploy_to, "/var/www/rails/Wearing-Connect"
 
 # シンボリックリンクをはるファイル
-set :linked_files, fetch(:linked_files, []).push("config/settings.yml")
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
+# append :linked_files, 'config/credentials/production.key'
 
 # シンボリックリンクをはるフォルダ
 set :linked_dirs, fetch(:linked_dirs, []).push("log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system")
 
-set :linked_files, 'config/credentials/production.key'
+
+
 
 # 保持するバージョンの個数(※後述)
 set :keep_releases, 5

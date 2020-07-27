@@ -40,9 +40,9 @@ gem "cocoon"
 gem "faker"
 gem "kaminari"
 gem "rename"
-gem 'raindrops'
-gem 'sassc-rails'
-gem 'sassc'
+gem "raindrops"
+gem "sassc-rails"
+gem "sassc"
 # gem 'therubyracer',  platforms: :ruby
 # gem 'libv8'
 
