@@ -70,9 +70,18 @@ test:
   database: wearing-connect_test
   host: localhost
 
+#production:
+#  <<: *default
+#  database: wearing-connect_production
+#  host:     <%= ENV.fetch('DB_HOST_PRODUCTION') { 'localhost' } %>
+#  username: <%= ENV.fetch('DB_USERNAME_PRODUCTION') { 'mysql_user' } %>
+#  password: <%= ENV.fetch('DB_PASSWORD_PRODUCTION') { 'password' } %>
+
 production:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
   database: wearing-connect_production
-  host:     <%= ENV.fetch('DB_HOST_PRODUCTION') { 'localhost' } %>
-  username: <%= ENV.fetch('DB_USERNAME_PRODUCTION') { 'mysql_user' } %>
-  password: <%= ENV.fetch('DB_PASSWORD_PRODUCTION') { 'password' } %>
+  username: root
+  password:
+  socket: /var/lib/mysql/mysql.sock
