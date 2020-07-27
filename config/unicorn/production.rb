@@ -3,7 +3,6 @@ $worker  = 2
 # 何秒経過すればワーカーを削除するのかを決める
 $timeout = 30
 # 自分のアプリケーション名、currentがつくことに注意。
-# fixme 間違えてるかも
 $app_dir = "/var/www/rails/Wearing-Connect/current"
 # リクエストを受け取るポート番号を指定。後述
 $listen  = File.expand_path "tmp/sockets/.unicorn.sock", $app_dir
