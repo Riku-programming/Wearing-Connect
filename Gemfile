@@ -80,7 +80,7 @@ group :development do
 end
 
 group :production, :staging do
-  gem "unicorn"
+  gem "unicorn",'5.5.5'
 end
 
 group :test do
