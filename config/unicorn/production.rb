@@ -18,8 +18,7 @@ stderr_path $std_log
 stdout_path $std_log
 timeout $timeout
 listen  $listen
-pid $pid
-
+pid
 # ホットデプロイをするかしないかを設定
 preload_app true
 
