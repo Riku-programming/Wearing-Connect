@@ -54,12 +54,11 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-  password:
-  #  ローカル環境でrails Server するにはhostをlocalhostにしてpasswordの部分を空白にする
-  host: localhost
-#  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
-#  host: db
-
+#  password:
+#  #  ローカル環境でrails Server するにはhostをlocalhostにしてpasswordの部分を空白にする
+#  host: localhost
+  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+  host: db
 
 development:
   <<: *default
@@ -84,4 +83,4 @@ production:
   database: wearing-connect_production
   username: root
   password:
-  socket: /var/lib/mysql/mysql.sock
+#  socket: /tmp/mysql.sock
