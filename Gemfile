@@ -67,7 +67,7 @@ group :development, :test do
   gem "capistrano-rbenv"
   gem "ed25519"
   gem "bcrypt_pbkdf"
-  gem "capistrano3-unicorn"
+  # gem "capistrano3-unicorn"
 end
 
 group :development do

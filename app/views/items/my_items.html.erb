@@ -1,7 +1,7 @@
 <div class='search-area search'>
-  <div class="text-center mt-4 search-font">
+  <div class="mt-4 search-font text-center">
     <h1>Search</h1>
-    <h6 class="rakuten-search-font">by Rakuten</h6>
+    <h6>by Rakuten</h6>
   </div>
 
   <%= form_with url: search_item_path, remote: true, method: :get do |f| %>
@@ -18,11 +18,15 @@
   <% end %>
 </div>
 
+
+
+
 <div id='item-results'>
   <% if @items.present? %>
     <%= render 'item_list' %>
   <% end %>
 </div>
+
 
 
 

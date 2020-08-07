@@ -2,9 +2,23 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-@mixin sm { @media (min-width: 576px) { @content; } }
-@mixin md { @media (min-width: 768px) { @content; } }
-@mixin lg { @media (min-width: 992px) { @content; } }
+@mixin sm {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
 
 
 .item-cards {
@@ -12,11 +26,12 @@
   padding: 0 20px;
   margin-bottom: 5px;
 }
+
 .card-index {
   margin: 14px 0;
 }
 
-.item-img{
+.item-img {
   width: 300px;
   height: 300px;
 
@@ -54,13 +69,17 @@
   border-radius: 10px;
   cursor: pointer;
   @include lg {
+    width: 800px;
+    height: 400px;
+    margin-left: 40px;
     margin-top: 10px;
-    height: 610px;
     line-height: 550px;
   }
+
   i {
     font-size: 120px;
   }
+
   p {
     font-size: 12px;
   }
@@ -82,12 +101,15 @@
   overflow: hidden;
   box-sizing: border-box;
   transition: 0.3s ease-out;
+
   &:hover {
     background-color: lightgray;
-    & i{
+
+    & i {
       color: #fff;
     }
   }
+
   img {
     vertical-align: initial;
     width: inherit;
@@ -97,22 +119,27 @@
 
 .card-header {
   padding: 5px;
+
   a {
     text-decoration: none;
     color: #666;
   }
 }
+
 .item-user {
   float: left;
   line-height: 48px;
 }
+
 .item-info {
   text-align: right;
 }
+
 .card-footer {
   div {
     font-size: 0.9rem;
     color: rgba(0, 0, 0, 0.5);
+
     span:first-child {
       margin-right: 10px;
     }
@@ -148,21 +175,24 @@ div.PhotoBox {
   position: relative;
   overflow: hidden;
 }
+
 div.PhotoBox div.SlideBox {
   position: absolute;
   left: 0;
-  bottom: -70px;              /* 画像の高さに合わせる */
-  width: 100%;                /* 画像の横幅に合わせる */
-  height: 70px;               /* スライドして重ねる領域の高さ */
-  background-color: black;  /* スライドして重ねる領域の背景色 */
-  color: white;             /* スライドして重ねる領域の文字色 */
-  opacity: 0.6;               /* スライドして重ねる領域の透明度 */
+  bottom: -70px; /* 画像の高さに合わせる */
+  width: 100%; /* 画像の横幅に合わせる */
+  height: 70px; /* スライドして重ねる領域の高さ */
+  background-color: black; /* スライドして重ねる領域の背景色 */
+  color: white; /* スライドして重ねる領域の文字色 */
+  opacity: 0.6; /* スライドして重ねる領域の透明度 */
 }
+
 div.PhotoBox div.SlideBox p.Caption {
   font-weight: bold;
   font-size: 90%;
   margin: 0.5em;
 }
+
 div.SlideBox p {
   padding-left: 5px;
 }
@@ -208,29 +238,47 @@ div.SlideBox p {
 //    }
 //  }
 //}
-.rakuten-search{
+.rakuten-search {
   padding-top: 20px;
-  padding-left: 70px;
+  padding-left: 10px;
   justify-content: center;
   align-items: center;
 
 }
-.rakuten-btn-search{
+
+.rakuten-btn-search {
   font-size: 1.4em;
   background-color: deepskyblue;
   color: white;
 }
-.btn-rakuten-page{
+
+.btn-rakuten-page {
   background-color: lightgreen;
   color: gray;
 }
-.btn-rakuten-save{
+
+.btn-rakuten-save {
   background-color: deepskyblue;
   color: white;
 }
 
-.table-bordered{
+.table-bordered {
   margin-left: 130px;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 340px) {
+  img {
+    max-width: 100%;
+  }
+}
+.card-body{
+  margin-left: 25%;
+  @include sm{
+    width: 100%;
+  }
+}
+.card-title{
+  overflow: hidden;
 }

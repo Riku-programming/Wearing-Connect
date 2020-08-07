@@ -9,7 +9,7 @@
             <% end %>
             <% if item.image? %>
               <%#= image_tag item.image.thumb.url %>
-              <%= link_to image_tag(item.image.to_s, class: "mx-auto d-block",size: '300x340', alt: 'Weather image'), item %>
+              <%= link_to image_tag(item.image.to_s, class: "mx-auto d-block",size: '300x340', alt: 'Item image'), item %>
             <% else %>
               <%= image_tag 'no-image.jpg'%>
             <% end %>

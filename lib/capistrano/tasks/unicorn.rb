@@ -1,15 +1,15 @@
 # unicornのpidファイル、設定ファイルのディレクトリを指定
 namespace :unicorn do
   task :environment do
-    set :unicorn_pid, "#{current_path}/shared/tmp/pids/unicorn.pid"
-    set :unicorn_config, "#{current_path}/shared/config/unicorn/production.rb"
+    set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
+    set :unicorn_config, "#{current_path}/config/unicorn/production.rb"
   end
 
 
   # unicornをスタートさせるメソッド
   def start_unicorn
     within current_path do
-      execute :bundle, :exec, :unicorn, "-c #{fetch(:unicorn_config)} -E #{fetch(:rails_env)} -D"
+      execute :bundle, :exec, :unicorn, "-c /var/www/rails/Wearing-Connect/config/unicorn.conf.rb -E #{fetch(:rails_env)} -D"
     end
   end
 
@@ -28,53 +28,53 @@ namespace :unicorn do
     execute :kill, "$(< #{fetch(:unicorn_pid)})"
   end
 
-  # # unicornをスタートさせるtask
-  # desc "Start unicorn server"
-  # task start: :environment do
-  #   on roles(:app) do
-  #     start_unicorn
-  #   end
-  # end
-  #
+  # unicornをスタートさせるtask
+  desc "Start unicorn server"
+  task start: :environment do
+    on roles(:app) do
+      start_unicorn
+    end
+  end
+
   # # unicornを停止させるtask
-  # desc "Stop unicorn server gracefully"
-  # task stop: :environment do
-  #   on roles(:app) do
-  #     stop_unicorn
-  #   end
-  # end
+  desc "Stop unicorn server gracefully"
+  task stop: :environment do
+    on roles(:app) do
+      stop_unicorn
+    end
+  end
+  # #
+  # # desc "Start unicorn"
+  # # task :start do
+  # #   on roles{:no_release}
+  # #   run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
+  # #   run "ps aux | grep unicorn_rails | head -n 1 | awk '{print $2}' > #{deploy_to}/shared/tmp/pids/unicorn.pid"
+  # # end
   #
-  # desc "Start unicorn"
-  # task :start do
-  #   on roles{:no_release}
-  #   run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
-  #   run "ps aux | grep unicorn_rails | head -n 1 | awk '{print $2}' > #{deploy_to}/shared/tmp/pids/unicorn.pid"
-  # end
-
-
-  # desc "Stop unicorn"
-  # task :stop do
-  #   on roles{:no_release}
-  #   run "kill -s QUIT `cat  #{deploy_to}/shared/tmp/pids/unicorn.pid`"
-  # end
-
-  # 既にunicornが起動している場合再起動を、まだの場合起動を行うtask
-  # desc "Restart unicorn server gracefully"
-  # task restart: :environment do
-  #   on roles(:app) do
-  #     if test("[ -f #{fetch(:unicorn_pid)} ]")
-  #       reload_unicorn
-  #     else
-  #       # start_unicorn
-  #     end
-  #   end
-  # end
   #
-  # # unicornを強制終了させるtask
-  # desc "Stop unicorn server immediately"
-  # task force_stop: :environment do
-  #   on roles(:app) do
-  #     # force_stop_unicorn
-  #   end
-  # end
+  # # desc "Stop unicorn"
+  # # task :stop do
+  # #   on roles{:no_release}
+  # #   run "kill -s QUIT `cat  #{deploy_to}/shared/tmp/pids/unicorn.pid`"
+  # # end
+  #
+  # # 既にunicornが起動している場合再起動を、まだの場合起動を行うtask
+  desc "Restart unicorn server gracefully"
+  task restart: :environment do
+    on roles(:app) do
+      if test("[ -f #{fetch(:unicorn_pid)} ]")
+        reload_unicorn
+      else
+        start_unicorn
+      end
+    end
+  end
+
+  # unicornを強制終了させるtask
+  desc "Stop unicorn server immediately"
+  task force_stop: :environment do
+    on roles(:app) do
+      force_stop_unicorn
+    end
+  end
 end
