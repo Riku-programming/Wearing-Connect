@@ -63,7 +63,7 @@ CSV.foreach("db/csv/item.csv") do |row|
   content = row[CSV_CONTENT]
   user_id = User.find(row[CSV_USER_ID]).id
   category_id = Category.find(row[CSV_CATEGORY_ID]).id
-  image = open("#{Rails.root}/public/images/#{row[CSV_IMAGE]}")
+  image = open("#{Rails.root}/db/fixtures/item_image/#{row[CSV_IMAGE]}")
   created_at = Time.zone.now
 
   Item.create!(id: id, item_name: item_name, price: price, brand: brand, content: content, user_id: user_id,  category_id: category_id, image: image, created_at: created_at)
