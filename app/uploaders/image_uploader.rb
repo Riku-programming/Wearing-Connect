@@ -54,12 +54,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
 
 
+  # def filename
+  #   if original_filename.present?
+  #     super.chomp(File.extname(super)) + ".jpg"
+  #     time = Time.now
+  #     name = time.strftime("%Y%m%d%H%M%S") + ".jpg"
+  #     name.downcase
+  #   end
+  # end
+  #
   def filename
-    if original_filename.present?
-      super.chomp(File.extname(super)) + ".jpg"
-      time = Time.now
-      name = time.strftime("%Y%m%d%H%M%S") + ".jpg"
-      name.downcase
-    end
+    "#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.#{file.extension}" if original_filename
   end
 end
