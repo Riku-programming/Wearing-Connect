@@ -44,4 +44,3 @@ yarn-debug.log*
 /terraform/.terraform/plugins/darwin_amd64/lock.json
 
 /config/credentials/production.key
-/config/initializers/carrierwave.rb
