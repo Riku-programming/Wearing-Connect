@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  protect_from_forgery
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :set_category, only: [:new, :create, :edit]
   before_action :require_same_user, only: [:edit, :update, :destroy]

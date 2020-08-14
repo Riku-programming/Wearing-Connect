@@ -3,12 +3,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  if Rails.env.development?
-    storage :file
-  elsif Rails.env.test?
-    storage :file
-  else
+  if Rails.env.production? || Rails.env.staging?
     storage :fog
+  else
+    storage :file
   end
 
   # Choose what kind of storage to use for this uploader:
@@ -65,5 +63,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   def filename
     "#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.#{file.extension}" if original_filename
+  end
+
+  protected
+  # 一意となるトークンを作成
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end

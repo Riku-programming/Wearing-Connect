@@ -44,7 +44,6 @@ gem "raindrops"
 gem "sassc-rails"
 gem "sassc"
 gem "fog-aws"
-gem "fog"
 # gem 'therubyracer',  platforms: :ruby
 # gem 'libv8'
 

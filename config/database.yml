@@ -59,7 +59,7 @@ default: &default
   host: localhost
 #  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
 #  host: db
-  socket: /tmp/mysql.sock
+#  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -84,5 +84,4 @@ production:
   database: wearing-connect_production
   username: root
   password:
-#  socket: /tmp/mysql.sock
   socket: /var/lib/mysql/mysql.sock
