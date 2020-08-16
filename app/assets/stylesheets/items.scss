@@ -274,11 +274,23 @@ div.SlideBox p {
   }
 }
 .card-body{
-  margin-left: 25%;
+  //margin-left: 25%;
+  //@include md{
+  //  margin-left: 25%;
+  //}
   @include sm{
     width: 100%;
+    margin-left: 25%;
   }
 }
 .card-title{
-  overflow: hidden;
+  overflow: auto;
+  //white-space: nowrap;
+}
+.card-content{
+  padding-top: 10px;
+  //white-space: nowrap;
+  //overflow-wrap: normal;
+  word-break: normal;
+  //word-wrap: break-word;
 }
