@@ -19,7 +19,7 @@
         <% @items.first(10).each do |item| %>
           <tr>
             <td><%= item['itemName'] %></td>
-            <td><%= "#{item['itemPrice']} 円" %></td>
+            <td class="item_price"><%= "#{item['itemPrice']} 円" %></td>
             <td><%= link_to(image_tag("#{item['mediumImageUrls'][0]}")) %></td>
             <td><%= link_to 'Page', "#{item['itemUrl']}", class: 'btn btn-success btn-rakuten-page' %></td>
             <td><%= link_to 'Save', {:controller => "items", :action => "save", :item_name => item['itemName'], :price => item['itemPrice'], :brand => item['shopName'], :image => item['mediumImageUrls'][0].gsub("?_ex=128x128", "")},

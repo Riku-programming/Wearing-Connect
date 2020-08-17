@@ -22,9 +22,12 @@
 
 
 .item-cards {
-  gap: 20px;
+  //gap: 20px;
   padding: 0 20px;
   margin-bottom: 5px;
+}
+.item-info{
+  word-wrap: normal;
 }
 
 .card-index {
@@ -34,20 +37,18 @@
 .item-img {
   width: 300px;
   height: 300px;
-
 }
 
 
 .item_image_index {
-  width: 335px;
-  height: 335px;
+  max-width: 100%;
+  //padding-left: 0;
+}
+.item-cards{
+  //padding-left: 0;
+  display: flex;
 }
 
-//.item_image_post {
-//  width: 500px;
-//  max-width: 100%;
-//  height: auto;
-//}
 
 .card-post {
   max-width: 600px;
@@ -59,19 +60,24 @@
     margin-top: 0;
   }
 }
+.item_form{
+  margin-left: 8%;
+}
 
 .add_image {
   border: lightgray 1px solid;
   width: 100%;
   margin-top: 10px;
+  margin-left: 35%;
   height: 320px;
   line-height: 460px;
   border-radius: 10px;
   cursor: pointer;
+
   @include lg {
     width: 800px;
     height: 400px;
-    margin-left: 40px;
+    margin-left: 20%;
     margin-top: 10px;
     line-height: 550px;
   }
@@ -274,23 +280,25 @@ div.SlideBox p {
   }
 }
 .card-body{
-  //margin-left: 25%;
-  //@include md{
-  //  margin-left: 25%;
-  //}
   @include sm{
     width: 100%;
-    margin-left: 25%;
   }
 }
 .card-title{
-  overflow: auto;
-  //white-space: nowrap;
+  //overflow: scroll;
+  word-wrap: break-word;
+  text-align: center;
+}
+.card-text{
+  margin-left: 25%;
+  margin-bottom: 10px;
 }
 .card-content{
   padding-top: 10px;
-  //white-space: nowrap;
-  //overflow-wrap: normal;
-  word-break: normal;
-  //word-wrap: break-word;
+  word-wrap: normal;
+  margin-left: 25%;
 }
+.action-button{
+  margin-left: 25%;
+}
+

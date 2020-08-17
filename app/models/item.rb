@@ -28,4 +28,5 @@ class Item < ApplicationRecord
   def liked_by?(user_id)
     likes.where(user_id: user_id).exists?
   end
+
 end

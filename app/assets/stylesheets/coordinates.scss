@@ -1,6 +1,25 @@
 // Place all the styles related to the coordinates controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@mixin sm {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+
 
 .row　coordinate-form{
   display: flex;
@@ -13,4 +32,26 @@
 }
 .coordinate-title{
   padding-left: 10px;
+}
+
+.category_name{
+  white-space: nowrap;
+}
+.item_price{
+  white-space: nowrap;
+}
+.coordinate-form{
+  margin-top: 5%;
+  margin-left: 25%;
+}
+.classification-btn{
+  margin-top: 10px;
+}
+
+.sum_price{
+  float: right;
+  margin-right: 40px;
+  @include lg {
+    margin-right: 25px;
+  }
 }
