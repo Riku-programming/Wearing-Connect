@@ -51,25 +51,24 @@ class CoordinatesController < ApplicationController
 
 
   private
+    def set_coordinate
+      @coordinate = Coordinate.find(params[:id])
+    end
 
-  def set_coordinate
-    @coordinate = Coordinate.find(params[:id])
-  end
+    def coordinate_params
+      params[:coordinate].permit(:name,
+                                 classifications_attributes: [:item_id, :_destroy])
+    end
 
-  def coordinate_params
-    params[:coordinate].permit(:name,
-                               classifications_attributes: [:item_id, :_destroy])
-  end
+    def item_params
+      params[:item].permit(:item_name, :price, :image, :content, :brand, :category_id)
+    end
 
-  def item_params
-    params[:item].permit(:item_name, :price, :image, :content, :brand, :category_id)
-  end
+    def set_all_item
+      @items = Item.all
+    end
 
-  def set_all_item
-    @items = Item.all
-  end
-
-  def require_same_user
-    redirect_to(root_url) unless (@coordinate.user == current_user) || current_user.admin?
-  end
+    def require_same_user
+      redirect_to(root_url) unless (@coordinate.user == current_user) || current_user.admin?
+    end
 end

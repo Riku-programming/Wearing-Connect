@@ -74,6 +74,6 @@ namespace :deploy do
   #     upload!('config/master.key', "#{shared_path}/config/master.key")
   #   end
   # end
-  before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup'
+  # before :starting, 'deploy:upload'
+  # after :finishing, 'deploy:cleanup'
 end
