@@ -1,147 +1,87 @@
-version: 2
+version: 2.1
 
-#commands:
-#  bundle-install-command:
-#    description: "checkout and bundle install and caching"
-#    steps:
-
-
-jobs:
-  rspec:
+executors:
+  default:
+    working_directory: ~/repo
     docker:
-      # specify the version you desire here
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.5.1-node-browsers
         environment:
-          BUNDLER_VERSION: 2.0.2
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
+          - BUNDLER_VERSION: 2.1.4
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_HOST: '%'
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
 
-    working_directory: ~/Wearing-Connect
-    # Download and cache dependencies
-
+commands:
+  setup:
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-
       - run:
           name: install dependencies
           command: |
-            gem install bundler -v 2.0.2
+            gem install bundler -v 2.1.4
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
-
-      - run:
-          name: Yarn をインストール
-          command: yarn install --cache-folder ~/.cache/yarn
-
-
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
-      - run: mv config/database.ci.yml config/database.yml
-
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
-      # Database setup
+jobs:
+  test:
+    executor: default
+    environment:
+      RAILS_ENV: test
+    steps:
+      - setup
+      - run: mv config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      - add_ssh_keys:
-          fingerprints:
-            - "30:bf:98:55:45:0e:f2:5f:bc:c6:b5:56:90:67:ea:dd"
-
-      - deploy:
-          name: Capistrano deploy
-          command:
-            bundle exec cap production deploy
-
-
-  rubocop:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_HOST: '%'
-    working_directory: ~/Wearing-Connect
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: gem install bundler -v 2.0.2
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: yarn install
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # Rubocop
       - run:
           name: Rubocop
           command: bundle exec rubocop
 
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
 
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
 
+  deploy:
+    executor: default
+    steps:
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - "30:bf:98:55:45:0e:f2:5f:bc:c6:b5:56:90:67:ea:dd"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
 
 workflows:
-  version: 2
-  rubocop_rspec:
+  test_and_deploy:
     jobs:
-      - rubocop
-      - rspec:
+      - test
+      - deploy:
           requires:
-            - rubocop
+            - test
+          filters:
+            branches:
+              only: master
