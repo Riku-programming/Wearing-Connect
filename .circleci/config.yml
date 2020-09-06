@@ -42,7 +42,7 @@ jobs:
       RAILS_ENV: test
     steps:
       - setup
-      - run: mv config/database.yml.ci config/database.yml
+      - run: mv config/database.ci.yml config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
