@@ -2,11 +2,16 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/repo
+    working_directory: ~/Wearing-Connect
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
-          - BUNDLER_VERSION: 2.1.4
+          BUNDLER_VERSION: 2.0.2
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
+
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
