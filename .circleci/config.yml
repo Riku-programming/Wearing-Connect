@@ -23,7 +23,7 @@ commands:
       - run:
           name: install dependencies
           command: |
-            gem install bundler -v 2.1.4
+            gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
