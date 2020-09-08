@@ -6,7 +6,7 @@ RSpec.describe "Friendships", type: :system do
   let!(:category) { FactoryBot.create(:category) }
   let!(:item) { FactoryBot.create(:item) }
 
-  it "ユーザーをフォロー/フォロー解除する", js: true do
+  it "ユーザーをフォローする", js: true do
     visit root_path
 
     # user がログインする
@@ -29,6 +29,13 @@ RSpec.describe "Friendships", type: :system do
     click_link "View Profile", href: "/users/#{another_user.id}"
     expect(current_path).to eq "/users/#{another_user.id}"
 
-    # todo test追記必要
+    # ユーザーをフォローする
+    click_link "友達"
+    expect(page).to have_content "Friends"
+    fill_in "user", with: "@"
+    click_button "button"
+    sleep 5
+    expect(expect(page).to have_link "Follow user?", href: "/users/#{another_user.id}/friendships")
+    expect(current_path).to eq "/users/#{user.id}/follows"
   end
 end

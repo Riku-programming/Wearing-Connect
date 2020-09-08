@@ -49,4 +49,9 @@ RSpec.describe Item, type: :model do
       expect(@item).to_not be_valid
     end
   end
+
+  it "記事を削除すると、関連するいいねも削除されること" do
+    item = create(:item, likes_count: 1)
+    expect { item.destroy }.to change { Item.count }.by(-1)
+  end
 end

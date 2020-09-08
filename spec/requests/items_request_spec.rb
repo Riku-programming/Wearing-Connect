@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "Items", type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let!(:another_user) { FactoryBot.create(:another_user) }
+  let!(:admin) { FactoryBot.create(:admin) }
   let!(:category) { FactoryBot.create(:category) }
   let!(:item) { FactoryBot.create(:item) }
   let!(:another_item) { FactoryBot.create(:another_item) }
@@ -129,6 +130,16 @@ RSpec.describe "Items", type: :request do
     context  "アイテムを作成したユーザーの場合" do
       before do
         sign_in user
+      end
+      it "正常にアイテムが削除されること" do
+        expect { delete item_path(item) }.to change { Item.count }.by(-1)
+        expect(response).to redirect_to items_path
+      end
+    end
+
+    context "AdminUserの場合" do
+      before do
+        sign_in admin
       end
       it "正常にアイテムが削除されること" do
         expect { delete item_path(item) }.to change { Item.count }.by(-1)

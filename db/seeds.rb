@@ -12,8 +12,8 @@ User.create!(name: "riku",
              password: "password",
              password_confirmation: "password",
              created_at: Time.zone.now,
-             # avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
-             avatar: open("/var/www/rails/Wearing-Connect/current/db/fixtures/avatar/admin.jpeg"),
+             avatar: open("#{Rails.root}/db/fixtures/avatar/admin.jpeg"),
+             # avatar: open("/var/www/rails/Wearing-Connect/current/db/fixtures/avatar/admin.jpeg"),
              introduction: "よろしくお願いします",
              admin: true)
 
