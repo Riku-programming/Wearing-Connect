@@ -35,6 +35,11 @@ http://www.wearing-connect.com <br>
 
 ## AWS構成図
 
+
+
+
+<img width="1164" alt="AWS" src="https://user-images.githubusercontent.com/49392147/92549841-33b88100-f295-11ea-8f79-c9f2f6844726.png">
+
 ## 機能一覧
 - ユーザー機能
   - deviseを使用
@@ -65,3 +70,4 @@ http://www.wearing-connect.com <br>
 
 ##ダイアグラム
 
+<img width="1128" alt="ダイアグラム" src="https://user-images.githubusercontent.com/49392147/92549702-de7c6f80-f294-11ea-8ce0-c068be2e3172.png">

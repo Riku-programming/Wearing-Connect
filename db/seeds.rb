@@ -72,11 +72,6 @@ end
 
 
 
-
-
-
-
-
 # # お気に入りアイテム作成
 # users = User.order(:id).take(6)
 # items = Item.order(:id).take(15)
