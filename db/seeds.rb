@@ -70,8 +70,6 @@ CSV.foreach("db/csv/item.csv") do |row|
   Item.create!(id: id, item_name: item_name, price: price, brand: brand, content: content, user_id: user_id,  category_id: category_id, image: image, created_at: created_at)
 end
 
-
-
 # # お気に入りアイテム作成
 # users = User.order(:id).take(6)
 # items = Item.order(:id).take(15)

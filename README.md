@@ -15,6 +15,8 @@ CircleCIを使用してCI/CDパイプラインを構築しています
 洋服を見たりお洒落をして街に出かけることが好きなので自分が気に入った洋服などを保存して共有できるアプリがあればいいと思い、制作しました
 
 ## URL
+<img width="2551" alt="preview" src="https://user-images.githubusercontent.com/49392147/92884363-bdf71580-f44c-11ea-86ee-1b0b5262304b.png">
+
 http://www.wearing-connect.com <br>
 
 - ログイン画面の「かんたんログイン」をクリックすると、メールアドレスとパスワードを入力せずにログインできます。<br>
